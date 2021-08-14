@@ -5,6 +5,8 @@ import SideBar from "../../Components/Sidebar/sidebar";
 import logo from "./Logo.png";
 import "./login.css";
 import { withRouter } from "react-router";
+import Button from "@material-ui/core/Button";
+
 const closeBtn = document.getElementsByClassName("close-btn");
 console.log(closeBtn);
 
@@ -124,10 +126,10 @@ class Login extends React.Component {
                 <> </>
               )}{" "}
             </div>{" "}
-            <button type="submit" onClick={this.submit}>
+            <Button type="submit" onClick={this.submit}>
               {" "}
               Login{" "}
-            </button>{" "}
+            </Button>{" "}
           </form>
         )}{" "}
       </div>

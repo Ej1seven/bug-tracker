@@ -4,6 +4,7 @@
   margin: -8px;
   --card-color: #eeeeee;
   overflow: hidden;
+  font-family: "Roboto";
 }
 
 ::-webkit-scrollbar {

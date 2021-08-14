@@ -22,10 +22,11 @@
 
 .login-panel {
   background-color: var(--prim-color);
-  width: 30vw;
+  max-width: 30%;
+  min-height: 60%;
   border: 1px solid grey;
   border-radius: 5px;
-  margin: 5vh auto;
+  margin: 20vh auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -34,6 +35,10 @@
 
 .login-panel h1 {
   width: 100%;
+}
+
+form {
+  margin: auto;
 }
 
 .login-panel input {
@@ -56,11 +61,11 @@
 
 .register-btn {
   display: flex;
-  flex-direction: row-reverse;
-  /* position: absolute; */
+  flex-direction: row;
+  position: absolute;
   margin: 10px;
-  /* right: 0; */
-  /* top: 0; */
+  right: 0;
+  top: 0;
 }
 
 .close-btn {
