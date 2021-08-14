@@ -1,0 +1,51 @@
+.dashboardBG {
+  width: 100%;
+  height: 100%;
+  background-color: #eeeeee;
+}
+
+.bug-create {
+  width: 60vw;
+  height: 99vh;
+  background-color: var(--prim-color);
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 25%;
+  position: absolute;
+  z-index: 10;
+  padding: 1% 5%;
+}
+
+.bug-create h1 {
+  min-width: 100%;
+  height: 10%;
+
+  text-align: center;
+  font-size: 2.5rem;
+  border-bottom: 1px groove white;
+}
+
+.bug-create form {
+  min-width: 80%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.bug-create label {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.bug-create input,
+textarea,
+select {
+  border-radius: 5px;
+  border: none;
+}
+
+.bug-create button {
+  grid-column: 2;
+}

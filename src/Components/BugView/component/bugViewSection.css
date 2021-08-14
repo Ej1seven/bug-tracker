@@ -1,0 +1,37 @@
+.view-section {
+  min-width: 40%;
+  text-align: center;
+  background-color: #eeeeee;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.view-section h2 {
+  margin: 0 0 15px 0;
+  border-bottom: 1px groove black;
+}
+
+textarea {
+  border: 2px solid #008bb5;
+  background-color: #eeeeee;
+  font-size: 0.9rem;
+  width: 80%;
+  font: inherit;
+}
+textarea::placeholder {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+textarea:focus::placeholder {
+  color: transparent;
+}
+
+textarea:focus {
+  height: 120%;
+}
+
+.hide {
+  display: none;
+}

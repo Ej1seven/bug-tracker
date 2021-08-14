@@ -1,0 +1,43 @@
+.viewBugLayout {
+  grid-template-columns: 20% 80%;
+  display: grid;
+}
+
+/* td {
+  padding: 0 !important;
+  margin: -8 !important;
+}
+
+tr {
+  padding: -9 !important;
+  margin: -8 !important;
+} */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1px;
+}
+
+/* td {
+  border-top: solid 1px rgba(255, 0, 0, 1);
+  border-bottom: solid 1px rgba(255, 0, 0, 1);
+} */
+
+.high td {
+  background-color: rgba(255, 0, 0, 0.5);
+  border-top: solid 1px rgba(255, 0, 0, 1);
+  border-bottom: solid 1px rgba(255, 0, 0, 1);
+  color: black;
+}
+.medium td {
+  background-color: rgba(226, 226, 7, 0.5);
+  border-top: solid 1px rgba(226, 226, 7, 1);
+  border-bottom: solid 1px rgba(226, 226, 7, 1);
+  color: black;
+}
+.low td {
+  background-color: rgba(0, 255, 0, 0.5);
+  border-top: solid 1px rgba(0, 255, 0, 1);
+  border-bottom: solid 1px rgba(0, 255, 0, 1);
+  color: black;
+}

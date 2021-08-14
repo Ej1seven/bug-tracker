@@ -1,0 +1,23 @@
+.myprofile-page {
+  width: 96%;
+  height: 96%;
+  color: var(--prim-color);
+  text-align: center;
+}
+
+.header {
+  border-bottom: solid 2px var(--prim-color);
+  height: 10%;
+}
+
+.user-information-container {
+  height: 90%;
+}
+
+.information-grid {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}

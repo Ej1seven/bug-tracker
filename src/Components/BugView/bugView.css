@@ -1,0 +1,70 @@
+.comment-title {
+  color: white;
+}
+.ticket-title {
+  color: white;
+  text-align: center;
+}
+
+.bug-view {
+  position: absolute;
+  z-index: 10;
+  width: 60vw;
+  border: 5px solid #008bb5;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.705);
+  border-radius: 5px;
+  background-color: var(--prim-color);
+  margin: 2% 8% 8% 8%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black;
+}
+
+.bug-view h1 {
+  min-width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  padding-bottom: 20px;
+  border-bottom: 1px groove white;
+}
+
+.close-btn {
+  position: absolute;
+  margin: 10px;
+  right: 0;
+  top: 0;
+}
+
+.button-container {
+  position: absolute;
+  margin: 10px;
+  right: 0;
+  top: 0;
+}
+
+.comments-container {
+  /* height: 89vh; */
+}
+
+.add-comment {
+  width: 40vw;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.add-button {
+  padding: 0px 5px 5px 5px;
+  margin: 0;
+}
+
+.comments-table {
+  width: 100%;
+  /* border: white solid 5px; */
+  color: #eeeeee;
+}
+
+.cell-value {
+  display: block;
+}

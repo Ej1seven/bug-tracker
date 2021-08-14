@@ -1,0 +1,12 @@
+.nav-link {
+  text-decoration: none;
+  color: #eeeeee;
+  width: 50%;
+}
+
+.logout {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

@@ -1,0 +1,56 @@
+.role-body-container {
+  padding: 0 1%;
+}
+
+.role-assignment-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.role-assignment-title {
+  width: 97%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.select-role-container {
+  width: 30%;
+  margin-top: 2%;
+}
+
+.role-container {
+  width: 70%;
+  margin-top: 2%;
+}
+
+.role-assignment-title h1 {
+  min-width: 100%;
+  height: 5%;
+  padding: 3% 0%;
+  text-align: center;
+  font-size: 2.5rem;
+  border-bottom: 1px groove white;
+  margin: 0;
+  color: #eeeeee;
+}
+
+.myProjects-background {
+  background-color: var(--prim-color);
+  width: 78vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+  margin-left: 21%;
+  position: absolute;
+}
+
+.users-table {
+  width: 70%;
+  margin: auto;
+}
+
+.mybugs-container-list h3 {
+  margin-top: 0;
+}
