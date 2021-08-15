@@ -83,3 +83,15 @@ img {
 .hide {
   display: none;
 }
+
+@media only screen and (max-width: 768px) {
+  .login-panel {
+    max-width: 40%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .login-panel {
+    max-width: 68%;
+  }
+}
