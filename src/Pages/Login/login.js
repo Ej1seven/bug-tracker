@@ -2,7 +2,7 @@ import React from "react";
 import PopUp from "../../Components/Popup/popup";
 import Dashboard from "../Dashboard/dashboard";
 import SideBar from "../../Components/Sidebar/sidebar";
-import logo from "./Logo.png";
+import logo from "./UpdatedLogo.png";
 import "./login.css";
 import { withRouter } from "react-router";
 import Button from "@material-ui/core/Button";
