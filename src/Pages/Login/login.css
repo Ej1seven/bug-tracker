@@ -88,6 +88,39 @@ img {
   display: none;
 }
 
+.MuiInputBase-root {
+  background-color: #ffffff;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 0;
+}
+
+div.MuiFormControl-root {
+  height: 5vh;
+  margin: 2%;
+}
+
+.MuiInput-input {
+  width: 100%;
+}
+
+.MuiInputBase-input {
+  width: 100%;
+}
+
+#login-form > div > div > input {
+  width: 100%;
+}
+
+@media only screen and (max-height: 550px) {
+  div.MuiInputBase-root {
+    height: 7vh;
+  }
+}
 @media only screen and (max-width: 768px) {
   .login-panel {
     max-width: 40%;
@@ -98,19 +131,4 @@ img {
   .login-panel {
     max-width: 68%;
   }
-}
-
-.MuiInputBase-root {
-  background-color: #ffffff;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  border: 2px solid black;
-  border-radius: 4px;
-}
-
-div.MuiFormControl-root {
-  height: 5vh;
-  margin: 2%;
 }
