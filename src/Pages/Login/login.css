@@ -38,6 +38,12 @@ form {
   margin: auto;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .login-panel input {
   width: 70%;
   height: 30px;
