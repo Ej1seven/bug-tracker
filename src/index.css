@@ -5,6 +5,9 @@
   --card-color: #eeeeee;
   overflow: hidden;
   font-family: "Roboto";
+  background: linear-gradient(-45deg, #eeeeee, #00adb5, #393e46, #222831);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
 ::-webkit-scrollbar {
@@ -34,6 +37,7 @@ button:hover {
   grid-column: 2;
   overflow: auto;
   overflow-y: scroll;
+  background-color: #ffffff;
 
   /* margin-top: 2%; */
 }

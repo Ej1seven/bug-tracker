@@ -9,6 +9,7 @@ import RoleAssignment from "./Pages/RoleAssignment/roleAssignment";
 import MyProfile from "./Pages/MyProfile/myProfile";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
