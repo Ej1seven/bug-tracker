@@ -6,7 +6,8 @@ import logo from "./UpdatedLogo.png";
 import "./login.css";
 import { withRouter } from "react-router";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import InputBase from "@material-ui/core/TextField";
+import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 const closeBtn = document.getElementsByClassName("close-btn");
 console.log(closeBtn);
@@ -87,6 +88,7 @@ class Login extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="loginBG">
         {" "}
@@ -106,20 +108,20 @@ class Login extends React.Component {
         ) : (
           <form id="login-form" className="login-panel">
             <img alt="logo" src={logo} />
-            <TextField
+            <InputBase
               name="email"
               placeholder="Email"
               onChange={this.inputChanged}
               value={this.state.formInput.email}
-              variant="outlined"
+              InputProps={{ disableUnderline: true }}
             />
-            <TextField
+            <InputBase
               name="password"
               type="password"
               placeholder="Password"
               onChange={this.inputChanged}
               value={this.state.formInput.password}
-              variant="outlined"
+              InputProps={{ disableUnderline: true }}
             />
             <div className="error-message">
               {" "}

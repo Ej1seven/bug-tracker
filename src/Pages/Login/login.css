@@ -102,11 +102,14 @@ img {
 
 .MuiInputBase-root {
   background-color: #ffffff;
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 0;
   height: 100%;
+  border: 2px solid black;
+  border-radius: 4px;
 }
+
 div.MuiFormControl-root {
   height: 5vh;
   margin: 2%;
