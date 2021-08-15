@@ -6,6 +6,7 @@ import logo from "./Logo.png";
 import "./login.css";
 import { withRouter } from "react-router";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const closeBtn = document.getElementsByClassName("close-btn");
 console.log(closeBtn);
@@ -104,19 +105,21 @@ class Login extends React.Component {
           </div>
         ) : (
           <form id="login-form" className="login-panel">
-            <img alt="logo" src={logo} /> <h1> Login </h1>{" "}
-            <input
+            <img alt="logo" src={logo} />
+            <TextField
               name="email"
               placeholder="Email"
               onChange={this.inputChanged}
               value={this.state.formInput.email}
+              variant="outlined"
             />
-            <input
+            <TextField
               name="password"
               type="password"
               placeholder="Password"
               onChange={this.inputChanged}
               value={this.state.formInput.password}
+              variant="outlined"
             />
             <div className="error-message">
               {" "}

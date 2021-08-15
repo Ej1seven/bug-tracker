@@ -18,9 +18,11 @@
 }
 
 .login-panel {
-  background-color: var(--prim-color);
+  /* background-color: var(--prim-color); */
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
   max-width: 30%;
-  min-height: 60%;
+  min-height: 70%;
   border: 1px solid grey;
   border-radius: 5px;
   margin: 15vh auto;
@@ -42,6 +44,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  margin-bottom: 15%;
 }
 
 .login-panel input {
@@ -94,4 +97,16 @@ img {
   .login-panel {
     max-width: 68%;
   }
+}
+
+.MuiInputBase-root {
+  background-color: #ffffff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+}
+div.MuiFormControl-root {
+  height: 5vh;
+  margin: 2%;
 }

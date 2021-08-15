@@ -5,9 +5,31 @@
   --card-color: #eeeeee;
   overflow: hidden;
   font-family: "Roboto";
-  background: linear-gradient(-45deg, #eeeeee, #00adb5, #393e46, #222831);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  /* background: linear-gradient(-45deg, #eeeeee, #00adb5, #393e46, #222831);
+  background-size: 100% 100%;
+  animation: gradient 15s ease infinite; */
+
+  background: hsla(194, 100%, 35%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(194, 100%, 35%, 1) 0%,
+    hsla(217, 10%, 25%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(194, 100%, 35%, 1) 0%,
+    hsla(217, 10%, 25%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(194, 100%, 35%, 1) 0%,
+    hsla(217, 10%, 25%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#008BB5", endColorstr="#393E46", GradientType=1 );
 }
 
 ::-webkit-scrollbar {
