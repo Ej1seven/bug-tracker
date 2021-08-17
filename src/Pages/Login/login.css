@@ -1,5 +1,10 @@
-/* .loginBG {
-  width: 100%;
+.loginBG {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* #login-form {
+  width: 100vw;
   height: 100vh;
 } */
 
@@ -10,7 +15,7 @@
   min-height: 70%;
   box-shadow: 0.25rem 0.25rem 0.4rem rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  margin: 3% auto;
+  margin: 2.5% auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -146,7 +151,7 @@ html {
   background: RGBA(255, 255, 255, 1);
 }
 
-#root > div > div > div > form > div > div > input {
+#root > div > div > div > div > form > div > div > input {
   color: #ffffff;
 }
 

@@ -131,7 +131,7 @@ class Login extends React.Component {
     const { classes } = this.props;
 
     return (
-      <>
+      <div className="loginBG">
         {this.state.seen ? (
           <div>
             <PopUp
@@ -201,7 +201,7 @@ class Login extends React.Component {
             </div>
           </form>
         )}{" "}
-      </>
+      </div>
     );
   }
 }
