@@ -108,6 +108,7 @@ div.MuiFormControl-root {
 #login-form > div {
   width: 70%;
   color: #ffffff;
+  background: red;
 }
 
 #login-form > div:nth-child(3) > div {
@@ -149,7 +150,7 @@ div.MuiFormControl-root {
   padding-left: 5%;
 }
 
-/* @media only screen and (max-height: 550px) {
+@media only screen and (max-height: 550px) {
   div.MuiInputBase-root {
     height: 7vh;
   }
@@ -164,7 +165,7 @@ div.MuiFormControl-root {
   .login-panel {
     max-width: 68%;
   }
-} */
+}
 
 #root > div > div > div > form > div > button {
   width: 100%;
