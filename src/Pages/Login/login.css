@@ -175,14 +175,14 @@ html {
 @media only screen and (max-width: 425px) {
   .login-panel {
     max-width: 80%;
-    margin: 35% auto;
+    margin: 10% auto;
   }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 375px) {
   .login-panel {
     max-width: 80%;
-    margin: 35% auto;
+    margin: 27% auto;
   }
 }
 
