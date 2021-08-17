@@ -12,8 +12,8 @@
 .login-panel {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
-  max-width: 30%;
-  height: 90vh;
+  max-width: 25%;
+  height: 85vh;
   box-shadow: 0.25rem 0.25rem 0.4rem rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   /* padding: 1% auto 0 auto; */
