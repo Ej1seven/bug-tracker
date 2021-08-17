@@ -1,6 +1,7 @@
 .loginBG {
   width: 100vw;
   height: 100vh;
+  margin-top: 2.5%;
 }
 
 /* #login-form {
@@ -15,7 +16,7 @@
   min-height: 70%;
   box-shadow: 0.25rem 0.25rem 0.4rem rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  margin: 2.5% auto;
+  /* padding: 1% auto 0 auto; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -180,14 +181,14 @@ html {
 @media only screen and (max-width: 425px) {
   .login-panel {
     max-width: 80%;
-    margin: 25% auto;
+    margin: 20% auto 0% auto;
   }
 }
 
 @media only screen and (max-width: 375px) {
   .login-panel {
     max-width: 80%;
-    margin: 25% auto;
+    margin: 20% auto;
   }
 }
 
