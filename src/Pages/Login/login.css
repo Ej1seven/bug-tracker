@@ -108,7 +108,6 @@ div.MuiFormControl-root {
 #login-form > div {
   width: 70%;
   color: #ffffff;
-  background: red;
 }
 
 #login-form > div:nth-child(3) > div {
