@@ -184,10 +184,10 @@ html {
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 375px) {
   .login-panel {
     max-width: 80%;
-    margin: 27% auto;
+    margin: 25% auto;
   }
 }
 
