@@ -195,3 +195,15 @@ div.MuiFormControl-root {
 .sign-in:hover {
   cursor: pointer;
 }
+
+.js-focus-visible {
+  background: #32c5d2;
+
+  background: linear-gradient(90deg, #32c5d2 0%, #48106a 100%);
+
+  background: -moz-linear-gradient(90deg, #32c5d2 0%, #48106a 100%);
+
+  background: -webkit-linear-gradient(90deg, #32c5d2 0%, #48106a 100%);
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#30C5D2", endColorstr="#471069", GradientType=1 );
+}
