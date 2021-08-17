@@ -25,6 +25,7 @@ class Popup extends React.Component {
         email: "",
         password: "",
         confirmPassword: "",
+        role: "Developer",
       },
       incorrectPassword: false,
       userIsRegistered: false,
@@ -101,8 +102,6 @@ class Popup extends React.Component {
   };
 
   submit = (e) => {
-    const startingRole = "Developer";
-    console.log(startingRole);
     if (this.state.formInput.name === "") {
       alert("Please insert name");
     } else if (this.state.formInput.email === "") {
@@ -121,7 +120,7 @@ class Popup extends React.Component {
           name: this.state.formInput.name,
           email: this.state.formInput.email,
           password: this.state.formInput.password,
-          role: startingRole,
+          role: this.state.formInput.role,
         }),
       }).then((response) =>
         response.json().then((user) => {

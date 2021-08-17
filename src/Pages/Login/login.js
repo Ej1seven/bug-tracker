@@ -31,7 +31,6 @@ class Login extends React.Component {
       formInput: {
         email: "",
         password: "",
-        role: "",
       },
       incorrectPassword: false,
       userIsRegistered: false,
