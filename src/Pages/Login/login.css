@@ -138,6 +138,16 @@ html {
   color: #ffffff;
 }
 
+#root > div > div > div > div > form > div > div > div > button {
+  padding: 0 1px 0 6px;
+  color: #ffffff;
+}
+
+#root > div > div > div > div > form > div:nth-child(4) > div > div > button {
+  padding: 0 0 0 30px;
+  color: #ffffff;
+}
+
 #login-form > div:nth-child(2) > div > input {
   color: #ffffff;
 }
