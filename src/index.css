@@ -19,8 +19,7 @@ body {
 }
 
 .js-focus-visible {
-  background: red;
-  /* background: hsla(185, 64%, 51%, 1);
+  background: hsla(185, 64%, 51%, 1);
 
   background: linear-gradient(
     90deg,
@@ -40,7 +39,7 @@ body {
     hsla(277, 74%, 24%, 1) 100%
   );
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#30C5D2", endColorstr="#471069", GradientType=1 ); */
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#30C5D2", endColorstr="#471069", GradientType=1 );
 }
 
 button {
