@@ -105,7 +105,7 @@ div.MuiFormControl-root {
   flex-direction: column;
 }
 
-#login-form {
+html {
   background: #32c5d2;
 
   background: linear-gradient(90deg, #32c5d2 0%, #48106a 100%);
