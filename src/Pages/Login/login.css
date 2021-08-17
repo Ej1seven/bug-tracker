@@ -189,9 +189,6 @@ html {
 }
 
 @media only screen and (max-width: 425px) {
-  .loginBG {
-    margin-top: 6.25%;
-  }
   .login-panel {
     max-width: 80%;
     height: 75vh;
@@ -200,6 +197,9 @@ html {
 }
 
 @media only screen and (max-width: 375px) {
+  .loginBG {
+    margin-top: 6.25%;
+  }
   .login-panel {
     max-width: 80%;
     /* margin: 20% auto; */
