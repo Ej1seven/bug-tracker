@@ -194,7 +194,9 @@ class Login extends React.Component {
               </Button>{" "}
               <p>
                 Don't have an account?{" "}
-                <span onClick={this.onSeenChange}>Sign up</span>
+                <span className="sign-up" onClick={this.onSeenChange}>
+                  Sign up
+                </span>
               </p>
             </div>
           </form>

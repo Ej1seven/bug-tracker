@@ -187,3 +187,11 @@ div.MuiFormControl-root {
 #confirmpassword {
   width: 80%;
 }
+
+.sign-up:hover {
+  cursor: pointer;
+}
+
+.sign-in:hover {
+  cursor: pointer;
+}

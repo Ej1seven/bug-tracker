@@ -244,7 +244,9 @@ class Popup extends React.Component {
               </Button>
               <p>
                 Already have an account?{" "}
-                <span onClick={this.props.onSeenChange}>Sign In</span>
+                <span className="sign-in" onClick={this.props.onSeenChange}>
+                  Sign In
+                </span>
               </p>
             </div>
           </form>
