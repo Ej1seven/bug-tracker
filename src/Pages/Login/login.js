@@ -2,15 +2,26 @@ import React from "react";
 import PopUp from "../../Components/Popup/popup";
 import Dashboard from "../Dashboard/dashboard";
 import SideBar from "../../Components/Sidebar/sidebar";
-import logo from "./UpdatedLogo.png";
+import logo from "./bugTrackerWhite.png";
 import "./login.css";
 import { withRouter } from "react-router";
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/TextField";
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+import { withStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const closeBtn = document.getElementsByClassName("close-btn");
 console.log(closeBtn);
+
+const styles = {
+  underline: {
+    borderBottom: "1px solid white",
+  },
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,9 +31,14 @@ class Login extends React.Component {
       formInput: {
         email: "",
         password: "",
+        role: "",
       },
       incorrectPassword: false,
       userIsRegistered: false,
+      passwordValues: {
+        password: "",
+        showPassword: false,
+      },
     };
   }
 
@@ -38,8 +54,11 @@ class Login extends React.Component {
 
   inputChanged = (e) => {
     let formInput = { ...this.state.formInput };
+    let passwordValues = { ...this.state.passwordValues };
     formInput[e.target.name] = e.target.value;
     this.setState({ formInput });
+    passwordValues["password"] = e.target.value;
+    this.setState({ passwordValues });
     console.log("email", JSON.stringify(formInput.email));
     console.log("password", JSON.stringify(formInput.password));
   };
@@ -53,6 +72,28 @@ class Login extends React.Component {
   //     seen: !this.seen,
   //   });
   // };
+
+  handleClickShowPassword = () => {
+    let showPasswordValues = { ...this.state.passwordValues };
+
+    this.setState({
+      passwordValues: {
+        showPassword: !this.state.passwordValues.showPassword,
+      },
+    });
+
+    if (this.state.passwordValues.showPassword == false) {
+      document.getElementById("password").type = "text";
+    } else {
+      document.getElementById("password").type = "password";
+    }
+
+    console.log(showPasswordValues);
+  };
+
+  handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   submit = (e) => {
     if (
@@ -89,21 +130,15 @@ class Login extends React.Component {
 
   render() {
     const { classes } = this.props;
+
     return (
-      <div className="loginBG">
-        {" "}
-        {this.state.seen ? (
-          <div onClick={this.onSeenChange} className="close-btn">
-            <i class="fas fa-window-close fa-3x"> </i>{" "}
-          </div>
-        ) : (
-          <div className="register-btn" onClick={this.onSeenChange}>
-            <button id="register-btn"> Register </button>{" "}
-          </div>
-        )}{" "}
+      <>
         {this.state.seen ? (
           <div>
-            <PopUp goBackToDashboard={this.goBackToDashboard} />
+            <PopUp
+              goBackToDashboard={this.goBackToDashboard}
+              onSeenChange={this.onSeenChange}
+            />
           </div>
         ) : (
           <form id="login-form" className="login-panel">
@@ -114,32 +149,60 @@ class Login extends React.Component {
               onChange={this.inputChanged}
               value={this.state.formInput.email}
               InputProps={{ disableUnderline: true }}
+              className={classes.underline}
             />
             <InputBase
+              id="password"
               name="password"
               type="password"
               placeholder="Password"
               onChange={this.inputChanged}
               value={this.state.formInput.password}
-              InputProps={{ disableUnderline: true }}
+              InputProps={{
+                disableUnderline: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                      onMouseDown={this.handleMouseDownPassword}
+                    >
+                      {this.state.passwordValues.showPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              className={classes.underline}
             />
-            <div className="error-message">
+            <div className="form-buttons-contatiner">
               {" "}
               {this.state.incorrectPassword === true ? (
-                <span> Incorrect name or password </span>
-              ) : (
-                <> </>
-              )}{" "}
-            </div>{" "}
-            <Button type="submit" onClick={this.submit}>
-              {" "}
-              Login{" "}
-            </Button>{" "}
+                <div className="error-message">
+                  <span> Incorrect name or password </span>
+                </div>
+              ) : null}
+              <Button
+                type="submit"
+                className="submit-button"
+                onClick={this.submit}
+              >
+                {" "}
+                Login{" "}
+              </Button>{" "}
+              <p>
+                Don't have an account?{" "}
+                <span onClick={this.onSeenChange}>Sign up</span>
+              </p>
+            </div>
           </form>
         )}{" "}
-      </div>
+      </>
     );
   }
 }
 
-export default withRouter(Login);
+export default withStyles(styles)(withRouter(Login));

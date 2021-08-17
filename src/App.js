@@ -9,7 +9,6 @@ import RoleAssignment from "./Pages/RoleAssignment/roleAssignment";
 import MyProfile from "./Pages/MyProfile/myProfile";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -56,13 +55,15 @@ class App extends React.Component {
       <div>
         <Router>
           {!this.state.userIsLoggedIn ? (
-            <Login
-              id={this.state.id}
-              logInUser={this.logInUser}
-              keepUserLoggedIn={this.keepUserLoggedIn}
-              userLoginState={this.state.userIsLoggedIn}
-              logUserOut={this.logUserOut}
-            />
+            <>
+              <Login
+                id={this.state.id}
+                logInUser={this.logInUser}
+                keepUserLoggedIn={this.keepUserLoggedIn}
+                userLoginState={this.state.userIsLoggedIn}
+                logUserOut={this.logUserOut}
+              />
+            </>
           ) : (
             <>
               <Switch>

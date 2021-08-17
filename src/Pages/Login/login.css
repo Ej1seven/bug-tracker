@@ -1,31 +1,16 @@
-.loginBG {
+/* .loginBG {
   width: 100%;
   height: 100vh;
-  /* grid-column: 1/2; */
-  /* position: absolute; */
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}
+} */
 
 .login-panel {
-  /* background-color: var(--prim-color); */
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
   max-width: 30%;
   min-height: 70%;
   box-shadow: 0.25rem 0.25rem 0.4rem rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  margin: 15vh auto;
+  margin: 3% auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -89,14 +74,15 @@ img {
 }
 
 .MuiInputBase-root {
-  background-color: #ffffff;
+  background-color: none;
   width: 100%;
   margin: 0;
   padding: 0;
   height: 100%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 4px;
   padding: 0;
+  border-color: #ffffff;
 }
 
 div.MuiFormControl-root {
@@ -112,8 +98,55 @@ div.MuiFormControl-root {
   width: 100%;
 }
 
-#login-form > div > div > input {
+.form-buttons-contatiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#login-form > div {
+  width: 70%;
+  color: #ffffff;
+}
+
+#login-form > div:nth-child(3) > div {
+  padding: 0;
+  color: #ffffff;
+}
+
+#login-form > div:nth-child(3) > div > div > button {
+  padding: 0 1px 0 6px;
+  color: #ffffff;
+}
+
+#login-form > div:nth-child(2) > div > input {
+  color: #ffffff;
+}
+
+#login-form > div.form-buttons-contatiner > button {
   width: 100%;
+  background: RGBA(255, 255, 255, 0.6);
+  margin-top: 2%;
+}
+
+#login-form > div.form-buttons-contatiner > button:hover {
+  background: RGBA(255, 255, 255, 1);
+}
+
+#root > div > div > div > form > div > div > input {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div
+  > form
+  > div:nth-child(4)
+  > div
+  .MuiInputAdornment-root {
+  padding-left: 5%;
 }
 
 @media only screen and (max-height: 550px) {
@@ -131,4 +164,26 @@ div.MuiFormControl-root {
   .login-panel {
     max-width: 68%;
   }
+}
+
+#root > div > div > div > form > div > button {
+  width: 100%;
+  background: RGBA(255, 255, 255, 0.6);
+  margin-top: 2%;
+}
+
+#root > div > div > div > form > div > button:hover {
+  background: RGBA(255, 255, 255, 1);
+}
+
+#root > div > div > div > form > div:nth-child(4) > div > div > button {
+  padding: 0;
+}
+
+#root > div > div > div > form > div:nth-child(5) > div > div button {
+  padding: 0;
+}
+
+#confirmpassword {
+  width: 80%;
 }

@@ -42,3 +42,14 @@
   padding-left: 5px;
   color: red;
 }
+
+.form-buttons-contatiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#root > div > div > div > form > div:nth-child(2) {
+  width: 100%;
+}
