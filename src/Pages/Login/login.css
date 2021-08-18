@@ -211,6 +211,11 @@ html {
     margin-top: 17%;
   }
 }
+@media only screen and (max-height: 540px) {
+  #login-form > div.form-buttons-contatiner > button {
+    margin-top: 20%;
+  }
+}
 
 @media only screen and (max-width: 375px) {
   .login-panel {
