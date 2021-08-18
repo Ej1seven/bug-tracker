@@ -111,6 +111,10 @@ div.MuiFormControl-root {
   flex-direction: column;
 }
 
+#login-form > div.form-buttons-contatiner {
+  height: 15vh;
+}
+
 html {
   background: #32c5d2;
 
@@ -175,6 +179,15 @@ html {
   > div
   .MuiInputAdornment-root {
   padding-left: 5%;
+}
+
+#login-form > div.form-buttons-contatiner > button {
+  margin-bottom: 1%;
+}
+
+#login-form > div.form-buttons-contatiner > p {
+  padding: 1%;
+  margin: 2%;
 }
 
 @media only screen and (max-height: 550px) {
@@ -246,4 +259,95 @@ html {
   background: -webkit-linear-gradient(90deg, #32c5d2 0%, #48106a 100%);
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#30C5D2", endColorstr="#471069", GradientType=1 );
+}
+
+.guest-btn-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  justify-content: space-evenly;
+}
+
+.guest-btn-container > div {
+  width: 50%;
+  margin: 0;
+}
+
+#guest-panel {
+  margin: auto;
+}
+
+#guest-panel > div > div {
+  margin: auto;
+}
+
+#guest-panel > div > ul {
+  width: 100%;
+  padding: 0;
+}
+
+#guest-panel > div > ul > li > div > span {
+  text-align: center;
+}
+
+#guest-panel > div {
+  height: 50%;
+  margin: 0;
+}
+
+#guest-panel > div > ul > li {
+  height: 35%;
+}
+#guest-panel > div > ul > li:hover {
+  background: RGBA(255, 255, 255, 0.3);
+}
+
+.guest-select-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+}
+
+#guest-panel > div.guest-select-btns > button {
+  height: 10%;
+  width: 100%;
+  background: RGBA(255, 255, 255, 0.6);
+  margin: 3% 0%;
+}
+#guest-panel > div.guest-select-btns > button:hover {
+  height: 10%;
+  width: 100%;
+  background: RGBA(255, 255, 255, 1);
+  margin: 3% 0%;
+}
+
+#guest-panel > div.guest-select-btns {
+  margin-top: 15%;
+}
+
+#guest-panel > div.guest-btn-container > ul > li > button {
+  width: 100%;
+  height: 100%;
+}
+
+#guest-panel > div.guest-btn-container > ul > li > button:focus {
+  background: RGBA(255, 255, 255, 1);
+}
+
+#root > div > div > div > div > form > div.form-buttons-contatiner > button {
+  background: RGBA(255, 255, 255, 0.6);
+  width: 90%;
+}
+#root
+  > div
+  > div
+  > div
+  > div
+  > form
+  > div.form-buttons-contatiner
+  > button:hover {
+  background: RGBA(255, 255, 255, 1);
 }

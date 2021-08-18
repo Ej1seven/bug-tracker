@@ -9,6 +9,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+
 const styles = {
   underline: {
     borderBottom: "1px solid white",
@@ -21,28 +25,18 @@ class Guest extends React.Component {
     super(props);
     this.state = {
       role: null,
+      email: "",
+      password: "",
     };
   }
 
-  inputChanged = (e) => {
-    e.preventDefault();
-    let formInput = { ...this.state.formInput };
-    let passwordValues = { ...this.state.passwordValues };
-    let confirmPasswordValues = { ...this.state.confirmPasswordValues };
+  // redirect = () => {
+  //   this.props.history.push("/");
+  // };
 
-    formInput[e.target.name] = e.target.value;
-    this.setState({
-      formInput,
-    });
-    passwordValues["password"] = e.target.value;
-    this.setState({ passwordValues });
-    confirmPasswordValues["password"] = e.target.value;
-    this.setState({ confirmPasswordValues });
-
-    console.log("email", JSON.stringify(formInput.email));
-    console.log("password", JSON.stringify(formInput.password));
-    console.log("name", JSON.stringify(formInput.name));
-    console.log("confirmpassword", JSON.stringify(formInput.confirmpassword));
+  inputChanged = (email, password) => {
+    this.setState({ email: email });
+    this.setState({ password: password });
   };
 
   handleClickShowPassword = () => {
@@ -86,39 +80,34 @@ class Guest extends React.Component {
   };
 
   submit = (e) => {
-    if (this.state.formInput.name === "") {
-      alert("Please insert name");
-    } else if (this.state.formInput.email === "") {
-      alert("Please insert a valid email address");
-    } else if (this.state.formInput.password === "") {
-      alert("Please insert password");
-    } else if (
-      this.state.formInput.confirmpassword !== this.state.formInput.password
-    ) {
-      this.setState({ incorrectPassword: true });
-    } else {
-      fetch("https://murmuring-mountain-40437.herokuapp.com/register", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: this.state.formInput.name,
-          email: this.state.formInput.email,
-          password: this.state.formInput.password,
-          role: this.state.formInput.role,
-        }),
-      }).then((response) =>
-        response.json().then((user) => {
-          if (user.id) {
-            console.log("register is working!");
-            this.props.goBackToDashboard();
-            alert("You are now registered! Please login!");
-            // this.setState({ userIsRegistered: true });
-          } else {
-            this.setState({ incorrectPassword: true });
-          }
-        })
-      );
+    console.log(this.state.email);
+    console.log(this.state.password);
+
+    if (this.state.email == "") {
+      alert("Please select a role before clicking button");
     }
+
+    fetch("https://murmuring-mountain-40437.herokuapp.com/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.id) {
+          console.log("this worked!");
+          console.log(user.id);
+          console.log(user.role);
+          this.props.logInUser(user.id);
+          // this.setState({ userIsRegistered: true });
+          // localStorage.setItem("user", this.state.userIsRegistered);
+          // this.redirect();
+        }
+      });
+
     e.preventDefault();
   };
 
@@ -127,7 +116,51 @@ class Guest extends React.Component {
   render() {
     const { classes } = this.props;
 
-    return <div></div>;
+    return (
+      <div className="login-panel" id="guest-panel">
+        <div className="guest-btn-container">
+          <List>
+            <ListItem
+              onClick={() =>
+                this.inputChanged("administrator@gmail.com", "administrator")
+              }
+            >
+              <Button>Administator</Button>
+            </ListItem>
+            <ListItem
+              onClick={() =>
+                this.inputChanged("projectmanager@gmail.com", "projectmanager")
+              }
+            >
+              <Button>Project Manager</Button>
+            </ListItem>
+            <ListItem
+              onClick={() =>
+                this.inputChanged("submitter@gmail.com", "submitter")
+              }
+            >
+              <Button>Submitter</Button>
+            </ListItem>
+            <ListItem
+              onClick={() =>
+                this.inputChanged("developer@gmail.com", "developer")
+              }
+            >
+              <Button>Developer</Button>
+            </ListItem>
+          </List>
+
+          {/* <button>Administator</button>
+          <button>Submitter</button>
+          <button>Project manager</button>
+          <button>Developer</button> */}
+        </div>
+        <div className="guest-select-btns">
+          <Button onClick={this.submit}>Select Role</Button>
+          <Button onClick={this.props.goBackToDashboard}>Go Back</Button>
+        </div>
+      </div>
+    );
   }
 }
 

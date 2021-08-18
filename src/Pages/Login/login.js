@@ -1,4 +1,5 @@
 import React from "react";
+import Guest from "../../Components/GuestSignIn/guest";
 import PopUp from "../../Components/Popup/popup";
 import Dashboard from "../Dashboard/dashboard";
 import SideBar from "../../Components/Sidebar/sidebar";
@@ -28,6 +29,7 @@ class Login extends React.Component {
     super(props);
     this.state = {
       seen: false,
+      guestseen: false,
       formInput: {
         email: "",
         password: "",
@@ -43,6 +45,12 @@ class Login extends React.Component {
 
   redirect = () => {
     this.props.history.push("/");
+  };
+
+  guestSignIn = () => {
+    this.setState({
+      guestseen: !this.state.guestseen,
+    });
   };
 
   onSeenChange = () => {
@@ -64,6 +72,7 @@ class Login extends React.Component {
 
   goBackToDashboard = () => {
     this.setState({ seen: false });
+    this.setState({ guestseen: false });
   };
 
   // togglePop = () => {
@@ -132,75 +141,92 @@ class Login extends React.Component {
 
     return (
       <div className="loginBG">
-        {this.state.seen ? (
+        {this.state.guestseen ? (
           <div>
-            <PopUp
+            <Guest
               goBackToDashboard={this.goBackToDashboard}
-              onSeenChange={this.onSeenChange}
-            />
+              logInUser={this.props.logInUser}
+            ></Guest>
           </div>
         ) : (
-          <form id="login-form" className="login-panel">
-            <img alt="logo" src={logo} />
-            <InputBase
-              name="email"
-              placeholder="Email"
-              onChange={this.inputChanged}
-              value={this.state.formInput.email}
-              InputProps={{ disableUnderline: true }}
-              className={classes.underline}
-            />
-            <InputBase
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={this.inputChanged}
-              value={this.state.formInput.password}
-              InputProps={{
-                disableUnderline: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={this.handleClickShowPassword}
-                      onMouseDown={this.handleMouseDownPassword}
-                    >
-                      {this.state.passwordValues.showPassword ? (
-                        <Visibility />
-                      ) : (
-                        <VisibilityOff />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              className={classes.underline}
-            />
-            <div className="form-buttons-contatiner">
-              {" "}
-              {this.state.incorrectPassword === true ? (
-                <div className="error-message">
-                  <span> Incorrect name or password </span>
+          <>
+            {this.state.seen ? (
+              <div>
+                <PopUp
+                  goBackToDashboard={this.goBackToDashboard}
+                  onSeenChange={this.onSeenChange}
+                />
+              </div>
+            ) : (
+              <form id="login-form" className="login-panel">
+                <img alt="logo" src={logo} />
+                <InputBase
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.inputChanged}
+                  value={this.state.formInput.email}
+                  InputProps={{ disableUnderline: true }}
+                  className={classes.underline}
+                />
+                <InputBase
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={this.inputChanged}
+                  value={this.state.formInput.password}
+                  InputProps={{
+                    disableUnderline: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowPassword}
+                          onMouseDown={this.handleMouseDownPassword}
+                        >
+                          {this.state.passwordValues.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  className={classes.underline}
+                />
+                <div className="form-buttons-contatiner">
+                  {" "}
+                  {this.state.incorrectPassword === true ? (
+                    <div className="error-message">
+                      <span> Incorrect name or password </span>
+                    </div>
+                  ) : null}
+                  <Button
+                    type="submit"
+                    className="submit-button"
+                    onClick={this.submit}
+                  >
+                    {" "}
+                    Login{" "}
+                  </Button>{" "}
+                  <p>
+                    Don't have an account?{" "}
+                    <span className="sign-up" onClick={this.onSeenChange}>
+                      Sign up
+                    </span>
+                  </p>
+                  <p>
+                    Sign in as a{" "}
+                    <span className="sign-up" onClick={this.guestSignIn}>
+                      Demo User
+                    </span>
+                  </p>
                 </div>
-              ) : null}
-              <Button
-                type="submit"
-                className="submit-button"
-                onClick={this.submit}
-              >
-                {" "}
-                Login{" "}
-              </Button>{" "}
-              <p>
-                Don't have an account?{" "}
-                <span className="sign-up" onClick={this.onSeenChange}>
-                  Sign up
-                </span>
-              </p>
-            </div>
-          </form>
-        )}{" "}
+              </form>
+            )}{" "}
+          </>
+        )}
       </div>
     );
   }
