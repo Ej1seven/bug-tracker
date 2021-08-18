@@ -213,7 +213,7 @@ html {
 }
 @media only screen and (max-height: 540px) {
   #login-form > div.form-buttons-contatiner > button {
-    margin-top: 20%;
+    margin-top: 25%;
   }
 }
 
