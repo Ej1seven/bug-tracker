@@ -62,4 +62,8 @@
     height: 65%;
     margin: 2% auto;
   }
+
+  .dashboardLayout {
+    display: flex;
+  }
 }

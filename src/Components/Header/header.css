@@ -16,13 +16,14 @@ p {
   display: flex;
   justify-content: center;
   color: black;
+  font-size: 1.3vw;
 }
 
 .username {
   width: 50%;
   display: flex;
   align-items: center;
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 .profile {
@@ -40,6 +41,8 @@ p {
   margin-right: 5px;
 }
 
-/* p {
-  display: inline-block;
-} */
+@media only screen and (max-width: 800px) {
+  .header-container {
+    font-size: 1.6vw;
+  }
+}

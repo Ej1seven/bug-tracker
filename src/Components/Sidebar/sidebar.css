@@ -38,9 +38,11 @@
 
 .sidebar .logout {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  bottom: 2%;
+  left: 9%;
+  width: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
 }
 
 .sidebar .brand {
@@ -95,4 +97,10 @@
   -ms-transform: skew(8deg) rotate(3deg);
   -o-transform: skew(8deg) rotate(3deg);
   transform: skew(8deg) rotate(3deg);
+}
+
+@media only screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
 }
