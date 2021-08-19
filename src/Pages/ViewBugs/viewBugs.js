@@ -46,6 +46,8 @@ import { withRouter } from "react-router-dom";
 </tbody>
 </table> */
 }
+document.querySelector("html").classList.add("background");
+
 
 class ViewBugs extends React.Component {
   constructor(props) {

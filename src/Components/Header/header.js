@@ -12,7 +12,7 @@ const Header = (props) => {
   };
 
   return (
-    <div className="header-container">
+    <div className="header-container shadow">
       <div className="username">
         <p>
           Welcome {props.user.name} <span>({props.user.role})</span>

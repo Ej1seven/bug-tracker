@@ -430,38 +430,38 @@ class Dashboard extends React.Component {
             </>
           )}
           <div className="page-container height">
-            <div className="header">
+            <div className="header effect9">
               <Header user={this.state.user} />
             </div>
             <div className="chart-grid">
               <div className="chart">
                 <Bar
-                  width={50}
-                  height={50}
+                  width={20}
+                  height={20}
                   data={this.state.chartData}
                   options={this.state.options}
                 />
               </div>
               <div className="chart">
                 <Doughnut
-                  width={50}
-                  height={50}
+                  width={20}
+                  height={20}
                   data={this.state.chartDataTwo}
                   options={this.state.optionsTwo}
                 />
               </div>
               <div className="chart">
                 <Bar
-                  width={50}
-                  height={50}
+                  width={20}
+                  height={20}
                   data={this.state.chartDataThree}
                   options={this.state.optionsThree}
                 />
               </div>
               <div className="chart">
                 <Doughnut
-                  width={50}
-                  height={50}
+                  width={20}
+                  height={20}
                   data={this.state.chartDataFour}
                   options={this.state.optionsFour}
                 />

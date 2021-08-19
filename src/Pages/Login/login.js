@@ -18,6 +18,8 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 const closeBtn = document.getElementsByClassName("close-btn");
 console.log(closeBtn);
 
+document.querySelector("html").classList.remove("background");
+
 const styles = {
   underline: {
     borderBottom: "1px solid white",
