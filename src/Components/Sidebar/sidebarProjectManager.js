@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-
 import { Link } from "react-router-dom";
 import { LogoutButton } from "../../Components/logoutButton/logoutButton";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
-import logo from "../../Pages/Login/Logo.png";
+import logo from "../../Pages/Login/blackLogo.png";
 import "./sidebar.css";
 
-const SideBarSubmitter = ({ handleLogout, page }) => {
+const SideBarProjectManager = ({ handleLogout, page }) => {
   const history = useHistory();
 
   const handleOnSubmit = (route) => {
@@ -34,6 +33,7 @@ const SideBarSubmitter = ({ handleLogout, page }) => {
         history.push(`/userroles`);
     }
   };
+
   return (
     <div className="sidebar">
       <Link className="nav-link" to="/">
@@ -63,4 +63,4 @@ const SideBarSubmitter = ({ handleLogout, page }) => {
   );
 };
 
-export default SideBarSubmitter;
+export default SideBarProjectManager;

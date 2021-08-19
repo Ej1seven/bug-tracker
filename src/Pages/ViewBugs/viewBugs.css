@@ -1,6 +1,7 @@
 .viewBugLayout {
   grid-template-columns: 20% 80%;
   display: grid;
+  background: #ffffff;
 }
 
 /* td {

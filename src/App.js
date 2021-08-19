@@ -9,6 +9,7 @@ import RoleAssignment from "./Pages/RoleAssignment/roleAssignment";
 import MyProfile from "./Pages/MyProfile/myProfile";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
     this.setState({ userIsLoggedIn: true });
     localStorage.setItem("userIsLoggedIn", this.state.userIsLoggedIn);
     localStorage.setItem("id", this.state.id);
+    document.querySelector("html").classList.add("background");
   };
 
   keepUserLoggedIn = () => {
@@ -46,6 +48,7 @@ class App extends React.Component {
     this.setState({ userIsLoggedIn: false });
     localStorage.removeItem("userIsLoggedIn");
     localStorage.removeItem("id");
+    document.querySelector("html").classList.remove("background");
   };
 
   isUserLoggedIn = () => {};

@@ -2,6 +2,7 @@ import React from "react";
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
+import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import MyProfileSection from "./components/myProfileSection";
 import "./myProfile.css";
 import BugCard from "../../Components/BugCard/bugCard";
@@ -312,7 +313,7 @@ class MyProfile extends React.Component {
           {this.state.user.role == "Project Manager" && (
             <>
               {" "}
-              <SideBarStandard handleLogout={this.handleLogout} />
+              <SideBarProjectManager handleLogout={this.handleLogout} />
             </>
           )}{" "}
           <div className="page-container">

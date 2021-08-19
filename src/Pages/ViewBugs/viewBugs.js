@@ -2,6 +2,7 @@ import React from "react";
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
+import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import "./viewBugs.css";
 import BugCard from "../../Components/BugCard/bugCard";
 import BugView from "../../Components/BugView/bugView";
@@ -115,7 +116,7 @@ class ViewBugs extends React.Component {
             })
           );
           this.setState({ bugs: formattedBugs });
-          // console.log(bugs);
+          console.log(bugsList);
           // this.setState({ bugs: bugsList });
           // console.log(this.state.bugs);
           // localStorage.setItem("bugs", this.props.messageId);
@@ -204,6 +205,7 @@ class ViewBugs extends React.Component {
     console.log(this.state.displayBug.id);
     console.log(this.state.displayBug.name);
     console.log(bug.id);
+    console.log(bug.name);
 
     // console.log(bug.name);
     // console.log(bug.id);
@@ -301,25 +303,34 @@ class ViewBugs extends React.Component {
           {this.state.user.role == "Administrator" && (
             <>
               {" "}
-              <SideBar handleLogout={this.handleLogout} />
+              <SideBar handleLogout={this.handleLogout} page="view-tickets" />
             </>
           )}
           {this.state.user.role == "Submitter" && (
             <>
               {" "}
-              <SideBarSubmitter handleLogout={this.handleLogout} />
+              <SideBarSubmitter
+                handleLogout={this.handleLogout}
+                page="view-tickets"
+              />
             </>
           )}
           {this.state.user.role == "Developer" && (
             <>
               {" "}
-              <SideBarStandard handleLogout={this.handleLogout} />
+              <SideBarStandard
+                handleLogout={this.handleLogout}
+                page="view-tickets"
+              />
             </>
           )}
           {this.state.user.role == "Project Manager" && (
             <>
               {" "}
-              <SideBarStandard handleLogout={this.handleLogout} />
+              <SideBarProjectManager
+                handleLogout={this.handleLogout}
+                page="view-tickets"
+              />
             </>
           )}{" "}
           <div className="page-container">
@@ -357,7 +368,7 @@ class ViewBugs extends React.Component {
                   this.state.bugs.filter(
                     (bug, index) =>
                       bug.name == this.state.displayBug.name &&
-                      index == this.state.displayBug.id
+                      bug.id == this.state.displayBug.id
                   )[0]
                 }
                 bugList={this.state.bugs}

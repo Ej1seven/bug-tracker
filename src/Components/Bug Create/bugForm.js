@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
+import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 
 import "./bugForm.css";
 
@@ -131,25 +132,34 @@ class BugForm extends React.Component {
         {this.state.user.role == "Administrator" && (
           <>
             {" "}
-            <SideBar handleLogout={this.handleLogout} />
+            <SideBar handleLogout={this.handleLogout} page="create-tickets" />
           </>
         )}
         {this.state.user.role == "Submitter" && (
           <>
             {" "}
-            <SideBarSubmitter handleLogout={this.handleLogout} />
+            <SideBarSubmitter
+              handleLogout={this.handleLogout}
+              page="create-tickets"
+            />
           </>
         )}
         {this.state.user.role == "Developer" && (
           <>
             {" "}
-            <SideBarStandard handleLogout={this.handleLogout} />
+            <SideBarStandard
+              handleLogout={this.handleLogout}
+              page="create-tickets"
+            />
           </>
         )}
         {this.state.user.role == "Project Manager" && (
           <>
             {" "}
-            <SideBarStandard handleLogout={this.handleLogout} />
+            <SideBarProjectManager
+              handleLogout={this.handleLogout}
+              page="create-tickets"
+            />
           </>
         )}{" "}
         <div className="bug-create">
