@@ -36,7 +36,6 @@ class App extends React.Component {
     this.setState({ userIsLoggedIn: true });
     localStorage.setItem("userIsLoggedIn", this.state.userIsLoggedIn);
     localStorage.setItem("id", this.state.id);
-    document.querySelector("html").classList.add("background");
   };
 
   keepUserLoggedIn = () => {
@@ -48,12 +47,16 @@ class App extends React.Component {
     this.setState({ userIsLoggedIn: false });
     localStorage.removeItem("userIsLoggedIn");
     localStorage.removeItem("id");
-    document.querySelector("html").classList.remove("background");
   };
 
   isUserLoggedIn = () => {};
 
   render() {
+    if (!this.state.userIsLoggedIn) {
+      document.querySelector("html").classList.remove("background");
+    } else {
+      document.querySelector("html").classList.add("background");
+    }
     return (
       <div>
         <Router>
