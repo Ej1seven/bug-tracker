@@ -23,6 +23,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
 import * as ReactBootStrap from "react-bootstrap";
 import "./roleAssignment.css";
+import Header from "../../Components/Header/header";
 
 class RoleAssignment extends React.Component {
   constructor(props) {
@@ -379,6 +380,13 @@ class RoleAssignment extends React.Component {
             </>
           )}{" "}
           <div className="myBugs-background">
+            <div className="header effect9">
+              <Header
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                page="Manage User Roles"
+              />
+            </div>
             <div className="role-body-container">
               <div className="role-assignment-title">
                 <h1>Manage User Roles</h1>

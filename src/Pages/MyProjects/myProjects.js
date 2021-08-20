@@ -12,6 +12,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import Header from "../../Components/Header/header";
 
 class MyProjects extends React.Component {
   constructor(props) {
@@ -714,6 +715,13 @@ class MyProjects extends React.Component {
               {!this.state.detailsPage ? (
                 <>
                   <div className="myProjects-background">
+                    <div className="header effect9">
+                      <Header
+                        user={this.state.user}
+                        handleLogout={this.handleLogout}
+                        page="My Projects"
+                      />
+                    </div>
                     {!this.state.projectPage ? (
                       <div className="mybugs-container">
                         {this.state.user.role == "Administrator" && (

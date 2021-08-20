@@ -74,6 +74,15 @@ p {
   display: block;
 }
 
+.page-title {
+  width: 100%;
+  text-align: center;
+}
+
+.pagename {
+  margin: 0;
+  font-size: 2em;
+}
 @media only screen and (max-width: 800px) {
   .header-container {
     /* font-size: 1.6vw; */
@@ -104,6 +113,11 @@ p {
   .large-screen-username {
     text-align: center;
     width: 60%;
+  }
+
+  .selected-link {
+    background-color: rgb(0, 0, 0, 0.3);
+    color: #ffffff;
   }
 }
 

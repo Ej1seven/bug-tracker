@@ -15,6 +15,7 @@ import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
 import * as ReactBootStrap from "react-bootstrap";
+import Header from "../../Components/Header/header";
 
 class MyBugs extends React.Component {
   constructor(props) {
@@ -303,6 +304,13 @@ class MyBugs extends React.Component {
             </>
           )}{" "}
           <div className="myBugs-background">
+            <div className="header effect9">
+              <Header
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                page="My Tickets"
+              />
+            </div>
             <div className="mybugs-container">
               <h1>My Tickets</h1>
               <div className="mybugs-container-list">

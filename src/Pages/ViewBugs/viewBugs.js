@@ -13,6 +13,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import IdleTimer from "react-idle-timer";
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
 import { withRouter } from "react-router-dom";
+import Header from "../../Components/Header/header";
 
 {
   /* <BootstrapTable keyField="name" data={this.state.myBugs} columns={this.state.columns} pagination={paginationFactory()} */
@@ -47,7 +48,6 @@ import { withRouter } from "react-router-dom";
 </table> */
 }
 document.querySelector("html").classList.add("background");
-
 
 class ViewBugs extends React.Component {
   constructor(props) {
@@ -344,10 +344,21 @@ class ViewBugs extends React.Component {
                 bugList={this.state.bugs}
               />
             ))} */}
+            <div className="header effect9">
+              <Header
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                page="View Tickets"
+              />
+            </div>
             <ToolkitProvider keyField="id" data={data} columns={columns} search>
               {(props) => (
                 <div className="myBugs-table">
-                  <SearchBar {...props.searchProps} />
+                  <SearchBar
+                    className="search-bar"
+                    placeholder="Search"
+                    {...props.searchProps}
+                  />
                   <BootstrapTable
                     keyField="id"
                     data={data}

@@ -4,6 +4,7 @@ import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
+import Header from "../../Components/Header/header";
 
 import "./bugForm.css";
 
@@ -163,6 +164,13 @@ class BugForm extends React.Component {
           </>
         )}{" "}
         <div className="bug-create">
+          <div className="header effect9">
+            <Header
+              user={this.state.user}
+              handleLogout={this.handleLogout}
+              page="Create Tickets"
+            />
+          </div>
           {this.props.title === "Edit Bug" && (
             <button className="close-btn" onClick={this.props.close}>
               Close
