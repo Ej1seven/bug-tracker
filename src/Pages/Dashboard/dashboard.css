@@ -72,3 +72,9 @@
     width: 97%;
   }
 }
+
+@media only screen and (max-width: 530px) {
+  .chart {
+    width: 90%;
+  }
+}
