@@ -431,7 +431,11 @@ class Dashboard extends React.Component {
           )}
           <div className="page-container height">
             <div className="header effect9">
-              <Header user={this.state.user} />
+              <Header
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                page="dashboard"
+              />
             </div>
             <div className="chart-grid">
               <div className="chart">

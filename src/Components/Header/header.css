@@ -26,11 +26,6 @@ p {
   font-size: 1.3em;
 }
 
-.profile {
-  justify-content: flex-end;
-  padding-right: 15px;
-}
-
 .profile-container {
   display: flex;
   justify-content: space-between;
@@ -53,8 +48,22 @@ p {
   > div.large-screen-header.shadow
   > div
   > button {
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+#root
+  > div
+  > div
+  > div.page-container.height
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button
+  > span.MuiButton-label {
+  font-size: 0.8em;
 }
 
 .fa-lg {
@@ -109,5 +118,56 @@ p {
 
   .fa-lg {
     display: block;
+  }
+
+  .popup-btn {
+    font-size: 2.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+  }
+
+  #root
+    > div
+    > div
+    > div.page-container.height
+    > div.header.effect9
+    > div.large-screen-header.shadow
+    > div.large-screen-container.profile
+    > button
+    > span.MuiButton-label {
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #root
+    > div
+    > div
+    > div.page-container.height
+    > div.header.effect9
+    > div.large-screen-header.shadow
+    > div.large-screen-container.profile
+    > button
+    > span.MuiButton-label {
+    font-size: 0.6em;
+  }
+  #root
+    > div
+    > div
+    > div.page-container.height
+    > div.header.effect9
+    > div.large-screen-header.shadow
+    > div.large-screen-container.profile {
+    margin-right: 2%;
+  }
+
+  #root
+    > div
+    > div
+    > div.page-container.height
+    > div.header.effect9
+    > div.large-screen-header.shadow
+    > div:nth-child(1) {
+    margin-left: 2%;
   }
 }

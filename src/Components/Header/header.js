@@ -6,8 +6,30 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import "./header.css";
 
-const Header = (props) => {
+const Header = ({ handleLogout, user }) => {
   const history = useHistory();
+
+  const handleOnSubmit = (route) => {
+    switch (route) {
+      case 1:
+        history.push(`/`);
+        break;
+      case 2:
+        history.push(`/viewbugs`);
+        break;
+      case 3:
+        history.push(`/create`);
+        break;
+      case 4:
+        history.push(`/mybugs`);
+        break;
+      case 5:
+        history.push(`/myprojects`);
+        break;
+      case 6:
+        history.push(`/userroles`);
+    }
+  };
 
   const routeChange = () => {
     let path = `/myprofile`;
@@ -15,13 +37,18 @@ const Header = (props) => {
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElTwo, setAnchorElTwo] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleClickTwo = (event) => {
+    setAnchorElTwo(event.currentTarget);
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
+    setAnchorElTwo(null);
   };
 
   return (
@@ -29,7 +56,7 @@ const Header = (props) => {
       <div className="header-container shadow">
         <div className="username">
           <p>
-            Welcome {props.user.name} <span>({props.user.role})</span>
+            Welcome {user.name} <span>({user.role})</span>
           </p>
         </div>
         <div className="username profile">
@@ -49,6 +76,7 @@ const Header = (props) => {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            className="popup-btn"
           >
             <i class="fas fa-bars fa-2x "></i>
             <i class="fas fa-bars  fa-lg"></i>
@@ -60,14 +88,25 @@ const Header = (props) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(1)}>Dashboard</MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(2)}>
+              View All Tickets
+            </MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(3)}>
+              {" "}
+              Create Tickets
+            </MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(4)}>My Tickets</MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(5)}>My Projects</MenuItem>
+            <MenuItem onClick={() => handleOnSubmit(6)}>
+              Manage Role Assignment
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </div>
         <div className="large-screen-container large-screen-username">
           <p>
-            Welcome {props.user.name} <span>({props.user.role})</span>
+            Welcome {user.name} <span>({user.role})</span>
           </p>
         </div>
         <div className="large-screen-container profile">
@@ -80,22 +119,29 @@ const Header = (props) => {
             <i class="fas fa-user"></i>
           </div> */}
           <Button
-            aria-controls="simple-menu"
+            aria-controls="simple-menu-two"
             aria-haspopup="true"
-            onClick={handleClick}
+            onClick={handleClickTwo}
+            className="popup-btn"
           >
-            Open Menu
+            User Actions
           </Button>
           <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
+            id="simple-menu-two"
+            anchorElTwo={anchorElTwo}
             keepMounted
-            open={Boolean(anchorEl)}
+            open={Boolean(anchorElTwo)}
             onClose={handleClose}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            transformOrigin={{ vertical: 250, horizontal: -215 }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem onClick={routeChange}>
+              <i class="fas fa-bell"></i>Notifications
+            </MenuItem>
+            <MenuItem onClick={routeChange}>
+              {" "}
+              <i class="fas fa-user"></i>User Profile
+            </MenuItem>
           </Menu>
         </div>
         {/* <div classname="large-screen-header">
