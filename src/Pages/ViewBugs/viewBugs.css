@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+#root > div > div > div.page-container > div.header.effect9 {
+  margin: 0;
+}
+
 /* td {
   padding: 0 !important;
   margin: -8 !important;
@@ -27,6 +31,7 @@ table {
   border-spacing: 0 1px;
   color: black;
   text-align: center;
+  font-size: 1em;
 }
 
 /* td {
@@ -68,6 +73,7 @@ table {
 .search-bar {
   width: 30%;
   margin-left: 33%;
+  margin-bottom: 2%;
   height: 10%;
   text-align: center;
   font-size: 1em;
@@ -76,6 +82,10 @@ table {
 }
 .search-bar:focus {
   text-align: left;
+}
+
+.myBugs-table {
+  height: 60%;
 }
 
 #root > div > div > div.page-container > div.myBugs-table {
@@ -96,11 +106,23 @@ table {
     width: 97%;
     margin: 0;
   }
+  table {
+    font-size: 0.9em;
+  }
+}
+@media only screen and (max-width: 699px) {
+  table {
+    font-size: 0.7em;
+  }
 }
 
 @media only screen and (max-width: 530px) {
   .search-bar {
     width: 50%;
     margin-left: 26%;
+  }
+
+  .hide-column {
+    display: none;
   }
 }

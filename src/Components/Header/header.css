@@ -23,6 +23,7 @@ p {
   width: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 1.3em;
 }
 
@@ -38,6 +39,11 @@ p {
 
 .large-screen-header {
   display: none;
+}
+
+.page-title {
+  width: 100%;
+  text-align: center;
 }
 
 #root
@@ -57,6 +63,20 @@ p {
 #root
   > div
   > div
+  > div.page-container
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button {
+  width: 70%;
+  height: 70%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+#root
+  > div
+  > div
   > div.page-container.height
   > div.header.effect9
   > div.large-screen-header.shadow
@@ -66,17 +86,38 @@ p {
   font-size: 0.8em;
 }
 
+#root
+  > div
+  > div
+  > div.page-container
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button
+  > span.MuiButton-label {
+  font-size: 0.8em;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div:nth-child(1)
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
 .fa-lg {
   display: none;
 }
 
 .fa-2x {
   display: block;
-}
-
-.page-title {
-  width: 100%;
-  text-align: center;
 }
 
 .pagename {

@@ -61,7 +61,7 @@ const Header = ({ handleLogout, page, user }) => {
               Welcome {user.name} <span>({user.role})</span>
             </p>
           ) : (
-            <p className="page-title">{page}</p>
+            <p classNname="page-title">{page}</p>
           )}
         </div>
         <div className="username profile hide">

@@ -220,19 +220,22 @@ class ViewBugs extends React.Component {
         text: "Title",
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
       },
       {
         dataField: "creator",
         text: "Submitter",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "assigned",
         text: "Assigned Dev",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "priority",
@@ -244,6 +247,8 @@ class ViewBugs extends React.Component {
         dataField: "created",
         text: "Created",
         sort: true,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "id",
