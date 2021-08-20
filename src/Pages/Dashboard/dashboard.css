@@ -59,8 +59,8 @@
 
 @media only screen and (max-width: 800px) {
   .chart {
-    width: 65%;
-    height: 65%;
+    width: 80%;
+    height: 80%;
     margin: 2% auto;
   }
 
@@ -76,5 +76,6 @@
 @media only screen and (max-width: 530px) {
   .chart {
     width: 90%;
+    height: 70%;
   }
 }
