@@ -50,7 +50,8 @@ const Header = (props) => {
             aria-haspopup="true"
             onClick={handleClick}
           >
-            Open Menu
+            <i class="fas fa-bars fa-2x "></i>
+            <i class="fas fa-bars  fa-lg"></i>
           </Button>
           <Menu
             id="simple-menu"
