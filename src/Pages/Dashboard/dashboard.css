@@ -49,6 +49,7 @@
 .header {
   height: 10%;
   width: 90%;
+  margin: auto;
 }
 
 #root > div > div > div.page-container.height > div.chart-grid > div > canvas {
@@ -65,5 +66,9 @@
 
   .dashboardLayout {
     display: flex;
+  }
+
+  .header {
+    width: 97%;
   }
 }

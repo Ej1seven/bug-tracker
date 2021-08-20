@@ -41,8 +41,45 @@ p {
   margin-right: 5px;
 }
 
+.large-screen-header {
+  display: none;
+}
+
 @media only screen and (max-width: 800px) {
   .header-container {
-    font-size: 1.6vw;
+    /* font-size: 1.6vw; */
+    display: none;
+  }
+
+  .large-screen-header {
+    width: 100%;
+    height: 100%;
+    margin-top: 1.5%;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 1.3vw;
+  }
+
+  .large-screen-container {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+  }
+
+  .large-screen-username {
+    text-align: center;
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .large-screen-container {
+    font-size: 2.8em;
   }
 }
