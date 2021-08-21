@@ -5,6 +5,11 @@ import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import Header from "../../Components/Header/header";
+import InputBase from "@material-ui/core/TextField";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import InputLabel from "@material-ui/core/InputLabel";
 
 import "./bugForm.css";
 
@@ -176,26 +181,24 @@ class BugForm extends React.Component {
               Close
             </button>
           )}
-          <h1 className="create-title">{this.props.title}</h1>
           <form>
-            <label>Title:</label>
-            <input
+            <InputBase
               name="name"
               placeholder="Bug Name"
               required
               onChange={this.inputChanged}
               value={this.state.formInput.name}
-            ></input>
-            <label>Description:</label>
-            <textarea
+            ></InputBase>
+            <TextareaAutosize
+              minRows={5}
               name="details"
               placeholder="Detailed description on the bug"
               required
               onChange={this.inputChanged}
               value={this.state.formInput.details}
-            ></textarea>
-            <label>Ticket Priority:</label>
-            <select
+            ></TextareaAutosize>
+            <Select
+              native
               name="priority"
               required
               onChange={this.inputChanged}
@@ -205,9 +208,9 @@ class BugForm extends React.Component {
               <option value="1">High</option>
               <option value="2">Mid</option>
               <option value="3">Low</option>
-            </select>
-            <label>Assigned Developer:</label>
-            <select
+            </Select>
+            <Select
+              native
               name="assigned"
               onChange={this.inputChanged}
               value={this.state.formInput.assigned}
@@ -216,9 +219,9 @@ class BugForm extends React.Component {
               {this.state.users.map((user) => (
                 <option value={user.name}>{user.name}</option>
               ))}
-            </select>
-            <label>Project:</label>
-            <select
+            </Select>
+            <Select
+              native
               name="project"
               onChange={this.inputChanged}
               value={this.state.formInput.project}
@@ -227,9 +230,9 @@ class BugForm extends React.Component {
               {this.state.projects.map((project) => (
                 <option value={project.name}>{project.name}</option>
               ))}
-            </select>
-            <label>Ticket Status:</label>
-            <select
+            </Select>
+            <Select
+              native
               name="status"
               required
               onChange={this.inputChanged}
@@ -244,9 +247,9 @@ class BugForm extends React.Component {
                 Additional Info Required
               </option>
               <option value="Closed">Closed</option>
-            </select>
-            <label>Ticket Type:</label>
-            <select
+            </Select>
+            <Select
+              native
               name="type"
               required
               onChange={this.inputChanged}
@@ -262,7 +265,7 @@ class BugForm extends React.Component {
               <option value="Additional Info Required">
                 Additional Info Required
               </option>
-            </select>
+            </Select>
             {/* <label>Creator:</label>
             <select
               name="creator"

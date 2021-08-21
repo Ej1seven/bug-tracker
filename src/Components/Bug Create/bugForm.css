@@ -4,15 +4,15 @@
 }
 
 .bug-create {
-  width: 68vw;
-  height: 99vh;
-  background-color: var(--prim-color);
+  width: 75%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-left: 21%;
   position: absolute;
   z-index: 10;
-  padding: 1% 5%;
+  padding: 0 2%;
+  color: black;
 }
 
 .bug-create h1 {
@@ -28,9 +28,7 @@
   min-width: 80%;
   height: 80%;
   display: grid;
-  grid-template-columns: 30% 70%;
-  column-gap: 20px;
-  row-gap: 20px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .bug-create label {
@@ -38,13 +36,73 @@
   font-size: 1.5rem;
 }
 
-.bug-create input,
-textarea,
-select {
-  border-radius: 5px;
-  border: none;
+#root
+  > div
+  > div
+  > div.bug-create
+  > form
+  > div.MuiFormControl-root.MuiTextField-root {
+  width: 70%;
+  margin: auto;
 }
 
-.bug-create button {
-  grid-column: 2;
+#root > div > div > div.bug-create > form > textarea:nth-child(4) {
+  margin: auto;
+}
+
+#root > div > div > div.bug-create > form > div {
+  width: 70%;
+  height: 50%;
+  margin: auto;
+}
+
+#root > div > div > div.bug-create > form > textarea:nth-child(3) {
+  margin: auto;
+}
+
+#root > div > div > div.bug-create > div {
+  margin: 0 auto;
+}
+
+#root > div > div > div.bug-create > form > textarea:nth-child(2) {
+  width: 100%;
+  margin: auto 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .bug-create {
+    display: flex;
+    width: 95%;
+    margin: 1% 2%;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .bug-create form {
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #root > div > div > div.bug-create > form > div {
+    width: 50%;
+    margin: auto;
+  }
+
+  #root
+    > div
+    > div
+    > div.bug-create
+    > form
+    > div.MuiFormControl-root.MuiTextField-root {
+    width: 50%;
+  }
+
+  #root > div > div > div.bug-create > form > textarea:nth-child(2) {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+  }
 }
