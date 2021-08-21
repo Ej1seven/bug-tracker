@@ -58,3 +58,17 @@
 .header {
   margin: auto;
 }
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.role-body-container
+  > div
+  > div.select-role-container
+  > div
+  > form
+  > div
+  > select {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}

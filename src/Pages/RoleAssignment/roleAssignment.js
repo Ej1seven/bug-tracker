@@ -24,6 +24,7 @@ import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
 import * as ReactBootStrap from "react-bootstrap";
 import "./roleAssignment.css";
 import Header from "../../Components/Header/header";
+import Select from "@material-ui/core/Select";
 
 class RoleAssignment extends React.Component {
   constructor(props) {
@@ -388,24 +389,23 @@ class RoleAssignment extends React.Component {
               />
             </div>
             <div className="role-body-container">
-              <div className="role-assignment-title">
-                <h1>Manage User Roles</h1>
-              </div>
               <div className="role-assignment-container">
                 <div className="select-role-container">
                   <div className="mybugs-container-list">
                     <h3>Select One or more Users</h3>
                     <form>
-                      <select
+                      <Select
+                        native
                         name="selectedUsers"
                         onClick={this.selectUsers}
                         value={this.state.selectedUser}
                         multiple
+                        InputProps={{ disableUnderline: true }}
                       >
                         {this.state.users.map((user) => (
                           <option value={user.id}>{user.name}</option>
                         ))}
-                      </select>
+                      </Select>
                       <h3>Select the Role to assign</h3>
                       <select
                         name="assignedRole"
