@@ -312,7 +312,6 @@ class MyBugs extends React.Component {
               />
             </div>
             <div className="mybugs-container">
-              <h1>My Tickets</h1>
               <div className="mybugs-container-list">
                 {this.state.displayBug.isDisplayed ? (
                   <div>
@@ -341,7 +340,10 @@ class MyBugs extends React.Component {
                 >
                   {(props) => (
                     <div className="myBugs-table">
-                      <SearchBar {...props.searchProps} />
+                      <SearchBar
+                        className="search-bar-two"
+                        {...props.searchProps}
+                      />
                       <BootstrapTable
                         keyField="id"
                         data={data}

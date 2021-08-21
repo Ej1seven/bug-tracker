@@ -5,6 +5,7 @@ import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import Header from "../../Components/Header/header";
+import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Select from "@material-ui/core/Select";
@@ -275,9 +276,9 @@ class BugForm extends React.Component {
               <option>Assigned...</option>
               <option value="Erik Hunter">Erik Hunter</option>
             </select> */}
-            <button type="submit" onClick={this.submit}>
+            <Button className="submit-btn" type="submit" onClick={this.submit}>
               {this.props.title}
-            </button>
+            </Button>
           </form>
         </div>
       </div>

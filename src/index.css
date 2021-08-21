@@ -57,3 +57,7 @@ button:hover {
 
   /* margin-top: 2%; */
 }
+
+body::-webkit-scrollbar {
+  width: 1em;
+}

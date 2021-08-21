@@ -15,7 +15,6 @@ td :hover {
 }
 
 .myBugs-background {
-  background-color: var(--prim-color);
   width: 78vw;
   height: 100vh;
   display: flex;
@@ -26,10 +25,9 @@ td :hover {
 }
 
 .mybugs-container {
-  width: 76vw;
-  /* height: 80vh; */
-  background-color: var(--prim-color);
-
+  width: 100%;
+  height: 75%;
+  margin-top: 3%;
   z-index: 10;
   padding: 1% 1%;
 }
@@ -97,6 +95,41 @@ td :hover {
   pointer-events: none;
 }
 
-.myBugs-table {
-  padding-top: 5%;
+#root > div > div > div.myBugs-background > div.header.effect9 {
+  margin: 0 auto;
+}
+
+.search-bar-two {
+  width: 30%;
+  margin-left: 33%;
+  margin-bottom: 2%;
+  height: 10%;
+  padding: 1%;
+  text-align: center;
+  font-size: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+}
+.search-bar-two:focus {
+  text-align: left;
+}
+
+.header {
+  margin: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .myBugs-background {
+    width: 100%;
+    margin: 0;
+  }
+
+  .header {
+    display: block;
+    width: 97%;
+    margin: 0;
+  }
+  table {
+    font-size: 0.9em;
+  }
 }
