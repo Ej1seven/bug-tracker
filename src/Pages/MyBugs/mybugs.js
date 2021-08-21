@@ -191,12 +191,16 @@ class MyBugs extends React.Component {
         text: "Submitter",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        headerClasses: "hide-column",
+        classes: "hide-column",
       },
       {
         dataField: "assigned",
         text: "Assigned Dev",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        headerClasses: "hide-column",
+        classes: "hide-column",
       },
       {
         dataField: "priority",
@@ -208,6 +212,8 @@ class MyBugs extends React.Component {
         dataField: "created",
         text: "Created",
         sort: true,
+        headerClasses: "hide-column",
+        classes: "hide-column",
       },
       {
         dataField: "id",
@@ -244,8 +250,17 @@ class MyBugs extends React.Component {
     };
 
     const rowClasses = (row, rowIndex) => {
-      return "row";
+      if (row.priority == "High") {
+        return "high";
+      } else if (row.priority == "Medium") {
+        return "medium";
+      } else {
+        return "low";
+      }
     };
+    // const rowClasses = (row, rowIndex) => {
+    //   return "row";
+    // };
 
     // const cellEdit = cellEditFactory({
     //   mode: "click",

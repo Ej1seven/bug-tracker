@@ -118,6 +118,37 @@ td :hover {
   margin: 0;
 }
 
+.high td {
+  background-color: rgba(255, 0, 0, 0.5);
+  border-top: solid 1px rgba(255, 0, 0, 1);
+  border-bottom: solid 1px rgba(255, 0, 0, 1);
+  color: black;
+}
+.medium td {
+  background-color: rgba(226, 226, 7, 0.5);
+  border-top: solid 1px rgba(226, 226, 7, 1);
+  border-bottom: solid 1px rgba(226, 226, 7, 1);
+  color: black;
+}
+.low td {
+  background-color: rgba(0, 255, 0, 0.5);
+  border-top: solid 1px rgba(0, 255, 0, 1);
+  border-bottom: solid 1px rgba(0, 255, 0, 1);
+  color: black;
+}
+
+.high {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 1);
+}
+
+.medium {
+  box-shadow: 0 0 10px rgba(226, 226, 7, 1);
+}
+
+.low {
+  box-shadow: 0 0 10px rgba(0, 255, 0, 1);
+}
+
 @media only screen and (max-width: 800px) {
   .myBugs-background {
     width: 100%;
@@ -131,5 +162,16 @@ td :hover {
   }
   table {
     font-size: 0.9em;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .search-bar {
+    width: 50%;
+    margin-left: 26%;
+  }
+
+  .hide-column {
+    display: none;
   }
 }

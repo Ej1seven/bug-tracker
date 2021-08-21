@@ -141,9 +141,8 @@ td :hover {
 }
 
 .myProjects-background {
-  background-color: var(--prim-color);
-  width: 78vw;
-  height: 100vh;
+  width: 78%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-top: 0;
@@ -176,7 +175,7 @@ td :hover {
 }
 
 .description-column {
-  width: 45%;
+  width: 40%;
   text-align: left;
 }
 
@@ -253,4 +252,220 @@ td :hover {
   left: 20%;
   overflow-y: scroll;
   height: 85vh;
+}
+
+#root > div > div > div.myProjects-background > div.header.effect9 {
+  margin: 0 auto;
+}
+
+#root > div > div > div.myProjects-background > div.mybugs-container > div {
+  color: black;
+}
+
+#root > div > div > div.myProjects-background {
+  background: none;
+}
+
+#root > div > div > div.myProjects-background > div.mybugs-container > div {
+  text-align: center;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > thead
+  > tr
+  > th {
+  text-align: center;
+  padding-bottom: 2%;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > div
+  > p {
+  text-align: center;
+}
+
+.search-bar {
+  width: 30%;
+  margin: auto;
+  height: 10%;
+  text-align: center;
+  font-size: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#root > div > div > div.myProjects-background > div.mybugs-container > button {
+  background: black;
+  color: #ffffff;
+  margin-bottom: 2%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+#root > div > div > div.myProjects-background > div.mybugs-container {
+  text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+  #root > div > div > div.myProjects-background {
+    width: 100%;
+    margin: 0;
+  }
+
+  .header {
+    display: block;
+    width: 97%;
+    margin: 0;
+  }
+  table {
+    font-size: 0.9em;
+  }
+}
+@media only screen and (max-width: 699px) {
+  table {
+    font-size: 0.7em;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .search-bar {
+    width: 50%;
+  }
+
+  .hide-column {
+    display: none;
+  }
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td.description-column {
+    width: 50%;
+    margin-left: 2%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > thead
+    > tr
+    > th.sortable.description-header {
+    width: 50%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > div {
+    width: 30%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td.project-name-column {
+    width: 30%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > thead
+    > tr
+    > th.sortable.project-name-header {
+    width: 30%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > div {
+    width: 70%;
+  }
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td:nth-child(3)
+    > div
+    > ul {
+    list-style: none;
+  }
 }

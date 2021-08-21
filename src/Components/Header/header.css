@@ -152,6 +152,100 @@ p {
   height: 70%;
 }
 
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div:nth-child(1)
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button
+  > span.MuiButton-label {
+  font-size: 0.8em;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div:nth-child(1)
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div:nth-child(1)
+  > button {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  width: 70%;
+  height: 70%;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.header.effect9
+  > div.large-screen-header.shadow
+  > div.large-screen-container.profile
+  > button
+  > span.MuiButton-label {
+  font-size: 0.8em;
+}
+
 .fa-lg {
   display: none;
 }

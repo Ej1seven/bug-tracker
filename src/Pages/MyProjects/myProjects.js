@@ -13,6 +13,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import Header from "../../Components/Header/header";
+import Button from "@material-ui/core/Button";
 
 class MyProjects extends React.Component {
   constructor(props) {
@@ -726,9 +727,9 @@ class MyProjects extends React.Component {
                       <div className="mybugs-container">
                         {this.state.user.role == "Administrator" && (
                           <>
-                            <button onClick={this.newProjectPage}>
+                            <Button onClick={this.newProjectPage}>
                               Create New Project
-                            </button>
+                            </Button>
                           </>
                         )}
                         {this.state.user.role == "Project Manager" && (
@@ -738,7 +739,6 @@ class MyProjects extends React.Component {
                             </button>
                           </>
                         )}
-                        <h1>My Projects</h1>
                         <ToolkitProvider
                           keyField="id"
                           data={dataTwo}
@@ -747,7 +747,10 @@ class MyProjects extends React.Component {
                         >
                           {(props) => (
                             <div className="myBugs-table">
-                              <SearchBar {...props.searchProps} />
+                              <SearchBar
+                                className="search-bar"
+                                {...props.searchProps}
+                              />
                               <BootstrapTable
                                 keyField="id"
                                 data={dataTwo}
