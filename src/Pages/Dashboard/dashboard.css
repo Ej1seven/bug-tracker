@@ -52,9 +52,9 @@
   margin: auto;
 }
 
-.dashboard-header {
+/* .dashboard-header {
   display: none;
-}
+} */
 
 #root > div > div > div.page-container.height > div.chart-grid > div > canvas {
   width: 90%;
@@ -82,4 +82,8 @@
     width: 90%;
     height: 70%;
   }
+}
+
+.dashboard-header {
+  font-size: 1em;
 }

@@ -55,7 +55,12 @@ const Header = ({ handleLogout, page, user }) => {
   return (
     <>
       <div className="header-container shadow">
-        <div className="username pagename">
+        <div
+          className={
+            "username pagename" +
+            (page !== "dashboard" ? "hide" : "dashboard-header")
+          }
+        >
           {page == "dashboard" ? (
             <p>
               Welcome {user.name} <span>({user.role})</span>
@@ -64,7 +69,12 @@ const Header = ({ handleLogout, page, user }) => {
             <p classNname="page-title">{page}</p>
           )}
         </div>
-        <div className="username profile hide">
+        <div
+          className={
+            "username profile " +
+            (page !== "dashboard" ? "hide" : "dashboard-header")
+          }
+        >
           <div className="profile-container" onClick={routeChange}>
             <div className="profile-container-text">Notifications</div>
             <i class="fas fa-bell"></i>

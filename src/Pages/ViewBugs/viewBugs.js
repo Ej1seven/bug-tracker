@@ -360,7 +360,7 @@ class ViewBugs extends React.Component {
               {(props) => (
                 <div className="myBugs-table">
                   <SearchBar
-                    className="search-bar"
+                    className="search-bar-view"
                     placeholder="Search"
                     {...props.searchProps}
                   />

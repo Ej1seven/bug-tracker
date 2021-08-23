@@ -70,17 +70,17 @@ table {
   box-shadow: 0 0 10px rgba(0, 255, 0, 1);
 }
 
-.search-bar {
-  width: 30%;
-  margin-left: 33%;
+.search-bar-view {
+  min-width: 30%;
   margin-bottom: 2%;
-  height: 10%;
+  height: 7%;
   text-align: center;
   font-size: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   border: 1px solid black;
 }
-.search-bar:focus {
+
+.search-bar-view:focus {
   text-align: left;
 }
 
@@ -91,6 +91,17 @@ table {
 #root > div > div > div.page-container > div.myBugs-table {
   padding-top: 0;
   text-align: center;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
 }
 
 /* .header {

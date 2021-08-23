@@ -301,14 +301,17 @@ td :hover {
   text-align: center;
 }
 
-.search-bar {
-  width: 30%;
+.search-bar-myprojects {
+  min-width: 30%;
   margin: auto;
-  height: 10%;
+  height: 25px;
   text-align: center;
   font-size: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   border: 1px solid black;
+}
+.search-bar-myprojects:focus {
+  text-align: left;
 }
 
 #root
@@ -336,6 +339,30 @@ td :hover {
 
 #root > div > div > div.myProjects-background > div.mybugs-container {
   text-align: center;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div:nth-child(1)
+  > span {
+  display: none;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
 }
 
 @media only screen and (max-width: 800px) {

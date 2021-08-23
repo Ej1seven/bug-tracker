@@ -356,7 +356,7 @@ class MyBugs extends React.Component {
                   {(props) => (
                     <div className="myBugs-table">
                       <SearchBar
-                        className="search-bar-two"
+                        className="search-bar-mytickets"
                         {...props.searchProps}
                       />
                       <BootstrapTable

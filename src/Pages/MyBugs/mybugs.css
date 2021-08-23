@@ -99,18 +99,31 @@ td :hover {
   margin: 0 auto;
 }
 
-.search-bar-two {
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 59%;
+}
+
+.search-bar-mytickets {
   width: 30%;
-  margin-left: 33%;
+  margin-left: 34%;
   margin-bottom: 2%;
-  height: 10%;
+  height: 20%;
   padding: 1%;
   text-align: center;
   font-size: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   border: 1px solid black;
 }
-.search-bar-two:focus {
+.search-bar-mytickets:focus {
   text-align: left;
 }
 
@@ -149,6 +162,20 @@ td :hover {
   box-shadow: 0 0 10px rgba(0, 255, 0, 1);
 }
 
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
+  text-align: center;
+}
+
 @media only screen and (max-width: 800px) {
   .myBugs-background {
     width: 100%;
@@ -166,12 +193,18 @@ td :hover {
 }
 
 @media only screen and (max-width: 530px) {
-  .search-bar {
-    width: 50%;
-    margin-left: 26%;
+  .search-bar-mytickets {
+    width: 40%;
+    margin-left: 28%;
   }
 
   .hide-column {
     display: none;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .search-bar-mytickets {
+    width: 50%;
+    margin-left: 24%;
   }
 }
