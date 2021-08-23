@@ -25,6 +25,8 @@ import * as ReactBootStrap from "react-bootstrap";
 import "./roleAssignment.css";
 import Header from "../../Components/Header/header";
 import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 
 class RoleAssignment extends React.Component {
   constructor(props) {
@@ -392,36 +394,48 @@ class RoleAssignment extends React.Component {
               <div className="role-assignment-container">
                 <div className="select-role-container">
                   <div className="mybugs-container-list">
-                    <h3>Select One or more Users</h3>
                     <form>
-                      <Select
-                        native
-                        name="selectedUsers"
-                        onClick={this.selectUsers}
-                        value={this.state.selectedUser}
-                        multiple
-                        InputProps={{ disableUnderline: true }}
-                      >
-                        {this.state.users.map((user) => (
-                          <option value={user.id}>{user.name}</option>
-                        ))}
-                      </Select>
-                      <h3>Select the Role to assign</h3>
-                      <select
-                        name="assignedRole"
-                        required
-                        onChange={this.selectRole}
-                      >
-                        <option>Select Role..</option>
-                        <option value="Administrator">Administrator</option>
-                        <option value="Project Manager">Project Manager</option>
-                        <option value="Submitter">Submitter</option>
-                        <option value="Developer">Developer</option>
-                      </select>
+                      <div className="select-role-containter">
+                        <h3>Select One or more Users</h3>
+
+                        <Select
+                          disableUnderline
+                          native
+                          name="selectedUsers"
+                          onClick={this.selectUsers}
+                          value={this.state.selectedUser}
+                          multiple
+                          InputProps={{ disableUnderline: true }}
+                        >
+                          {this.state.users.map((user) => (
+                            <option value={user.id}>{user.name}</option>
+                          ))}
+                        </Select>
+                      </div>
+                      <div className="select-role-containter">
+                        <h3>Select the Role to assign</h3>
+                        <Select
+                          disableUnderline
+                          native
+                          name="assignedRole"
+                          required
+                          onChange={this.selectRole}
+                          placeholder="Select Role..."
+                          InputProps={{ disableUnderline: true }}
+                        >
+                          <option>Select Role..</option>
+                          <option value="Administrator">Administrator</option>
+                          <option value="Project Manager">
+                            Project Manager
+                          </option>
+                          <option value="Submitter">Submitter</option>
+                          <option value="Developer">Developer</option>
+                        </Select>
+                      </div>
                     </form>
-                    <button type="submit" onClick={this.submit}>
+                    <Button type="submit" onClick={this.submit}>
                       SUBMIT
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className="role-container">
@@ -433,7 +447,10 @@ class RoleAssignment extends React.Component {
                   >
                     {(props) => (
                       <div className="users-table">
-                        <SearchBar {...props.searchProps} />
+                        <SearchBar
+                          className="users-table-seachbar"
+                          {...props.searchProps}
+                        />
                         <BootstrapTable
                           keyField="id"
                           data={dataTwo}
@@ -443,6 +460,7 @@ class RoleAssignment extends React.Component {
                           pagination={pagination}
                           // rowEvents={rowEvents}
                           rowClasses={rowClasses}
+                          className="users-bootstrap-table"
                           // cellEdit={cellEdit}
                         />
                       </div>

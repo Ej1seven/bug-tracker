@@ -468,4 +468,17 @@ td :hover {
     > ul {
     list-style: none;
   }
+
+  /* #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container
+    > div
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr {
+    padding: 3%;
+  } */
 }

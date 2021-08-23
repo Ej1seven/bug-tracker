@@ -90,6 +90,7 @@ table {
 
 #root > div > div > div.page-container > div.myBugs-table {
   padding-top: 0;
+  text-align: center;
 }
 
 /* .header {
