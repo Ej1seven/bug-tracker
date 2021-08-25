@@ -25,6 +25,7 @@ const EditPanel = (props) => {
       )}
       <button onClick={props.commentsClicked}>Comments</button>
       <button onClick={props.historyClicked}>History</button>
+      <button onClick={props.close}>Close</button>
     </div>
   );
 };

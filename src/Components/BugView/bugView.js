@@ -319,10 +319,9 @@ const BugView = (props) => {
   //   }
   // }
 
-  // useEffect(() => {
-  //   getPriorityValue();
-  //   console.log(priority);
-  // });
+  useEffect(() => {
+    console.log(props.bug);
+  });
 
   function formatValue(value) {
     const newArray = String(value).split(",");
@@ -444,10 +443,11 @@ const BugView = (props) => {
                 commentsClicked={commentsClicked}
                 historyClicked={historyClicked}
                 user={props.user.role}
+                close={props.clicked}
               />
-              <button onClick={props.clicked} className="close-btn">
+              {/* <button onClick={props.clicked} className="close-btn">
                 Close
-              </button>
+              </button> */}
               <h1>{bug.name}</h1>
               <ViewSection
                 title="Description"
@@ -539,7 +539,12 @@ const BugView = (props) => {
                   >
                     {(props) => (
                       <div>
-                        <SearchBar {...props.searchProps} />
+                        <div className="comment-search-bar-container">
+                          <SearchBar
+                            className="comment-search-bar"
+                            {...props.searchProps}
+                          />
+                        </div>
                         <BootstrapTable
                           keyField="id"
                           data={data}

@@ -6,15 +6,25 @@
   text-align: center;
 }
 
+#root
+  > div
+  > div
+  > div.page-container
+  > div.bug-view.overlay
+  > div
+  > h2.comment-title {
+  margin-top: 5%;
+}
+
 .bug-view {
   position: absolute;
   z-index: 10;
-  width: 60vw;
-  border: 5px solid #008bb5;
+  min-width: 75vw;
+  border: 5px solid #32c5d2;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.705);
   border-radius: 5px;
-  background-color: var(--prim-color);
-  margin: 2% 8% 8% 8%;
+  background-color: black;
+  margin: 2% 8% 8% 2%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -37,15 +47,14 @@
   top: 0;
 }
 
-.button-container {
-  position: absolute;
-  margin: 10px;
-  right: 0;
-  top: 0;
+button:hover {
+  background: #ffffff;
+  color: black;
 }
 
 .comments-container {
-  /* height: 89vh; */
+  margin: 1%;
+  text-align: center;
 }
 
 .add-comment {
@@ -65,6 +74,83 @@
   color: #eeeeee;
 }
 
+#root
+  > div
+  > div
+  > div.page-container
+  > div.bug-view.overlay
+  > div
+  > div.comments-table
+  > div
+  > div.react-bootstrap-table
+  > table {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div:nth-child(1)
+  > div
+  > div
+  > div.comments-table
+  > div
+  > div.react-bootstrap-table
+  > table {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.bug-view.overlay
+  > div
+  > div.comments-table
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
+  text-align: center;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div:nth-child(1)
+  > div
+  > div
+  > div.comments-table
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
+  text-align: center;
+}
+
+.comment-search-bar-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.comment-search-bar {
+  height: 20px;
+}
+
 .cell-value {
   display: block;
+}
+
+@media only screen and (max-width: 800px) {
+  .view-section {
+    width: 10%;
+  }
 }

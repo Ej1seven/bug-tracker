@@ -112,6 +112,121 @@ td :hover {
   width: 59%;
 }
 
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul:hover {
+  background-color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div:nth-child(1) {
+  display: none;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > p {
+  background: none;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td:nth-child(6)
+  > p:hover {
+  cursor: pointer;
+}
+
 .search-bar-mytickets {
   width: 30%;
   margin-left: 34%;
@@ -174,6 +289,19 @@ td :hover {
   > ul {
   width: 100%;
   text-align: center;
+}
+
+#root
+  > div
+  > div
+  > div.myBugs-background
+  > div.mybugs-container
+  > div
+  > div:nth-child(1)
+  > div
+  > div
+  > h2.comment-title {
+  margin-top: 5%;
 }
 
 @media only screen and (max-width: 800px) {

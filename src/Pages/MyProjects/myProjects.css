@@ -1,7 +1,15 @@
+textarea {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border-color: black;
+  height: 60%;
+  background-color: #ffffff;
+}
+
 .view-section {
   min-width: 40%;
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -17,11 +25,11 @@
 }
 
 .project-details-container {
-  width: 80vw;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0;
+  margin: auto;
 }
 
 .new-project-page h1 {
@@ -43,24 +51,24 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   border-radius: 5px;
-  margin: auto;
+  margin: 5% auto;
   color: black;
   /* padding: 2% 0%; */
 }
 
 .project-table-container {
   width: 87.5%;
-  height: 50%;
+  height: 70%;
   /* border: 5px solid #eeeeee; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   border-radius: 5px;
-  margin: auto;
+  margin: 10% auto 0 auto;
   color: black;
 
   /* padding: 2% 0%; */
@@ -93,6 +101,86 @@
 .add-user-btn {
   margin: 0;
   width: 50%;
+  background-color: black;
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > button:hover {
+  background-color: #ffffff;
+  color: black;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
 }
 
 .row p {
@@ -115,10 +203,72 @@ td :hover {
   background-color: #393e46;
 }
 
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > p:hover {
+  background: none;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.new-project-page
+  > div.users-table-container
+  > div.users-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td:hover {
+  background: none;
+}
+
+.assign-personel {
+  height: 10%;
+  margin: 2% auto;
+}
+
+.assign-personel-searchbar-container {
+  margin: 3% auto;
+}
+
+.assign-personel-searchbar {
+  height: 100%;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.user-table-title
+  > div:nth-child(2)
+  > ul
+  > li {
+  width: 25%;
+  margin: auto;
+}
+
+.user-table-title {
+  text-align: center;
+}
+
 .user-table-title h2 {
   text-align: center;
   max-width: 80%;
-  margin: 0 0 15px 5px;
+  margin: auto;
   border-bottom: 1px groove black;
 }
 
@@ -131,8 +281,120 @@ td :hover {
 }
 
 .project-table-title {
-  width: 50%;
+  width: 100%;
   height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.project-table-title
+  > div:nth-child(2)
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.project-table-title
+  > div:nth-child(2)
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.project-table-title
+  > div:nth-child(2)
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.project-table-title
+  > div:nth-child(2)
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.user-table-title
+  > div
+  > ul {
+  padding: 0;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.user-table-title
+  > div:nth-child(2)
+  > ul
+  > li {
+  width: 90%;
+  margin: 0 auto;
+  list-style: none;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div
+  > div
+  > div
+  > div.project-table-title
+  > div:nth-child(2)
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
 }
 
 .table {
@@ -208,9 +470,13 @@ td :hover {
 }
 
 /* #assign-personel-title {
-  width: 40%;
-  margin-right: 2%;
+  width: 100%;
+  text-align: center;
 } */
+
+#assign-personel-title {
+  margin: 3% auto;
+}
 
 .assign-personel-add-btn {
   margin: auto;
@@ -254,6 +520,8 @@ td :hover {
   height: 85vh;
 }
 
+/* mybugs-container */
+
 #root > div > div > div.myProjects-background > div.header.effect9 {
   margin: 0 auto;
 }
@@ -268,6 +536,12 @@ td :hover {
 
 #root > div > div > div.myProjects-background > div.mybugs-container > div {
   text-align: center;
+}
+
+.details-seachbar {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+  height: 20px;
 }
 
 #root
@@ -364,7 +638,283 @@ td :hover {
   > ul {
   width: 100%;
 }
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul:hover {
+  background-color: #ffffff;
+}
 
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
+}
+
+#root > div > div > div.myProjects-background > div > h1 {
+  color: black;
+}
+
+#root > div > div > div.myProjects-background > div > p {
+  color: black;
+}
+
+.assign-personel-searchbar {
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border: 2px solid black;
+}
+
+.create-project-btns {
+  margin: 5% auto;
+  width: 30%;
+  display: flex;
+}
+
+.header-button {
+  background-color: black;
+  color: #ffffff;
+  width: 50%;
+}
+
+.manage-users {
+  margin-top: 0%;
+}
+.manage-users-btns {
+  margin: 0 auto 10% auto;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div:nth-child(1) {
+  display: none;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  :hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td:hover {
+  background: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > div
+  > p {
+  background-color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > div
+  > ul
+  > li {
+  background-color: #ffffff;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container
+  > div
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > div
+  > ul
+  > li:hover {
+  cursor: pointer;
+}
+
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td:hover {
+  background-color: #ffffff;
+}
+#root
+  > div
+  > div
+  > div.myProjects-background
+  > div.mybugs-container.manage-users
+  > div.project-table-container
+  > div.users-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > p:hover {
+  background-color: #ffffff;
+}
 @media only screen and (max-width: 800px) {
   #root > div > div > div.myProjects-background {
     width: 100%;
@@ -379,14 +929,143 @@ td :hover {
   table {
     font-size: 0.9em;
   }
+  .project-details-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 50%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.new-project-page
+    > div.project-details-container
+    > div:nth-child(1) {
+    height: 15%;
+    margin-bottom: 5%;
+  }
+
+  .view-section {
+    width: 100%;
+    height: 70%;
+    margin: 0;
+  }
+
+  .users-table-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.new-project-page
+    > div.users-table-container
+    > div.user-table-title
+    > h2 {
+    margin: 5% auto;
+  }
+
+  .details-table-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .bug-view {
+      left: 0;
+      top: 0;
+      width: 95%;
+      height: 95%;
+    }
+
+    .view-section {
+      width: 40%;
+      max-height: 35%;
+      margin: 5% 1%;
+    }
+    .description-section-bugview {
+      width: 40%;
+      max-height: 35%;
+      margin: 5% 1%;
+    }
+
+    #root
+      > div
+      > div
+      > div.myProjects-background
+      > div.new-project-page
+      > div.project-details-container
+      > div {
+      width: 90%;
+      text-align: center;
+      background-color: #ffffff;
+      margin: auto;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  }
 }
 @media only screen and (max-width: 699px) {
+  #root > div > div > div.myProjects-background > div > h1 {
+    color: black;
+    font-size: 2em;
+  }
   table {
     font-size: 0.7em;
+  }
+  .header-button {
+    font-size: 0.8em;
+  }
+  .header-button {
+    font-size: 0.8em;
   }
 }
 
 @media only screen and (max-width: 530px) {
+  .project-table-container {
+    margin-top: 20%;
+  }
+  #root > div > div > div.myProjects-background > div > h1 {
+    color: black;
+    font-size: 1.5em;
+  }
+  .hide-column {
+    display: none;
+  }
+
+  .view-section {
+    width: 90%;
+    max-height: 15%;
+    margin: 5% 1%;
+  }
+
+  .description-section-bugview {
+    width: 90%;
+    height: 55%;
+    margin: 5% 1%;
+  }
+
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.new-project-page
+    > div.project-details-container
+    > div:nth-child(2)
+    > textarea {
+    height: 150%;
+  }
+
+  /* .description-section-bugview {
+    max-height: 35%;
+  } */
+
   .search-bar {
     width: 50%;
   }
@@ -495,6 +1174,14 @@ td :hover {
     > ul {
     list-style: none;
   }
+  .header-button {
+    font-size: 0.8em;
+    padding: 3% 2%;
+  }
+
+  .create-project-btns {
+    width: 40%;
+  }
 
   /* #root
     > div
@@ -508,4 +1195,11 @@ td :hover {
     > tr {
     padding: 3%;
   } */
+}
+
+@media only screen and (max-width: 530px) {
+  #root > div > div > div.myProjects-background > div > h1 {
+    color: black;
+    font-size: 1.2em;
+  }
 }

@@ -34,6 +34,44 @@ table {
   font-size: 1em;
 }
 
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td
+  > p:hover {
+  background: none;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.react-bootstrap-table
+  > table
+  > tbody
+  > tr
+  > td:nth-child(6)
+  > p {
+  cursor: pointer;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div:nth-child(1) {
+  display: none;
+}
+
 /* td {
   border-top: solid 1px rgba(255, 0, 0, 1);
   border-bottom: solid 1px rgba(255, 0, 0, 1);
@@ -72,8 +110,8 @@ table {
 
 .search-bar-view {
   min-width: 30%;
-  margin-bottom: 2%;
-  height: 7%;
+  /* margin-bottom: 2%; */
+  min-height: 80%;
   text-align: center;
   font-size: 1em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -82,6 +120,11 @@ table {
 
 .search-bar-view:focus {
   text-align: left;
+}
+
+.search-bar-viewtickets {
+  height: 7%;
+  margin-bottom: 10%;
 }
 
 .myBugs-table {
@@ -102,6 +145,66 @@ table {
   > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
   > ul {
   width: 100%;
+}
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul:hover {
+  background: none;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li {
+  background-color: black;
+}
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li:hover {
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a {
+  color: #ffffff;
+}
+#root
+  > div
+  > div
+  > div.page-container
+  > div.myBugs-table
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul
+  > li
+  > a:hover {
+  color: black;
+  background-color: #ffffff;
 }
 
 /* .header {

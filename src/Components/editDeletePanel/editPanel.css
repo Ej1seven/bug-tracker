@@ -1,8 +1,9 @@
 .edit-panel {
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   top: 0;
   margin: 10px;
+  border-bottom: 2px solid #ffffff;
 }
 
 .link {
@@ -15,4 +16,14 @@
 
 .edit {
   padding: 5px 30px;
+}
+button {
+  background: none;
+  margin: 0;
+  border: none;
+}
+
+button:hover {
+  background: #ffffff;
+  color: black;
 }

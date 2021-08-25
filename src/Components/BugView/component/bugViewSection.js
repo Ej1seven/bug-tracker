@@ -41,7 +41,13 @@ const BugViewSection = (props) => {
     }
   }, []);
   return (
-    <div className={`view-section`}>
+    <div
+      className={
+        props.title == "Description"
+          ? "description-section-bugview"
+          : "view-section"
+      }
+    >
       <h2>{props.title}</h2>
       {!props.edit ? (
         <p>{props.info}</p>

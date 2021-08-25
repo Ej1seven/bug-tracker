@@ -23,6 +23,8 @@ class MyBugs extends React.Component {
     this.state = {
       bugs: [],
       myBugs: [],
+      users: [],
+      projects: [],
       displayBug: {
         name: "",
         isDisplayed: false,
@@ -100,6 +102,7 @@ class MyBugs extends React.Component {
         console.log(userProfile);
         this.setState({ user: userProfile });
         console.log(this.state.user.name);
+        console.log(this.state.user.role);
         console.log(this.state.bugs);
         let filteredBugs = this.state.bugs.filter(
           (bug) =>
@@ -109,6 +112,19 @@ class MyBugs extends React.Component {
         this.setState({ myBugs: filteredBugs });
         console.log(this.state.myBugs);
       })
+    );
+    fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
+      (response) =>
+        response.json().then((userList) => {
+          console.log(userList);
+          this.setState({ users: userList });
+        })
+    );
+    fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
+      (response) =>
+        response.json().then((projects) => {
+          this.setState({ projects: projects });
+        })
     );
   };
 
@@ -178,6 +194,7 @@ class MyBugs extends React.Component {
   };
 
   render() {
+    console.log(this.state.user);
     var columns = [
       {
         dataField: "name",
@@ -339,9 +356,11 @@ class MyBugs extends React.Component {
                             bug.id == this.state.displayBug.id
                         )[0]
                       }
-                      bugList={this.state.myBugs.bugs}
+                      bugList={this.state.bugs}
                       className="bug-view"
                       user={this.state.user}
+                      users={this.state.users}
+                      projects={this.state.projects}
                     />
                   </div>
                 ) : (

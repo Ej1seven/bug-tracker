@@ -569,12 +569,16 @@ class MyProjects extends React.Component {
         text: "Submitter",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "assigned",
         text: "Assigned Dev",
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "priority",
@@ -586,6 +590,8 @@ class MyProjects extends React.Component {
         dataField: "created",
         text: "Created",
         sort: true,
+        classes: "hide-column",
+        headerClasses: "hide-column",
       },
       {
         dataField: "id",
@@ -624,8 +630,17 @@ class MyProjects extends React.Component {
     };
 
     const rowClasses = (row, rowIndex) => {
-      return "row";
+      if (row.priority == "High") {
+        return "high";
+      } else if (row.priority == "Medium") {
+        return "medium";
+      } else if (row.priority == "Low") {
+        return "low";
+      } else {
+        return "";
+      }
     };
+
     const columnClasses = (row, rowIndex) => {
       return "column";
     };
@@ -791,20 +806,20 @@ class MyProjects extends React.Component {
                       </div>
                     ) : (
                       <div className="new-project-page">
-                        <button
-                          className="header-button"
-                          onClick={this.newProjectPage}
-                        >
-                          Back
-                        </button>
-                        <button
-                          className="header-button"
-                          onClick={this.submitProject}
-                        >
-                          Submit
-                        </button>
-                        <h1>Create Project</h1>
-
+                        <div className="create-project-btns">
+                          <button
+                            className="header-button"
+                            onClick={this.newProjectPage}
+                          >
+                            Back
+                          </button>
+                          <button
+                            className="header-button"
+                            onClick={this.submitProject}
+                          >
+                            Submit
+                          </button>
+                        </div>
                         <div className="project-details-container">
                           <div className="view-section">
                             <h2>Project Name</h2>
@@ -848,7 +863,12 @@ class MyProjects extends React.Component {
                           >
                             {(props) => (
                               <div className="users-table">
-                                <SearchBar {...props.searchProps} />
+                                <div className="assign-personel">
+                                  <SearchBar
+                                    {...props.searchProps}
+                                    className="assign-personel-searchbar"
+                                  />
+                                </div>
                                 <BootstrapTable
                                   keyField="id"
                                   data={data}
@@ -895,59 +915,68 @@ class MyProjects extends React.Component {
                               bugList={this.state.myBugs.bugs}
                               className="bug-view"
                               user={this.state.user}
+                              users={this.state.users}
+                              projects={this.state.myProjects}
                             />
                           </div>
                         ) : (
                           <></>
                         )}
-                        <div className="user-table-title">
-                          <div className="assign-personel-container">
-                            <h2 id="assign-personel-title">
-                              Assigned Personnel
-                            </h2>
-                          </div>
-                          {this.state.selectedProject.userIds.length !== 0 ? (
-                            <div>
-                              <ul>
-                                {this.state.selectedUsers.map((user) => {
-                                  return <li>{user.name}</li>;
-                                })}
-                              </ul>
+                        <div className="details-table-container">
+                          <div className="user-table-title">
+                            <div className="assign-personel-container">
+                              <h2 id="assign-personel-title">
+                                Assigned Personnel
+                              </h2>
                             </div>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
-                        <div className="project-table-title">
-                          <div className="assign-personel-container">
-                            <h2 id="assign-personel-title">
-                              Tickets for this project
-                            </h2>
-                          </div>
-
-                          <ToolkitProvider
-                            keyField="id"
-                            data={dataThree}
-                            columns={columnsFour}
-                            search
-                          >
-                            {(props) => (
+                            {this.state.selectedProject.userIds.length !== 0 ? (
                               <div>
-                                <SearchBar {...props.searchProps} />
-                                <BootstrapTable
-                                  keyField="id"
-                                  data={dataThree}
-                                  columns={columnsFour}
-                                  {...props.baseProps}
-                                  filter={filterFactory()}
-                                  pagination={pagination}
-                                  // rowEvents={rowEvents}
-                                  rowClasses={rowClasses}
-                                  // cellEdit={cellEdit}
-                                />
+                                <ul>
+                                  {this.state.selectedUsers.map((user) => {
+                                    return <li>{user.name}</li>;
+                                  })}
+                                </ul>
                               </div>
+                            ) : (
+                              <></>
                             )}
-                          </ToolkitProvider>
+                          </div>
+                          <div className="project-table-title">
+                            <div className="assign-personel-container">
+                              <h2 id="assign-personel-title">
+                                Tickets for this project
+                              </h2>
+                            </div>
+
+                            <ToolkitProvider
+                              keyField="id"
+                              data={dataThree}
+                              columns={columnsFour}
+                              search
+                            >
+                              {(props) => (
+                                <div>
+                                  <div className="details-seachbar-container">
+                                    <SearchBar
+                                      className="details-seachbar"
+                                      {...props.searchProps}
+                                    />
+                                  </div>
+                                  <BootstrapTable
+                                    keyField="id"
+                                    data={dataThree}
+                                    columns={columnsFour}
+                                    {...props.baseProps}
+                                    filter={filterFactory()}
+                                    pagination={pagination}
+                                    // rowEvents={rowEvents}
+                                    rowClasses={rowClasses}
+                                    // cellEdit={cellEdit}
+                                  />
+                                </div>
+                              )}
+                            </ToolkitProvider>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -958,15 +987,28 @@ class MyProjects extends React.Component {
           ) : (
             <>
               <div className="myProjects-background">
-                <div className="mybugs-container">
-                  <button onClick={this.closeManageUsersPage}>Back</button>
-                  <button
-                    className="header-button"
-                    onClick={this.submitEditedProject}
-                  >
-                    Submit
-                  </button>
-                  <h1>Manage Users for {this.state.selectedProject.name}</h1>
+                <div className="header effect9">
+                  <Header
+                    user={this.state.user}
+                    handleLogout={this.handleLogout}
+                    page="My Projects"
+                  />
+                </div>
+                <div className="mybugs-container manage-users">
+                  <div className="create-project-btns manage-users-btns">
+                    <button
+                      className="header-button"
+                      onClick={this.closeManageUsersPage}
+                    >
+                      Back
+                    </button>
+                    <button
+                      className="header-button"
+                      onClick={this.submitEditedProject}
+                    >
+                      Submit
+                    </button>
+                  </div>
                   <div className="project-table-container">
                     <div className="user-table-title">
                       <div className="assign-personel-container">
@@ -992,7 +1034,12 @@ class MyProjects extends React.Component {
                     >
                       {(props) => (
                         <div className="users-table">
-                          <SearchBar {...props.searchProps} />
+                          <div className="assign-personel-searchbar-container">
+                            <SearchBar
+                              className="assign-personel-searchbar"
+                              {...props.searchProps}
+                            />
+                          </div>
                           <BootstrapTable
                             keyField="id"
                             data={data}

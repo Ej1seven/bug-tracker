@@ -62,7 +62,7 @@ class ViewBugs extends React.Component {
         isDisplayed: false,
         id: 0,
       },
-      timeout: 1000 * 5 * 1,
+      timeout: 1000 * 60 * 5,
       isTimedOut: false,
       showModal: false,
     };
@@ -256,10 +256,11 @@ class ViewBugs extends React.Component {
         formatter: (cell) => <p> More details {cell} </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
+            console.log(row.id);
             // console.log(row.priority);
             this.BugClicked(row);
           },
+          classes: "more-details",
         },
       },
     ];
@@ -307,6 +308,22 @@ class ViewBugs extends React.Component {
             handleClose={this.handleClose}
             handleLogout={this.handleLogout}
           />
+          {this.state.displayBug.isDisplayed && (
+            <BugView
+              clicked={this.BugClicked}
+              bug={
+                this.state.bugs.filter(
+                  (bug, index) =>
+                    bug.name == this.state.displayBug.name &&
+                    bug.id == this.state.displayBug.id
+                )[0]
+              }
+              bugList={this.state.bugs}
+              user={this.state.user}
+              users={this.state.users}
+              projects={this.state.projects}
+            />
+          )}
           {this.state.user.role == "Administrator" && (
             <>
               {" "}
@@ -349,6 +366,7 @@ class ViewBugs extends React.Component {
                 bugList={this.state.bugs}
               />
             ))} */}
+
             <div className="header effect9">
               <Header
                 user={this.state.user}
@@ -359,11 +377,13 @@ class ViewBugs extends React.Component {
             <ToolkitProvider keyField="id" data={data} columns={columns} search>
               {(props) => (
                 <div className="myBugs-table">
-                  <SearchBar
-                    className="search-bar-view"
-                    placeholder="Search"
-                    {...props.searchProps}
-                  />
+                  <div className="search-bar-viewtickets">
+                    <SearchBar
+                      className="search-bar-view"
+                      placeholder="Search"
+                      {...props.searchProps}
+                    />
+                  </div>
                   <BootstrapTable
                     keyField="id"
                     data={data}
@@ -378,23 +398,6 @@ class ViewBugs extends React.Component {
                 </div>
               )}
             </ToolkitProvider>
-
-            {this.state.displayBug.isDisplayed && (
-              <BugView
-                clicked={this.BugClicked}
-                bug={
-                  this.state.bugs.filter(
-                    (bug, index) =>
-                      bug.name == this.state.displayBug.name &&
-                      bug.id == this.state.displayBug.id
-                  )[0]
-                }
-                bugList={this.state.bugs}
-                user={this.state.user}
-                users={this.state.users}
-                projects={this.state.projects}
-              />
-            )}
           </div>
         </div>
       </>
