@@ -35,7 +35,7 @@ const SideBarProjectManager = ({ handleLogout, page }) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar effect8">
       <Link className="nav-link" to="/">
         <img className="logo" alt="logo" src={logo} />
       </Link>
