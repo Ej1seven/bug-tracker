@@ -62,7 +62,7 @@ class ViewBugs extends React.Component {
         isDisplayed: false,
         id: 0,
       },
-      timeout: 1000 * 60 * 5,
+      timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
     };

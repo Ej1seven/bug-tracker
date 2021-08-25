@@ -62,7 +62,7 @@ class MyProfile extends React.Component {
         isDisplayed: false,
         id: 0,
       },
-      timeout: 1000 * 5 * 1,
+      timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
     };
