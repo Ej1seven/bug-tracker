@@ -68,7 +68,7 @@ textarea {
   align-items: center;
   background-color: #ffffff;
   border-radius: 5px;
-  margin: 10% auto 0 auto;
+  margin: 7% auto 0 auto;
   color: black;
 
   /* padding: 2% 0%; */
@@ -475,7 +475,7 @@ td :hover {
 } */
 
 #assign-personel-title {
-  margin: 3% auto;
+  margin: 0 auto;
 }
 
 .assign-personel-add-btn {
@@ -1012,6 +1012,21 @@ td :hover {
   }
 }
 @media only screen and (max-width: 699px) {
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container.manage-users
+    > div.project-table-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25%;
+  }
+  /* .project-table-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25%;
+  } */
   #root > div > div > div.myProjects-background > div > h1 {
     color: black;
     font-size: 2em;
@@ -1028,9 +1043,37 @@ td :hover {
 }
 
 @media only screen and (max-width: 530px) {
-  .project-table-container {
-    margin-top: 20%;
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container.manage-users
+    > div.project-table-container
+    > div.users-table
+    > div.react-bootstrap-table
+    > table
+    > tbody
+    > tr
+    > td
+    > button {
+    font-size: 1em;
+    padding: 2% 1%;
   }
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container.manage-users
+    > div.project-table-container {
+    margin-top: 35%;
+  }
+  /* .add-user-btn {
+    padding: 0;
+    font-size: 0.5em;
+  } */
+  /* .project-table-container {
+    margin-top: 30%;
+  } */
   #root > div > div > div.myProjects-background > div > h1 {
     color: black;
     font-size: 1.5em;
@@ -1201,5 +1244,16 @@ td :hover {
   #root > div > div > div.myProjects-background > div > h1 {
     color: black;
     font-size: 1.2em;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #root
+    > div
+    > div
+    > div.myProjects-background
+    > div.mybugs-container.manage-users
+    > div.project-table-container {
+    margin-top: 45%;
   }
 }

@@ -207,6 +207,9 @@ const BugView = (props) => {
   function backClicked() {
     setCommentsPage(!commentsPage);
   }
+  function backClickedTwo() {
+    setHistoryPage(!historyPage);
+  }
 
   function commentsClicked() {
     setCommentsPage(!commentsPage);
@@ -568,7 +571,7 @@ const BugView = (props) => {
             <div className="bug-view overlay">
               <div className="comments-container">
                 <div className="button-container">
-                  <button onClick={backClicked} className="">
+                  <button onClick={backClickedTwo} className="">
                     Back
                   </button>
                   <button onClick={props.clicked} className="">

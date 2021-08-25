@@ -29,7 +29,7 @@ export const IdleTimeOutModal = ({
           </Modal.Header>
           <Modal.Body>You Will Get Timed Out. You want to stay?</Modal.Body>
           <Modal.Footer>
-            <Button variant="danger" onClick={handleLogout}>
+            <Button variant="primary" onClick={handleLogout}>
               Logout
             </Button>
             <Button variant="primary" onClick={handleClose}>

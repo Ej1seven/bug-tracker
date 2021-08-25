@@ -396,7 +396,7 @@ class RoleAssignment extends React.Component {
                   <div className="mybugs-container-list">
                     <form>
                       <div className="select-role-containter">
-                        <h3>Select One or more Users</h3>
+                        <h3>Select A User</h3>
 
                         <Select
                           disableUnderline
@@ -404,9 +404,10 @@ class RoleAssignment extends React.Component {
                           name="selectedUsers"
                           onClick={this.selectUsers}
                           value={this.state.selectedUser}
-                          multiple
                           InputProps={{ disableUnderline: true }}
+                          className="selectUserOption"
                         >
+                          <option>Select User..</option>
                           {this.state.users.map((user) => (
                             <option value={user.id}>{user.name}</option>
                           ))}

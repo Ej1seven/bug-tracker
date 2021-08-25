@@ -16,6 +16,38 @@
   margin-top: 5%;
 }
 
+#root
+  > div
+  > div
+  > div.bug-view.overlay
+  > div.edit-panel
+  > button
+  :nth-child(1):hover {
+  color: black;
+}
+#root
+  > div
+  > div
+  > div.bug-view.overlay
+  > div.edit-panel
+  > button
+  > a:nth-child(1) {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
+  > div.bug-view.overlay
+  > div
+  > div.comments-table
+  > div
+  > div.row.react-bootstrap-table-pagination
+  > div.react-bootstrap-table-pagination-list.col-md-6.col-xs-6.col-sm-6.col-lg-6
+  > ul {
+  width: 100%;
+}
+
 .bug-view {
   position: absolute;
   z-index: 10;

@@ -596,7 +596,7 @@ class MyProjects extends React.Component {
       {
         dataField: "id",
         text: "View Ticket",
-        formatter: (cell) => <p> More details {cell} </p>,
+        formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
             // console.log(row.id);
