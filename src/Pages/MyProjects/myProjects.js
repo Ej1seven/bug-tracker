@@ -893,14 +893,16 @@ class MyProjects extends React.Component {
                   <div className="myProjects-background">
                     <div className="mybugs-container">
                       <button onClick={this.closeDetailsPage}>Back</button>
-                      <h1>Details for {this.state.selectedProject.name}</h1>
+                      <h1 className="details-title-one">
+                        Details for {this.state.selectedProject.name}
+                      </h1>
                       <p className="project-description-p">
                         <span className="project-description-span">
                           Project Description:
                         </span>
                         {this.state.selectedProject.description}
                       </p>
-                      <div className="project-table-container">
+                      <div className="project-table-container-one">
                         {this.state.displayBug.isDisplayed ? (
                           <div>
                             <BugView

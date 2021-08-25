@@ -15,6 +15,10 @@ textarea {
   border-radius: 5px;
 }
 
+#root > div > div > div.myProjects-background > div > h1 {
+  font-size: 1.8em;
+}
+
 /* .view-section h2 {
   margin: 0 0 15px 0;
   border-bottom: 1px groove black;
@@ -475,7 +479,7 @@ td :hover {
 } */
 
 #assign-personel-title {
-  margin: 2% auto;
+  margin: 0 auto;
 }
 
 .assign-personel-add-btn {
@@ -1029,7 +1033,7 @@ td :hover {
   } */
   #root > div > div > div.myProjects-background > div > h1 {
     color: black;
-    font-size: 2em;
+    font-size: 1.6em;
   }
   table {
     font-size: 0.7em;
@@ -1057,7 +1061,7 @@ td :hover {
     > td
     > button {
     font-size: 1em;
-    padding: 2% 1%;
+    padding: 2%;
   }
   #root
     > div
