@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 
-import logo from "../../Pages/Login/Logo.png";
+import logo from "../../Pages/Login/blackLogo.png";
 import "./sidebar.css";
 
 const SideBarStandard = ({ handleLogout, page }) => {
