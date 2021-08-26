@@ -36,6 +36,9 @@ p {
 .profile-container-text {
   margin-right: 5px;
 }
+.profile-container-text:hover {
+  cursor: pointer;
+}
 
 .large-screen-header {
   display: none;

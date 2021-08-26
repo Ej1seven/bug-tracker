@@ -14,6 +14,8 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import IdleTimer from "react-idle-timer";
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
 import { withRouter } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 {
   /* <BootstrapTable keyField="name" data={this.state.myBugs} columns={this.state.columns} pagination={paginationFactory()} */
@@ -316,56 +318,56 @@ class MyProfile extends React.Component {
               <SideBarProjectManager handleLogout={this.handleLogout} />
             </>
           )}{" "}
-          <div className="page-container">
-            <div className="myprofile-page">
-              <div className="header">
-                <h1>User Information</h1>
-              </div>
-              <div className="user-information-container">
-                <div className="information-grid">
-                  <div className="information-item">
-                    <MyProfileSection
-                      info={this.state.user.name}
-                      editClicked={this.editClicked}
-                      edit={this.state.editMode}
-                      title="Name"
-                      name="name"
-                    ></MyProfileSection>
-                  </div>
-                  <div className="information-item">
-                    <MyProfileSection
-                      info={this.state.user.email}
-                      editClicked={this.editClicked}
-                      edit={this.state.editMode}
-                      title="Email"
-                      name="email"
-                    ></MyProfileSection>
-                  </div>
-                  <div className="information-item">
-                    <MyProfileSection
-                      info={this.state.user.role}
-                      editClicked={this.editClicked}
-                      edit={this.state.editMode}
-                      title="Role"
-                      name="role"
-                    ></MyProfileSection>
-                  </div>
-                  <div className="information-item">
-                    {" "}
-                    <MyProfileSection
-                      info={this.state.user.joined}
-                      editClicked={this.editClicked}
-                      edit={this.state.editMode}
-                      title="Joined"
-                      name="joined"
-                    ></MyProfileSection>
-                  </div>
+          <div className="myprofile-page">
+            <div className="header">
+              <h1>User Information</h1>
+            </div>
+            <div className="user-information-container">
+              <div className="information-grid">
+                <div className="information-item">
+                  <MyProfileSection
+                    info={this.state.user.name}
+                    editClicked={this.editClicked}
+                    edit={this.state.editMode}
+                    title="Name"
+                    name="name"
+                  ></MyProfileSection>
                 </div>
+                <div className="information-item">
+                  <MyProfileSection
+                    info={this.state.user.email}
+                    editClicked={this.editClicked}
+                    edit={this.state.editMode}
+                    title="Email"
+                    name="email"
+                  ></MyProfileSection>
+                </div>
+                <div className="information-item">
+                  <MyProfileSection
+                    info={this.state.user.role}
+                    editClicked={this.editClicked}
+                    edit={this.state.editMode}
+                    title="Role"
+                    name="role"
+                  ></MyProfileSection>
+                </div>
+                <div className="information-item">
+                  {" "}
+                  <MyProfileSection
+                    info={this.state.user.joined}
+                    editClicked={this.editClicked}
+                    edit={this.state.editMode}
+                    title="Joined"
+                    name="joined"
+                  ></MyProfileSection>
+                </div>
+                <Link to="/" className="back-to-dashboard">
+                  <Button className="button-text ">Back to Dashboard</Button>
+                </Link>
               </div>
             </div>
-
-            {/* <h1>User Information</h1> */}
           </div>
+          {/* <h1>User Information</h1> */}
         </div>
       </>
     );

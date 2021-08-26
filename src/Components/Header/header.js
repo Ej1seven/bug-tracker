@@ -75,10 +75,10 @@ const Header = ({ handleLogout, page, user }) => {
             (page !== "dashboard" ? "hide" : "dashboard-header")
           }
         >
-          <div className="profile-container" onClick={routeChange}>
+          {/* <div className="profile-container" onClick={routeChange}>
             <div className="profile-container-text">Notifications</div>
             <i class="fas fa-bell"></i>
-          </div>
+          </div> */}
           <div className="profile-container" onClick={routeChange}>
             <div className="profile-container-text">User Profile</div>
             <i class="fas fa-user"></i>
@@ -309,9 +309,9 @@ const Header = ({ handleLogout, page, user }) => {
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             transformOrigin={{ vertical: 380, horizontal: -215 }}
           >
-            <MenuItem onClick={routeChange}>
+            {/* <MenuItem onClick={routeChange}>
               <i class="fas fa-bell"></i>Notifications
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem onClick={routeChange}>
               {" "}
               <i class="fas fa-user"></i>User Profile
