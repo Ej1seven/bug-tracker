@@ -109,6 +109,18 @@ button:hover {
 #root
   > div
   > div
+  > div.bug-view.overlay
+  > div
+  > div.comments-table
+  > div
+  > div.react-bootstrap-table
+  > table {
+  color: #ffffff;
+}
+
+#root
+  > div
+  > div
   > div.page-container
   > div.bug-view.overlay
   > div
