@@ -190,18 +190,21 @@ class RoleAssignment extends React.Component {
   };
 
   selectUsers = (e) => {
-    let userId = e.target.value;
-    let addedUser = this.state.users.find(function (user) {
-      return user.id == userId;
-    });
+    e.preventDefault();
 
-    if (this.state.selectedUsers.includes(addedUser)) {
-      let index = this.state.selectedUsers.indexOf(addedUser);
-      this.state.selectedUsers.splice(index, 1);
-    } else {
-      this.state.selectedUsers.push(addedUser);
-    }
-    console.log(this.state.selectedUsers);
+    let userId = e.target.value;
+    console.log(userId);
+    // let addedUser = this.state.users.find(function (user) {
+    //   return user.id == userId;
+    // });
+
+    // if (this.state.selectedUsers.includes(addedUser)) {
+    //   let index = this.state.selectedUsers.indexOf(addedUser);
+    //   this.state.selectedUsers.splice(index, 1);
+    // } else {
+    //   this.state.selectedUsers.push(addedUser);
+    // }
+    this.setState({ selectedUsers: userId });
   };
 
   selectRole = (e) => {
@@ -214,20 +217,19 @@ class RoleAssignment extends React.Component {
   submit = () => {
     console.log(this.state.selectedUsers);
     console.log(this.state.selectedRole);
-    this.state.selectedUsers.map((user) => {
-      fetch("https://murmuring-mountain-40437.herokuapp.com/editUser", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: user.id,
-          role: this.state.selectedRole,
-        }),
-      }).then((response) =>
-        response.json().then((res) => {
-          console.log(res);
-        })
-      );
-    });
+
+    fetch("https://murmuring-mountain-40437.herokuapp.com/editUser", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: this.state.selectedUsers,
+        role: this.state.selectedRole,
+      }),
+    }).then((response) =>
+      response.json().then((res) => {
+        console.log(res);
+      })
+    );
   };
 
   render() {
