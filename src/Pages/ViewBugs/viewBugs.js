@@ -313,7 +313,7 @@ class ViewBugs extends React.Component {
               clicked={this.BugClicked}
               bug={
                 this.state.bugs.filter(
-                  (bug, index) =>
+                  (bug) =>
                     bug.name == this.state.displayBug.name &&
                     bug.id == this.state.displayBug.id
                 )[0]

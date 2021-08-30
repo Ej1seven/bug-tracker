@@ -82,6 +82,10 @@ class RoleAssignment extends React.Component {
     }
   }
 
+  redirect = () => {
+    this.props.history.go(0);
+  };
+
   handleClose() {
     this.setState({ showModal: false });
   }
@@ -228,6 +232,8 @@ class RoleAssignment extends React.Component {
     }).then((response) =>
       response.json().then((res) => {
         console.log(res);
+        alert("The users role has been changed!");
+        this.redirect();
       })
     );
   };
