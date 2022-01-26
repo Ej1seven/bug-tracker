@@ -54,8 +54,6 @@ class App extends React.Component {
     localStorage.removeItem("id");
   };
 
-  isUserLoggedIn = () => {};
-
   render() {
     if (!this.state.userIsLoggedIn) {
       document.querySelector("html").classList.remove("background");
