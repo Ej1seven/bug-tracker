@@ -45,6 +45,8 @@ class App extends React.Component {
     localStorage.setItem("id", this.state.id);
   };
 
+  //When this function is ran the id and userIsLoggedIn properties are set to false and removed from local storage
+  //This causes the the isUserLogin variable to change to false which in turn cause the application to redirect to the login component
   logUserOut = () => {
     this.setState({ id: null });
     this.setState({ userIsLoggedIn: false });
@@ -69,7 +71,6 @@ class App extends React.Component {
                 id={this.state.id}
                 logInUser={this.logInUser}
                 userLoginState={this.state.userIsLoggedIn}
-                logUserOut={this.logUserOut}
               />
             </>
           ) : (
