@@ -19,9 +19,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-const closeBtn = document.getElementsByClassName("close-btn");
-console.log(closeBtn);
-
 document.querySelector("html").classList.remove("background");
 
 const styles = {
