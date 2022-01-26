@@ -1,17 +1,21 @@
 import React from "react";
+//Importing Guest component used for guest login
 import Guest from "../../Components/GuestSignIn/guest";
+//Importing Popup component used for registering new users
 import PopUp from "../../Components/Popup/popup";
-import Dashboard from "../Dashboard/dashboard";
-import SideBar from "../../Components/Sidebar/sidebar";
 import logo from "./bugTrackerWhite.png";
 import "./login.css";
+//Importing withRouter from react-router which passes updated match, location, and history props to the Login component
 import { withRouter } from "react-router";
+//Importing Material UI components
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/TextField";
-import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
+// withStyles allows for custom styling of Material UI components
 import { withStyles } from "@material-ui/core/styles";
+// InputAdornment provides the functionality to show/hide passwords when clicking on the eye icon
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+//Visibility on and off shows/hides the password when the eye icon is clicked
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
