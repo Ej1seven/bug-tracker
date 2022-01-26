@@ -55,78 +55,80 @@ class App extends React.Component {
   };
 
   render() {
-    if (!this.state.userIsLoggedIn) {
-      document.querySelector("html").classList.remove("background");
-    } else {
-      document.querySelector("html").classList.add("background");
-    }
+    //This if-else statements sets the background to white if the user is logged in
+    // otherwise the background remains the color gradient set in the login.css file
+    //I did this to ensure the color gradient background only shows when the Login component is accessed
+    !this.state.userIsLoggedIn
+      ? document.querySelector("html").classList.remove("background")
+      : document.querySelector("html").classList.add("background");
+
     return (
       <div>
         <Router>
-          {!this.state.userIsLoggedIn ? (
-            <>
-              <Login
-                id={this.state.id}
-                logInUser={this.logInUser}
-                userLoginState={this.state.userIsLoggedIn}
-              />
-            </>
-          ) : (
-            <>
-              <Switch>
-                <Dashboard
-                  path="/"
-                  exact
-                  id={this.state.id}
-                  logUserOut={this.logUserOut}
-                  userLoginState={this.state.userIsLoggedIn}
-                />
-                <Route path="/create">
-                  <CreateBug
-                    title="Create Ticket"
+          {
+            //The router directs the user to the Login component if the userIsLoggedIn property is set to false
+            //Otherwise the router directs the user to dashboard or whichever page they were on before they closed the browser
+            !this.state.userIsLoggedIn ? (
+              <>
+                <Login id={this.state.id} logInUser={this.logInUser} />
+              </>
+            ) : (
+              <>
+                <Switch>
+                  <Dashboard
+                    path="/"
+                    exact
                     id={this.state.id}
                     logUserOut={this.logUserOut}
                     userLoginState={this.state.userIsLoggedIn}
                   />
-                </Route>
-                <Route path="/viewbugs">
-                  <ViewBugPage
-                    id={this.state.id}
-                    logUserOut={this.logUserOut}
-                    userLoginState={this.state.userIsLoggedIn}
-                  />
-                </Route>
-                <Route path="/mybugs">
-                  <MyBugs
-                    id={this.state.id}
-                    logUserOut={this.logUserOut}
-                    userLoginState={this.state.userIsLoggedIn}
-                  />
-                </Route>
-                <Route path="/myprojects">
-                  <MyProjects
-                    id={this.state.id}
-                    logUserOut={this.logUserOut}
-                    userLoginState={this.state.userIsLoggedIn}
-                  />
-                </Route>
-                <Route path="/userroles">
-                  <RoleAssignment
-                    id={this.state.id}
-                    logUserOut={this.logUserOut}
-                    userLoginState={this.state.userIsLoggedIn}
-                  />
-                </Route>
-                <Route path="/myprofile">
-                  <MyProfile
-                    id={this.state.id}
-                    logUserOut={this.logUserOut}
-                    userLoginState={this.state.userIsLoggedIn}
-                  />
-                </Route>
-              </Switch>
-            </>
-          )}
+                  <Route path="/create">
+                    <CreateBug
+                      title="Create Ticket"
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                  <Route path="/viewbugs">
+                    <ViewBugPage
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                  <Route path="/mybugs">
+                    <MyBugs
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                  <Route path="/myprojects">
+                    <MyProjects
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                  <Route path="/userroles">
+                    <RoleAssignment
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                  <Route path="/myprofile">
+                    <MyProfile
+                      id={this.state.id}
+                      logUserOut={this.logUserOut}
+                      userLoginState={this.state.userIsLoggedIn}
+                    />
+                  </Route>
+                </Switch>
+              </>
+            )
+          }
         </Router>
       </div>
     );
