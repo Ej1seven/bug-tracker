@@ -39,67 +39,47 @@ class Login extends React.Component {
       },
       incorrectPassword: false,
       userIsRegistered: false,
-      passwordValues: {
-        password: "",
-        showPassword: false,
-      },
+      showPassword: false,
     };
   }
-
+  //redirect function uses the history prop passed down from withRouter to send the user back to the login page
   redirect = () => {
     this.props.history.push("/");
   };
-
+  //toggles the Guest sign in component
   guestSignIn = () => {
     this.setState({
       guestseen: !this.state.guestseen,
     });
   };
-
+  //toggles the register component
   onSeenChange = () => {
     this.setState({
       seen: !this.state.seen,
     });
   };
-
+  //takes the user's email and password input from the login form
+  //and attaches the value to the email and password property in state
   inputChanged = (e) => {
     let formInput = { ...this.state.formInput };
-    let passwordValues = { ...this.state.passwordValues };
     formInput[e.target.name] = e.target.value;
     this.setState({ formInput });
-    passwordValues["password"] = e.target.value;
-    this.setState({ passwordValues });
-    console.log("email", JSON.stringify(formInput.email));
-    console.log("password", JSON.stringify(formInput.password));
   };
-
+  //goBackToDashboard function send the user back to the login form
+  //by setting the register and guest components to false
   goBackToDashboard = () => {
     this.setState({ seen: false });
     this.setState({ guestseen: false });
   };
-
-  // togglePop = () => {
-  //   this.setState({
-  //     seen: !this.seen,
-  //   });
-  // };
-
+  //handleClickShowPassword shows or hides the password field depending on state
+  //of the showPassword property in state
   handleClickShowPassword = () => {
-    let showPasswordValues = { ...this.state.passwordValues };
-
     this.setState({
-      passwordValues: {
-        showPassword: !this.state.passwordValues.showPassword,
-      },
+      showPassword: !this.state.showPassword,
     });
-
-    if (this.state.passwordValues.showPassword == false) {
-      document.getElementById("password").type = "text";
-    } else {
-      document.getElementById("password").type = "password";
-    }
-
-    console.log(showPasswordValues);
+    this.state.showPassword === false
+      ? (document.getElementById("password").type = "text")
+      : (document.getElementById("password").type = "password");
   };
 
   handleMouseDownPassword = (event) => {
@@ -187,7 +167,7 @@ class Login extends React.Component {
                           onClick={this.handleClickShowPassword}
                           onMouseDown={this.handleMouseDownPassword}
                         >
-                          {this.state.passwordValues.showPassword ? (
+                          {this.state.showPassword ? (
                             <Visibility />
                           ) : (
                             <VisibilityOff />
