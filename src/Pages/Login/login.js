@@ -20,7 +20,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 document.querySelector("html").classList.remove("background");
-
+//styles the input fields imported from Material UI with a white underline
 const styles = {
   underline: {
     borderBottom: "1px solid white",
@@ -81,47 +81,40 @@ class Login extends React.Component {
       ? (document.getElementById("password").type = "text")
       : (document.getElementById("password").type = "password");
   };
-
+  //handleMouseDownPassword function prevents the click event from occurring until the user releases the mouse button
   handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  //submit function fires once the login button is pressed
   submit = (e) => {
-    if (
-      this.state.formInput.email === "" ||
-      this.state.formInput.password === ""
-    ) {
-      alert("Please insert your email and password");
-    } else {
-      fetch("https://murmuring-mountain-40437.herokuapp.com/login", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: this.state.formInput.email,
-          password: this.state.formInput.password,
-        }),
-      })
-        .then((response) => response.json())
-        .then((user) => {
-          if (user.id) {
-            console.log("this worked!");
-            console.log(user.id);
-            console.log(user.role);
-            this.props.logInUser(user.id);
-            // this.setState({ userIsRegistered: true });
-            // localStorage.setItem("user", this.state.userIsRegistered);
-            this.redirect();
-          } else {
-            this.setState({ incorrectPassword: true });
-          }
-        });
-      e.preventDefault();
-    }
+    //if the email or password fields are left blank on the login form a alert message prompts
+    //otherwise the email and password values are passed to the heroku database to be verified
+    this.state.formInput.email === "" || this.state.formInput.password === ""
+      ? alert("Please insert your email and password")
+      : fetch("https://murmuring-mountain-40437.herokuapp.com/login", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: this.state.formInput.email,
+            password: this.state.formInput.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((user) => {
+            //if the user's login credential are verified then the database responds with the user's id and the user is redirected to the Dashboard component
+            //otherwise the incorrect password property is set to true and the error message div displays
+            if (user.id) {
+              this.props.logInUser(user.id);
+              this.redirect();
+            } else {
+              this.setState({ incorrectPassword: true });
+            }
+          });
+    e.preventDefault();
   };
 
   render() {
     const { classes } = this.props;
-
     return (
       <div className="loginBG">
         {this.state.guestseen ? (
