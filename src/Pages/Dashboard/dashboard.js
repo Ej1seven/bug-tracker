@@ -1,15 +1,19 @@
 import React from "react";
+//Importing the SideBar components according the role assigned to the user
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
+//Importing charts used to display user data from react-chartjs
 import { Bar, Doughnut } from "react-chartjs-2";
-import Card from "../../Components/Card/card";
+//Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
 import "./dashboard.css";
+//Importing withRouter from react-router which passes updated match, location, and history props to the Login component
 import { withRouter } from "react-router-dom";
+//Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
 import IdleTimer from "react-idle-timer";
-import PropTypes from "prop-types";
+//Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
 
 class Dashboard extends React.Component {
@@ -26,8 +30,11 @@ class Dashboard extends React.Component {
       timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
+      //The data imported into the "Tickets By Priorty" chart used by react-chartjs
       chartData: {
+        //Each label is shown below each bar on the graph
         labels: ["Low", "Medium", "High"],
+        //datasets refers to the information imported into the bar graph
         datasets: [
           {
             label: "Ticket By Priority",
@@ -66,7 +73,9 @@ class Dashboard extends React.Component {
           },
         },
       },
+      //The data imported into the "Tickets By Type" chart used by react-chartjs
       chartDataTwo: {
+        //Each label is represented as a portion on the doughnut graph
         labels: [
           "Bug/Errors",
           "Feature Requests",
@@ -74,6 +83,7 @@ class Dashboard extends React.Component {
           "Training/Document Request",
           "Additional Info Required",
         ],
+        //datasets refers to the information imported into the doughnut graph
         datasets: [
           {
             label: "Ticket By Type",
@@ -111,7 +121,9 @@ class Dashboard extends React.Component {
           },
         },
       },
+      //The data imported into the "Tickets By Status" chart used by react-chartjs
       chartDataThree: {
+        //Each label is shown below each bar on the graph
         labels: [
           "New",
           "Open",
@@ -119,6 +131,7 @@ class Dashboard extends React.Component {
           "Resolved",
           "Additional Info Required",
         ],
+        //datasets refers to the information imported into the bar graph
         datasets: [
           {
             label: "Ticket By Status",
@@ -163,8 +176,11 @@ class Dashboard extends React.Component {
           },
         },
       },
+      //The data imported into the "Ticket Assigned To Me" chart used by react-chartjs
       chartDataFour: {
+        //No labels are shown on this doughnut chart
         labels: [],
+        //datasets refers to the information imported into the doughnut graph
         datasets: [
           {
             label: "Ticket Assigned To Me",
@@ -188,6 +204,7 @@ class Dashboard extends React.Component {
         ],
       },
       optionsFour: {
+        //Responsive chart adjust to the size of the screen
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -197,45 +214,48 @@ class Dashboard extends React.Component {
         },
       },
     };
+    //Settings used by the react-idle-timer
+    //idleTimer start the idle timer on null
     this.idleTimer = null;
+    //onAction tells the idle timer an action was performed and resets the idle timer
     this.onAction = this._onAction.bind(this);
+    //onActive tells the idle timer the user is active rather that means moving the mouse, watching a video, etc
     this.onActive = this._onActive.bind(this);
+    //onIdle tells the idle timer the user is idle after 2 minutes of inactivity has elapse
     this.onIdle = this._onIdle.bind(this);
+    //binds the handleClose and handleLogout functions to the idle timer component to ensure the function
+    //is executed whenever the associated button in pressed on the IdleTimeOutModal
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-
+  //user did something
   _onAction(e) {
-    // console.log("user did something", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is active
   _onActive(e) {
-    // console.log("user is active", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is idle
   _onIdle(e) {
-    // console.log("user is idle", e);
     const isTimedOut = this.state.isTimedOut;
-    if (isTimedOut) {
-      // this.setState({ userIsRegistered: false });
-    } else {
+    //if user has been inactive for longer that 2 minutes show the IdleTimeOutModal
+    //reset the timer back to 0
+    //and set the isTimedOut property to true
+    if (!isTimedOut) {
       this.setState({ showModal: true });
       this.idleTimer.reset();
       this.setState({ isTimedOut: true });
     }
   }
-
+  //Close the IdleTimeOutModal
   handleClose() {
     this.setState({ showModal: false });
   }
-
+  //Log the user out of the application
   handleLogout() {
     this.setState({ showModal: false });
     this.props.logUserOut();
-    console.log(this.props.userLoginState);
-    // this.props.history.push("/");
   }
 
   fetchInfo = () => {
@@ -320,12 +340,6 @@ class Dashboard extends React.Component {
           }
           bugAssignedToMe.push(count);
         }
-
-        // if (bugAssignedToMe.length == 0) {
-        //   bugAssignedToMe.push(
-        //     this.filterBugsAssignedToMe(bug.assigned).length
-        //   );
-        // }
         console.log(bugAssignedToMe);
         console.log(bugSubmitters);
         this.setState({
@@ -470,22 +484,6 @@ class Dashboard extends React.Component {
                   options={this.state.optionsFour}
                 />
               </div>
-              {/* <Card
-              Priority="1"
-              count={this.state.highCount.length}
-              clicked={this.redirect}
-            />
-            <Card
-              Priority="2"
-              count={this.state.midCount.length}
-              clicked={this.redirect}
-            />
-            <Card
-              Priority="3"
-              count={this.state.lowCount.length}
-              clicked={this.redirect}
-            /> */}
-
               <IdleTimeOutModal
                 showModal={this.state.showModal}
                 handleClose={this.handleClose}

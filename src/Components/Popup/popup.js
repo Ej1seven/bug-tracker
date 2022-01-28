@@ -1,14 +1,19 @@
 import React from "react";
+//Importing Dashboard page
 import Dashboard from "../../Pages/Dashboard/dashboard";
-import { Link } from "react-router-dom";
+//Importing Material UI components
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/TextField";
+// withStyles allows for custom styling of Material UI components
 import { withStyles } from "@material-ui/core/styles";
+// InputAdornment provides the functionality to show/hide passwords when clicking on the eye icon
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
+//Visibility on and off shows/hides the password when the eye icon is clicked
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
+//styles the input fields imported from Material UI with a white underline
 const styles = {
   underline: {
     borderBottom: "1px solid white",
@@ -29,116 +34,78 @@ class Popup extends React.Component {
       },
       incorrectPassword: false,
       userIsRegistered: false,
-      passwordValues: {
-        password: "",
-        showPassword: false,
-      },
-      confirmPasswordValues: {
-        password: "",
-        showPassword: false,
-      },
+      showPassword: false,
+      showConfirmPassword: false,
     };
   }
-
+  //takes the user's name, email, password, and confirm password inputs from the register form
+  //and attaches the values to the name, email, password, and confirm password properties in state
   inputChanged = (e) => {
     e.preventDefault();
     let formInput = { ...this.state.formInput };
-    let passwordValues = { ...this.state.passwordValues };
-    let confirmPasswordValues = { ...this.state.confirmPasswordValues };
-
     formInput[e.target.name] = e.target.value;
-    this.setState({
-      formInput,
-    });
-    passwordValues["password"] = e.target.value;
-    this.setState({ passwordValues });
-    confirmPasswordValues["password"] = e.target.value;
-    this.setState({ confirmPasswordValues });
-
-    console.log("email", JSON.stringify(formInput.email));
-    console.log("password", JSON.stringify(formInput.password));
-    console.log("name", JSON.stringify(formInput.name));
-    console.log("confirmpassword", JSON.stringify(formInput.confirmpassword));
+    this.setState({ formInput });
   };
-
+  //handleClickShowPassword shows or hides the password field depending on state
+  //of the showPassword property in state
   handleClickShowPassword = () => {
-    let showPasswordValues = { ...this.state.passwordValues };
-
     this.setState({
-      passwordValues: {
-        showPassword: !this.state.passwordValues.showPassword,
-      },
+      showPassword: !this.state.showPassword,
     });
-
-    if (this.state.passwordValues.showPassword == false) {
-      document.getElementById("password").type = "text";
-    } else {
-      document.getElementById("password").type = "password";
-    }
-
-    console.log(showPasswordValues);
+    this.state.showPassword === false
+      ? (document.getElementById("password").type = "text")
+      : (document.getElementById("password").type = "password");
   };
-
+  //handleClickShowPasswordTwo shows or hides the password field depending on state
+  //of the showConfirmPassword property in state
   handleClickShowPasswordTwo = () => {
-    let showPasswordValues = { ...this.state.confirmPasswordValues };
-
     this.setState({
-      confirmPasswordValues: {
-        showPassword: !this.state.confirmPasswordValues.showPassword,
-      },
+      showConfirmPassword: !this.state.showConfirmPassword,
     });
-
-    if (this.state.confirmPasswordValues.showPassword == false) {
-      document.getElementById("confirmpassword").type = "text";
-    } else {
-      document.getElementById("confirmpassword").type = "password";
-    }
-
-    console.log(showPasswordValues);
+    this.state.showConfirmPassword === false
+      ? (document.getElementById("confirmpassword").type = "text")
+      : (document.getElementById("confirmpassword").type = "password");
   };
-
+  //handleMouseDownPassword function prevents the click event from occurring until the user releases the mouse button
   handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  //submit function fires once the register button is pressed
   submit = (e) => {
-    if (this.state.formInput.name === "") {
-      alert("Please insert name");
-    } else if (this.state.formInput.email === "") {
-      alert("Please insert a valid email address");
-    } else if (this.state.formInput.password === "") {
-      alert("Please insert password");
-    } else if (
-      this.state.formInput.confirmpassword !== this.state.formInput.password
-    ) {
-      this.setState({ incorrectPassword: true });
-    } else {
-      fetch("https://murmuring-mountain-40437.herokuapp.com/register", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: this.state.formInput.name,
-          email: this.state.formInput.email,
-          password: this.state.formInput.password,
-          role: this.state.formInput.role,
-        }),
-      }).then((response) =>
-        response.json().then((user) => {
-          if (user.id) {
-            console.log("register is working!");
-            this.props.goBackToDashboard();
-            alert("You are now registered! Please login!");
-            // this.setState({ userIsRegistered: true });
-          } else {
-            this.setState({ incorrectPassword: true });
-          }
-        })
-      );
-    }
+    //if the name, email, password, or confirm password fields are left blank on the register form a alert message prompts
+    //otherwise the name, email, and password values are passed to the heroku database to be stored in a new user profile
+    //new users are automatically assigned the developer role
+    this.state.formInput.name === ""
+      ? alert("Please insert name")
+      : this.state.formInput.email === ""
+      ? alert("Please insert a valid email address")
+      : this.state.formInput.password === ""
+      ? alert("Please insert password")
+      : this.state.formInput.confirmpassword !== this.state.formInput.password
+      ? this.setState({ incorrectPassword: true })
+      : fetch("https://murmuring-mountain-40437.herokuapp.com/register", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: this.state.formInput.name,
+            email: this.state.formInput.email,
+            password: this.state.formInput.password,
+            role: this.state.formInput.role,
+          }),
+        }).then((response) =>
+          response.json().then((user) => {
+            //if the data is successfully stored in the database the user is routed back to the login form to login for the first time
+            //otherwise a alert message prompts
+            if (user.id) {
+              this.props.goBackToDashboard();
+              alert("You are now registered! Please login!");
+            } else {
+              alert("Error occurred, please try again!");
+            }
+          })
+        );
     e.preventDefault();
   };
-
-  // function submit(e) {
 
   render() {
     const { classes } = this.props;
@@ -188,7 +155,7 @@ class Popup extends React.Component {
                       onClick={this.handleClickShowPassword}
                       onMouseDown={this.handleMouseDownPassword}
                     >
-                      {this.state.passwordValues.showPassword ? (
+                      {this.state.showPassword ? (
                         <Visibility />
                       ) : (
                         <VisibilityOff />
@@ -216,7 +183,7 @@ class Popup extends React.Component {
                       onClick={this.handleClickShowPasswordTwo}
                       onMouseDown={this.handleMouseDownPassword}
                     >
-                      {this.state.confirmPasswordValues.showPassword ? (
+                      {this.state.showConfirmPassword ? (
                         <Visibility />
                       ) : (
                         <VisibilityOff />
@@ -228,7 +195,7 @@ class Popup extends React.Component {
               className={classes.underline}
             />
             <div className="form-buttons-contatiner">
-              {this.incorrectPassword === true ? (
+              {this.state.incorrectPassword === true ? (
                 <div className="error-message">
                   {" "}
                   <span>Passwords do not match!</span>{" "}
