@@ -175,12 +175,12 @@ class Dashboard extends React.Component {
       },
       //The data imported into the "Ticket Assigned To Me" chart used by react-chartjs
       chartDataFour: {
-        //labels are dynamic depending on the data pulled from the database on this doughnut chart
+        //The chart labels are dynamic depending on the data pulled from the database on this doughnut chart
         labels: [],
         //datasets refers to the information imported into the doughnut graph
         datasets: [
           {
-            label: "Ticket Assigned To Me",
+            label: "Tickets Assigned To Me",
             data: [],
             backgroundColor: [
               "rgba(0, 255, 0, 0.5)",
