@@ -9,8 +9,6 @@ import { Bar, Doughnut } from "react-chartjs-2";
 //Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
 import "./dashboard.css";
-//Importing withRouter from react-router which passes updated match, location, and history props to the Login component
-import { withRouter } from "react-router-dom";
 //Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
 import IdleTimer from "react-idle-timer";
 //Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
@@ -263,7 +261,7 @@ class Dashboard extends React.Component {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
       (response) =>
         response.json().then((bugs) => {
-          //pulls all the tickets from the bugs table inside the database then filters the tickets into the empty array variables listed below
+          //pulls all the tickets from the bugs table in the database then filters the tickets into the empty array variables listed below
           //this data will be imported into the react charts
           let dataByBugType = [];
           let dataByPriority = [];
@@ -368,26 +366,23 @@ class Dashboard extends React.Component {
       })
     );
   };
-
+  //this function filters the bugs by priority
   filterBugs = (priority) => {
     return this.state.bugs.filter((bug) => {
       return bug.priority == priority;
     });
   };
-
+  //this function filters the bugs by type
   filterBugsByType = (bugType) => {
     return this.state.bugs.filter((bug) => {
       return bug.type == bugType;
     });
   };
+  //this function filters the bugs by status
   filterBugsByStatus = (bugStatus) => {
     return this.state.bugs.filter((bug) => {
       return bug.status == bugStatus;
     });
-  };
-
-  redirect = () => {
-    this.props.history.push("./viewbugs");
   };
 
   render() {
@@ -492,4 +487,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default withRouter(Dashboard);
+export default Dashboard;

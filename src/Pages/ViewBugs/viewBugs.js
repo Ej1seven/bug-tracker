@@ -1,54 +1,27 @@
 import React from "react";
+//Importing the SideBar components according the role assigned to the user
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import "./viewBugs.css";
-import BugCard from "../../Components/BugCard/bugCard";
+//Importing the BugView component which displays the details of each tickets
 import BugView from "../../Components/BugView/bugView";
+//Importing react-bootstrap-table components
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+//Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
 import IdleTimer from "react-idle-timer";
+//Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
+//Importing withRouter from react-router which passes updated match, location, and history props to the Login component
 import { withRouter } from "react-router-dom";
+//Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
 
-{
-  /* <BootstrapTable keyField="name" data={this.state.myBugs} columns={this.state.columns} pagination={paginationFactory()} */
-}
-
-{
-  /* <table>
-<thead>
-  <tr>
-    <th>Title</th>
-    <th>Submitter</th>
-    <th>Assigned Dev</th>
-    <th>Priority</th>
-    <th>Created</th>
-  </tr>
-</thead>
-<tbody>
-  {this.state.myBugs.map((bug, idx) => (
-    <tr>
-      <td>{bug.name}</td>
-      <td>{bug.creator}</td>
-      <td>{bug.assigned}</td>
-      <td priority={this.getPriorityValue(bug.priority)}>
-        {this.state.priority}
-      </td>
-      <td date={this.getFormattedDate(bug.created)}>
-        {this.state.date}
-      </td>
-    </tr>
-  ))}
-</tbody>
-</table> */
-}
 document.querySelector("html").classList.add("background");
-
 class ViewBugs extends React.Component {
   constructor(props) {
     super(props);
@@ -66,51 +39,63 @@ class ViewBugs extends React.Component {
       isTimedOut: false,
       showModal: false,
     };
+    //Settings used by the react-idle-timer
+    //idleTimer start the idle timer on null
     this.idleTimer = null;
+    //onAction tells the idle timer an action was performed and resets the idle timer
     this.onAction = this._onAction.bind(this);
+    //onActive tells the idle timer the user is active rather that means moving the mouse, watching a video, etc
     this.onActive = this._onActive.bind(this);
+    //onIdle tells the idle timer the user is idle after 2 minutes of inactivity has elapse
     this.onIdle = this._onIdle.bind(this);
+    //binds the handleClose and handleLogout functions to the idle timer component to ensure the function
+    //is executed whenever the associated button in pressed on the IdleTimeOutModal
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-
+  //user did something
   _onAction(e) {
     console.log("user did something", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is active
   _onActive(e) {
     console.log("user is active", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is idle
   _onIdle(e) {
-    console.log("user is idle", e);
     const isTimedOut = this.state.isTimedOut;
-    if (isTimedOut) {
-      // this.setState({ userIsRegistered: false });
-    } else {
+    //if user has been inactive for longer that 2 minutes show the IdleTimeOutModal
+    //reset the timer back to 0
+    //and set the isTimedOut property to true
+    if (!isTimedOut) {
       this.setState({ showModal: true });
       this.idleTimer.reset();
       this.setState({ isTimedOut: true });
     }
   }
-
+  //Close the IdleTimeOutModal
   handleClose() {
     this.setState({ showModal: false });
   }
-
+  //Log the user out of the application
   handleLogout() {
     this.setState({ showModal: false });
     this.props.logUserOut();
-    console.log(this.props.userLoginState);
-    this.props.history.push("/");
   }
-
+  //During the mounting phase of the React Life-cycle the viewBugs component fetches data from the database
+  componentDidMount = () => {
+    this.fetchInfo();
+  };
+  //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
       (response) =>
         response.json().then((bugsList) => {
+          //pulls all the tickets from the bugs table in the database then
+          //changes the format of the priority property from a number value to a description ( 1 = High, 2 = Medium, 3 = Low)
+          //also changes the format of the created property to a readable date
           let formattedBugs = bugsList.map((bug) =>
             Object.assign({}, bug, {
               priority: this.getPriorityValue(bug.priority),
@@ -118,28 +103,27 @@ class ViewBugs extends React.Component {
             })
           );
           this.setState({ bugs: formattedBugs });
-          console.log(bugsList);
           // this.setState({ bugs: bugsList });
           // console.log(this.state.bugs);
           // localStorage.setItem("bugs", this.props.messageId);
         })
     );
+    //fetches the active users profile from the database by using the users unique id
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
-        console.log(userProfile);
         this.setState({ user: userProfile });
-        console.log(this.state.user);
       })
     );
+    //fetches all the users from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
       (response) =>
         response.json().then((userList) => {
-          console.log(userList);
           this.setState({ users: userList });
         })
     );
+    //fetches all the projects from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
       (response) =>
         response.json().then((projects) => {
@@ -147,24 +131,7 @@ class ViewBugs extends React.Component {
         })
     );
   };
-
-  componentDidMount = () => {
-    this.fetchInfo();
-  };
-
-  // const [DISPLAY_BUG, SET_DISPLAY_BUG] = useState({
-  //   name:'',
-  //   isDisplayed:false
-  // });
-
-  // const dispatch = useDispatch();
-
-  // const {bugs} = useSelector(state => state)
-
-  // useEffect(() => {
-  //     dispatch(getBugs());
-  // },[])
-
+  //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
       return "High";
@@ -174,7 +141,7 @@ class ViewBugs extends React.Component {
       return "Low";
     }
   };
-
+  //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
@@ -186,16 +153,13 @@ class ViewBugs extends React.Component {
       hour12: true,
     };
     var dateString = date.toLocaleDateString("en-US", formatOptions);
-    // => "02/17/2017, 11:32 PM"
-
     dateString = dateString
       .replace(",", "")
       .replace("PM", "p.m.")
       .replace("AM", "a.m.");
-
     return dateString;
   };
-
+  //BugClicked toggles the ticket details popup and also filters the tickets by name and id to make sure the correct ticket is displayed
   BugClicked = (bug) => {
     this.setState({
       displayBug: {
@@ -204,15 +168,8 @@ class ViewBugs extends React.Component {
         id: bug.id,
       },
     });
-    console.log(this.state.displayBug.id);
-    console.log(this.state.displayBug.name);
-    console.log(bug.id);
-    console.log(bug.name);
-
-    // console.log(bug.name);
-    // console.log(bug.id);
   };
-
+  //imports the formatted tickets from the database into the bootstrap table, and  divides the ticket properties by columns
   render() {
     var columns = [
       {
@@ -256,8 +213,6 @@ class ViewBugs extends React.Component {
         formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            console.log(row.id);
-            // console.log(row.priority);
             this.BugClicked(row);
           },
           classes: "more-details",
