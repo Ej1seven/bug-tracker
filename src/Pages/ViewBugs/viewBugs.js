@@ -16,8 +16,6 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import IdleTimer from "react-idle-timer";
 //Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
-//Importing withRouter from react-router which passes updated match, location, and history props to the Login component
-import { withRouter } from "react-router-dom";
 //Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
 
@@ -233,7 +231,8 @@ class ViewBugs extends React.Component {
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
     });
-
+    //rowClasses changes the color of the row depending on the priority value
+    //(High = red, Medium = yellow, Low = green)
     const rowClasses = (row, rowIndex) => {
       if (row.priority == "High") {
         return "high";
@@ -313,15 +312,6 @@ class ViewBugs extends React.Component {
             </>
           )}{" "}
           <div className="page-container">
-            {/* {this.state.bugs.map((bug, idx) => (
-              <BugCard
-                id={idx}
-                bug={bug}
-                clicked={this.BugClicked}
-                bugList={this.state.bugs}
-              />
-            ))} */}
-
             <div className="header effect9">
               <Header
                 user={this.state.user}
@@ -360,4 +350,4 @@ class ViewBugs extends React.Component {
   }
 }
 
-export default withRouter(ViewBugs);
+export default ViewBugs;
