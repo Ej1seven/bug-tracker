@@ -23,9 +23,6 @@ class Dashboard extends React.Component {
       user: {},
       bugs: {},
       myBugs: [],
-      highCount: 0,
-      midCount: 0,
-      lowCount: 0,
       user: {},
       timeout: 1000 * 5 * 24,
       isTimedOut: false,
@@ -258,15 +255,19 @@ class Dashboard extends React.Component {
     this.props.logUserOut();
   }
 
+  //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
       (response) =>
         response.json().then((bugs) => {
-          console.log(bugs);
+          //pulls all the tickets from the bugs table inside the database then filters the tickets into the empty array variables listed below
+          //this data will be imported into the react charts
           let dataByBugType = [];
           let dataByPriority = [];
           let dataByStatus = [];
           this.setState({ bugs: bugs });
+          //uses the filterBugsByType function to filter the tickets according to the ticket type then push the number counted
+          //of each bug type into the dataByBugType array
           dataByBugType.push(this.filterBugsByType("Bug/Errors").length);
           dataByBugType.push(this.filterBugsByType("Feature Requests").length);
           dataByBugType.push(this.filterBugsByType("Other Comment").length);
@@ -276,6 +277,8 @@ class Dashboard extends React.Component {
           dataByBugType.push(
             this.filterBugsByType("Additional Info Required").length
           );
+          //uses the filterBugsByStatus function to filter the tickets according to the ticket status then push the number counted
+          //of each bug type status into the dataByStatus array
           dataByStatus.push(this.filterBugsByStatus("New").length);
           dataByStatus.push(this.filterBugsByStatus("Open").length);
           dataByStatus.push(this.filterBugsByStatus("In Progress").length);
@@ -283,17 +286,10 @@ class Dashboard extends React.Component {
           dataByStatus.push(
             this.filterBugsByType("Additional Info Required").length
           );
-          // console.log(this.state.bugs[1].details);
-          this.setState({ lowCount: this.filterBugs(3) });
-          this.setState({ midCount: this.filterBugs(2) });
-          this.setState({ highCount: this.filterBugs(1) });
           // console.log(this.filterBugs(3).length);
           dataByPriority.push(this.filterBugs(3).length);
           dataByPriority.push(this.filterBugs(2).length);
           dataByPriority.push(this.filterBugs(1).length);
-          console.log(this.state.lowCount);
-          console.log(this.state.midCount);
-          console.log(this.state.highCount);
           this.setState({
             chartData: {
               datasets: [{ data: dataByPriority, label: "Ticket By Priority" }],
@@ -370,8 +366,6 @@ class Dashboard extends React.Component {
 
   componentDidMount = () => {
     this.fetchInfo();
-    console.log(this.props.id);
-    console.log(this.state.id);
   };
 
   filterBugs = (priority) => {
