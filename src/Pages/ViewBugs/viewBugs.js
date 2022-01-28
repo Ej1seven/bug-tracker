@@ -101,12 +101,9 @@ class ViewBugs extends React.Component {
             })
           );
           this.setState({ bugs: formattedBugs });
-          // this.setState({ bugs: bugsList });
-          // console.log(this.state.bugs);
-          // localStorage.setItem("bugs", this.props.messageId);
         })
     );
-    //fetches the active users profile from the database by using the users unique id
+    //fetches the active user's profile from the database by using the user's unique id
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
@@ -336,9 +333,7 @@ class ViewBugs extends React.Component {
                     {...props.baseProps}
                     filter={filterFactory()}
                     pagination={pagination}
-                    // rowEvents={rowEvents}
                     rowClasses={rowClasses}
-                    // cellEdit={cellEdit}
                   />
                 </div>
               )}

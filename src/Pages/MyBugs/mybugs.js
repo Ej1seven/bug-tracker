@@ -1,20 +1,22 @@
 import React from "react";
+//Importing the SideBar components according the role assigned to the user
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
-import Pagination from "../../Components/Pagination/usePagination";
 import "./mybugs.css";
+//Importing the BugView component which displays the details of each tickets
 import BugView from "../../Components/BugView/bugView";
+//Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
 import IdleTimer from "react-idle-timer";
+//Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
-import { withRouter } from "react-router-dom";
+//Importing react-bootstrap-table components
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import cellEditFactory, { Type } from "react-bootstrap-table2-editor";
-import * as ReactBootStrap from "react-bootstrap";
+//Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
 
 class MyBugs extends React.Component {
@@ -37,53 +39,63 @@ class MyBugs extends React.Component {
       priority: "",
       date: "",
     };
+    //Settings used by the react-idle-timer
+    //idleTimer start the idle timer on null
     this.idleTimer = null;
+    //onAction tells the idle timer an action was performed and resets the idle timer
     this.onAction = this._onAction.bind(this);
+    //onActive tells the idle timer the user is active rather that means moving the mouse, watching a video, etc
     this.onActive = this._onActive.bind(this);
+    //onIdle tells the idle timer the user is idle after 2 minutes of inactivity has elapse
     this.onIdle = this._onIdle.bind(this);
+    //binds the handleClose and handleLogout functions to the idle timer component to ensure the function
+    //is executed whenever the associated button in pressed on the IdleTimeOutModal
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-
+  //user did something
   _onAction(e) {
     console.log("user did something", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is active
   _onActive(e) {
     console.log("user is active", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is idle
   _onIdle(e) {
-    console.log("user is idle", e);
     const isTimedOut = this.state.isTimedOut;
-    if (isTimedOut) {
-      // this.setState({ userIsRegistered: false });
-    } else {
+    //if user has been inactive for longer that 2 minutes show the IdleTimeOutModal
+    //reset the timer back to 0
+    //and set the isTimedOut property to true
+    if (!isTimedOut) {
       this.setState({ showModal: true });
       this.idleTimer.reset();
       this.setState({ isTimedOut: true });
     }
   }
-
+  //Close the IdleTimeOutModal
   handleClose() {
     this.setState({ showModal: false });
   }
-
+  //Log the user out of the application
   handleLogout() {
     this.setState({ showModal: false });
     this.props.logUserOut();
-    console.log(this.props.userLoginState);
-    this.props.history.push("/");
   }
-
+  //During the mounting phase of the React Life-cycle the viewBugs component fetches data from the database
+  componentDidMount = () => {
+    this.fetchInfo();
+  };
+  //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
       (response) =>
         response.json().then((bugList) => {
-          // console.log(bugs);
-          console.log(this.state.bugs);
+          //pulls all the tickets from the bugs table in the database then
+          //changes the format of the priority property from a number value to a description ( 1 = High, 2 = Medium, 3 = Low)
+          //also changes the format of the created property to a readable date
           let formattedBugs = bugList.map((bug) =>
             Object.assign({}, bug, {
               priority: this.getPriorityValue(bug.priority),
@@ -91,35 +103,31 @@ class MyBugs extends React.Component {
             })
           );
           this.setState({ bugs: formattedBugs });
-
-          // localStorage.setItem("bugs", this.props.messageId);
         })
     );
+    //fetches the active user's profile from the database by using the user's unique id
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
-        console.log(userProfile);
         this.setState({ user: userProfile });
-        console.log(this.state.user.name);
-        console.log(this.state.user.role);
-        console.log(this.state.bugs);
+        //filters through the tickets in the database and returns the tickets that have been either created by the user or assigned by the user
         let filteredBugs = this.state.bugs.filter(
           (bug) =>
             bug.creator == this.state.user.name ||
             bug.assigned == this.state.user.name
         );
         this.setState({ myBugs: filteredBugs });
-        console.log(this.state.myBugs);
       })
     );
+    //fetches all the users from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
       (response) =>
         response.json().then((userList) => {
-          console.log(userList);
           this.setState({ users: userList });
         })
     );
+    //fetches all the projects from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
       (response) =>
         response.json().then((projects) => {
@@ -127,7 +135,7 @@ class MyBugs extends React.Component {
         })
     );
   };
-
+  //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
       return "High";
@@ -137,7 +145,7 @@ class MyBugs extends React.Component {
       return "Low";
     }
   };
-
+  //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
@@ -149,33 +157,13 @@ class MyBugs extends React.Component {
       hour12: true,
     };
     var dateString = date.toLocaleDateString("en-US", formatOptions);
-    // => "02/17/2017, 11:32 PM"
-
     dateString = dateString
       .replace(",", "")
       .replace("PM", "p.m.")
       .replace("AM", "a.m.");
-
     return dateString;
   };
-
-  componentDidMount = () => {
-    this.fetchInfo();
-  };
-
-  // const [DISPLAY_BUG, SET_DISPLAY_BUG] = useState({
-  //   name:'',
-  //   isDisplayed:false
-  // });
-
-  // const dispatch = useDispatch();
-
-  // const {bugs} = useSelector(state => state)
-
-  // useEffect(() => {
-  //     dispatch(getBugs());
-  // },[])
-
+  //BugClicked toggles the ticket details popup and also filters the tickets by name and id to make sure the correct ticket is displayed
   BugClicked = (bug) => {
     // console.log(bug.priority);
     this.setState({
@@ -185,14 +173,8 @@ class MyBugs extends React.Component {
         id: bug.id,
       },
     });
-    // console.log(bug.id);
-    // console.log(bug.name);
-    // console.log(this.state.displayBug.id);
-    // console.log(this.state.displayBug.name);
-    // console.log(bug.name);
-    // console.log(bug.id);
   };
-
+  //imports the formatted tickets from the database into the bootstrap table, and  divides the ticket properties by columns
   render() {
     console.log(this.state.user);
     var columns = [
@@ -238,8 +220,6 @@ class MyBugs extends React.Component {
         formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
-            // console.log(row.priority);
             this.BugClicked(row);
           },
         },
@@ -259,13 +239,8 @@ class MyBugs extends React.Component {
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
     });
-
-    const rowEvents = {
-      onClick: (e, row, rowIndex) => {
-        console.log(`clicked on row with index: ${rowIndex}`);
-      },
-    };
-
+    //rowClasses changes the color of the row depending on the priority value
+    //(High = red, Medium = yellow, Low = green)
     const rowClasses = (row, rowIndex) => {
       if (row.priority == "High") {
         return "high";
@@ -275,13 +250,6 @@ class MyBugs extends React.Component {
         return "low";
       }
     };
-    // const rowClasses = (row, rowIndex) => {
-    //   return "row";
-    // };
-
-    // const cellEdit = cellEditFactory({
-    //   mode: "click",
-    // });
 
     return (
       <>
@@ -345,7 +313,7 @@ class MyBugs extends React.Component {
             </div>
             <div className="mybugs-container">
               <div className="mybugs-container-list">
-                {this.state.displayBug.isDisplayed ? (
+                {this.state.displayBug.isDisplayed && (
                   <div>
                     <BugView
                       clicked={this.BugClicked}
@@ -363,8 +331,6 @@ class MyBugs extends React.Component {
                       projects={this.state.projects}
                     />
                   </div>
-                ) : (
-                  <></>
                 )}
                 <ToolkitProvider
                   keyField="id"
@@ -385,9 +351,7 @@ class MyBugs extends React.Component {
                         {...props.baseProps}
                         filter={filterFactory()}
                         pagination={pagination}
-                        // rowEvents={rowEvents}
                         rowClasses={rowClasses}
-                        // cellEdit={cellEdit}
                       />
                     </div>
                   )}
@@ -401,4 +365,4 @@ class MyBugs extends React.Component {
   }
 }
 
-export default withRouter(MyBugs);
+export default MyBugs;
