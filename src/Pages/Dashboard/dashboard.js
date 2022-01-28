@@ -175,7 +175,7 @@ class Dashboard extends React.Component {
       },
       //The data imported into the "Ticket Assigned To Me" chart used by react-chartjs
       chartDataFour: {
-        //No labels are shown on this doughnut chart
+        //labels are dynamic depending on the data pulled from the database on this doughnut chart
         labels: [],
         //datasets refers to the information imported into the doughnut graph
         datasets: [
@@ -254,7 +254,10 @@ class Dashboard extends React.Component {
     this.setState({ showModal: false });
     this.props.logUserOut();
   }
-
+  //During the mounting phase of the React Life-cycle the Dashboard component fetches data from the database
+  componentDidMount = () => {
+    this.fetchInfo();
+  };
   //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
@@ -266,7 +269,7 @@ class Dashboard extends React.Component {
           let dataByPriority = [];
           let dataByStatus = [];
           this.setState({ bugs: bugs });
-          //uses the filterBugsByType function to filter the tickets according to the ticket type then push the number counted
+          //uses the filterBugsByType function to filter the tickets according to the ticket's type then pushes the number counted
           //of each bug type into the dataByBugType array
           dataByBugType.push(this.filterBugsByType("Bug/Errors").length);
           dataByBugType.push(this.filterBugsByType("Feature Requests").length);
@@ -277,8 +280,8 @@ class Dashboard extends React.Component {
           dataByBugType.push(
             this.filterBugsByType("Additional Info Required").length
           );
-          //uses the filterBugsByStatus function to filter the tickets according to the ticket status then push the number counted
-          //of each bug type status into the dataByStatus array
+          //uses the filterBugsByStatus function to filter the tickets according to the ticket's status then pushes the number counted
+          //of each bug type by status into the dataByStatus array
           dataByStatus.push(this.filterBugsByStatus("New").length);
           dataByStatus.push(this.filterBugsByStatus("Open").length);
           dataByStatus.push(this.filterBugsByStatus("In Progress").length);
@@ -286,10 +289,12 @@ class Dashboard extends React.Component {
           dataByStatus.push(
             this.filterBugsByType("Additional Info Required").length
           );
-          // console.log(this.filterBugs(3).length);
+          //uses the filterBugs function to filter the tickets according to the ticket's priority (1 = High, 2 = Medium, 3 = Low) then pushes the number counted
+          //of each bug type by priority into the dataByPriority array
           dataByPriority.push(this.filterBugs(3).length);
           dataByPriority.push(this.filterBugs(2).length);
           dataByPriority.push(this.filterBugs(1).length);
+          //imports the filtered data pulled from the database into the react charts
           this.setState({
             chartData: {
               datasets: [{ data: dataByPriority, label: "Ticket By Priority" }],
@@ -307,41 +312,41 @@ class Dashboard extends React.Component {
           });
         })
     );
+    //fetches the active users profile from the database by using the users unique id
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
-        console.log(userProfile);
         let bugAssignedToMe = [];
         let bugSubmitters = [];
         this.setState({ user: userProfile });
-        console.log(this.state.user);
+        //filters out all the tickets assigned to the user
         let filteredBugs = this.state.bugs.filter(
           (bug) => bug.assigned == this.state.user.name
         );
-        console.log(filteredBugs);
         this.setState({ myBugs: filteredBugs });
+        //filters out the creators of all the tickets assigned to the user
         filteredBugs.map((bug) => {
           if (!bugSubmitters.includes(bug.creator)) {
             bugSubmitters.push(bug.creator);
           }
         });
+        //counts all the tickets assigned to the user then adds the count to the bugAssignedToMe array
         for (let i = 0; i < bugSubmitters.length; i++) {
           let submitter = bugSubmitters[i];
           let count = 0;
           for (let i = 0; i < filteredBugs.length; i++) {
-            if (submitter == filteredBugs[i].creator) {
+            if (submitter === filteredBugs[i].creator) {
               count += 1;
             }
           }
           bugAssignedToMe.push(count);
         }
-        console.log(bugAssignedToMe);
-        console.log(bugSubmitters);
+        //imports the filtered data pulled from the database into the "Ticket Assigned To Me" react chart
         this.setState({
           chartDataFour: {
             datasets: [
-              { data: bugAssignedToMe, label: "Ticket Assigned To Me" },
+              { data: bugAssignedToMe, label: "Tickets Assigned To Me" },
             ],
             labels: bugSubmitters,
           },
@@ -362,10 +367,6 @@ class Dashboard extends React.Component {
         });
       })
     );
-  };
-
-  componentDidMount = () => {
-    this.fetchInfo();
   };
 
   filterBugs = (priority) => {
