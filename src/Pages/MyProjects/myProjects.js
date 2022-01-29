@@ -1,18 +1,25 @@
 import React from "react";
+//Importing the SideBar components according the role assigned to the user
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
 import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
 import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
 import "./myProjects.css";
+//Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
 import IdleTimer from "react-idle-timer";
+//Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
 import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
 import { withRouter } from "react-router-dom";
+//Importing the BugView component which displays the details of each tickets
 import BugView from "../../Components/BugView/bugView";
+//Importing react-bootstrap-table components
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+//Importing Header which displays the users name, role and user profile information
 import Header from "../../Components/Header/header";
+//Importing Material UI components
 import Button from "@material-ui/core/Button";
 
 class MyProjects extends React.Component {
@@ -47,39 +54,48 @@ class MyProjects extends React.Component {
       },
       selectedProject: {},
     };
+    //Settings used by the react-idle-timer
+    //idleTimer start the idle timer on null
     this.idleTimer = null;
+    //onAction tells the idle timer an action was performed and resets the idle timer
     this.onAction = this._onAction.bind(this);
+    //onActive tells the idle timer the user is active rather that means moving the mouse, watching a video, etc
     this.onActive = this._onActive.bind(this);
+    //onIdle tells the idle timer the user is idle after 2 minutes of inactivity has elapse
     this.onIdle = this._onIdle.bind(this);
+    //binds the handleClose and handleLogout functions to the idle timer component to ensure the function
+    //is executed whenever the associated button in pressed on the IdleTimeOutModal
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
-
+  //user did something
   _onAction(e) {
     console.log("user did something", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is active
   _onActive(e) {
     console.log("user is active", e);
     this.setState({ isTimedOut: false });
   }
-
+  //user is idle
   _onIdle(e) {
-    console.log("user is idle", e);
     const isTimedOut = this.state.isTimedOut;
-    if (isTimedOut) {
-      // this.setState({ userIsRegistered: false });
-    } else {
+    //if user has been inactive for longer that 2 minutes show the IdleTimeOutModal
+    //reset the timer back to 0
+    //and set the isTimedOut property to true
+    if (!isTimedOut) {
       this.setState({ showModal: true });
       this.idleTimer.reset();
       this.setState({ isTimedOut: true });
     }
   }
+  //Close the IdleTimeOutModal
 
   handleClose() {
     this.setState({ showModal: false });
   }
+  //Log the user out of the application
 
   handleLogout() {
     this.setState({ showModal: false });
@@ -87,17 +103,22 @@ class MyProjects extends React.Component {
     console.log(this.props.userLoginState);
     this.props.history.push("/");
   }
-
+  //newProjectPage function toggles the new project page
   newProjectPage = () => {
     this.setState({ projectPage: !this.state.projectPage });
   };
-
+  //During the mounting phase of the React Life-cycle the myProjects component fetches data from the database
+  componentDidMount = () => {
+    this.fetchInfo();
+  };
+  //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
       (response) =>
         response.json().then((bugList) => {
-          // console.log(bugs);
-          console.log(this.state.bugs);
+          //pulls all the tickets from the bugs table in the database then
+          //changes the format of the priority property from a number value to a description ( 1 = High, 2 = Medium, 3 = Low)
+          //also changes the format of the created property to a readable date
           let formattedBugs = bugList.map((bug) =>
             Object.assign({}, bug, {
               priority: this.getPriorityValue(bug.priority),
@@ -105,49 +126,46 @@ class MyProjects extends React.Component {
             })
           );
           this.setState({ bugs: formattedBugs });
-
-          // localStorage.setItem("bugs", this.props.messageId);
         })
     );
+    //fetches the active user's profile from the database by using the user's unique id
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
-        console.log(userProfile);
         this.setState({ user: userProfile });
-        console.log(this.state.user.name);
-        console.log(this.state.bugs);
+        //filters through the tickets and returns the tickets that have been submitted by the user or assigned by the user
         let filteredBugs = this.state.bugs.filter(
           (bug) =>
             bug.creator == this.state.user.name ||
             bug.assigned == this.state.user.name
         );
         this.setState({ myBugs: filteredBugs });
-        console.log(this.state.myBugs);
       })
     );
+    //fetches all the users from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
       (response) =>
         response.json().then((userList) => {
-          console.log(userList);
           this.setState({ users: userList });
         })
     );
+    //fetches all the projects from the database
     fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
       (response) =>
         response.json().then((projects) => {
           let projectsArray = [];
+          //maps through the projects and returns the projects that the user is a part of
           projects.map((project) => {
             if (project.userIds.includes(Number(this.state.user.id))) {
               projectsArray.push(project);
             }
           });
           this.setState({ myProjects: projectsArray });
-          console.log(this.state.myProjects);
         })
     );
   };
-
+  //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
       return "High";
@@ -156,17 +174,8 @@ class MyProjects extends React.Component {
     } else {
       return "Low";
     }
-
-    //   this.setState({ myBugs: filteredBugs });
-    //   console.log(this.state.bugs);
-    //   console.log(this.state.myBugs);
-    //   console.log(this.state.bugs);
-    // let filteredBugs = [];
-    // filteredBugs = this.state.bugs.filter(
-    //   (bug) => bug.creator === this.state.user.name
-    // );
   };
-
+  //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
@@ -178,33 +187,13 @@ class MyProjects extends React.Component {
       hour12: true,
     };
     var dateString = date.toLocaleDateString("en-US", formatOptions);
-    // => "02/17/2017, 11:32 PM"
-
     dateString = dateString
       .replace(",", "")
       .replace("PM", "p.m.")
       .replace("AM", "a.m.");
-
     return dateString;
   };
-
-  componentDidMount = () => {
-    this.fetchInfo();
-  };
-
-  // const [DISPLAY_BUG, SET_DISPLAY_BUG] = useState({
-  //   name:'',
-  //   isDisplayed:false
-  // });
-
-  // const dispatch = useDispatch();
-
-  // const {bugs} = useSelector(state => state)
-
-  // useEffect(() => {
-  //     dispatch(getBugs());
-  // },[])
-
+  //BugClicked toggles the ticket details popup and also filters the tickets by name and id to make sure the correct ticket is displayed
   BugClicked = (bug) => {
     this.setState({
       displayBug: {
@@ -213,16 +202,9 @@ class MyProjects extends React.Component {
         id: bug.id,
       },
     });
-    // console.log(bug.id);
-    // console.log(bug.name);
-    // console.log(this.state.displayBug.id);
-    // console.log(this.state.displayBug.name);
-    // console.log(bug.name);
-    // console.log(bug.id);
   };
-
+  //the addUserClicked function adds the selected user to the new project being created. This function is associated with the bootstrap table on the the newProjectsPage
   addUserClicked = (userId) => {
-    // console.log(userId);
     let addedUser = this.state.users.find(function (user) {
       return user.id == userId;
     });
@@ -239,14 +221,9 @@ class MyProjects extends React.Component {
     } else {
       this.state.addedUsersIds.push(Number(userId));
     }
-
-    // console.log(addedUser);
-    // console.log(this.state.addedUsers);
-    // console.log(this.state.addedUsersIds);
   };
-
+  //the addUserClickedTwo function adds the selected user to the selected project . This function is associated with the bootstrap table on the the manageUsersPage
   addUserClickedTwo = (userId) => {
-    // console.log(userId);
     let addedUser = this.state.users.find(function (user) {
       return user.id == userId;
     });
@@ -256,27 +233,10 @@ class MyProjects extends React.Component {
     } else {
       this.state.selectedUsers.push(addedUser);
     }
-
-    // if (this.state.selectedProject.userIds.includes(userId)) {
-    //   let index = this.state.selectedProject.userIds.indexOf(userId);
-    //   this.state.selectedProject.userIds.splice(index, 1);
-    // } else {
-    //   this.state.selectedProject.userIds.push(Number(userId));
-    // }
-
-    // console.log(addedUser);
-    // console.log(this.state.addedUsers);
-    // console.log(this.state.addedUsersIds);
   };
-
+  //submitProject function fires once the submit button is pressed on the newProjectsPage
   submitProject = () => {
     this.state.addedUsersIds.push(Number(this.state.user.id));
-    console.log(this.state.projectDetails.name);
-    console.log(this.state.projectDetails.description);
-    console.log(this.state.addedUsers);
-    console.log(this.state.addedUsersIds);
-    console.log(this.state.user.id);
-
     fetch("https://murmuring-mountain-40437.herokuapp.com/addProject", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -288,12 +248,11 @@ class MyProjects extends React.Component {
     }).then((response) =>
       response.json().then((user) => {
         if (user) {
-          console.log(user);
-          // this.props.goBackToDashboard();
           fetch(
             "https://murmuring-mountain-40437.herokuapp.com/getProjects"
           ).then((response) =>
             response.json().then((projects) => {
+              //maps through the projects and returns the projects that the user is a part of
               let projectsArray = [];
               projects.map((project) => {
                 if (project.userIds.includes(Number(this.state.user.id))) {
@@ -304,25 +263,22 @@ class MyProjects extends React.Component {
             })
           );
           this.newProjectPage();
-          // this.setState({ userIsRegistered: true });
         }
       })
     );
   };
-
+  //submitProject function fires once the submit button is pressed on the manageUsersPage
   submitEditedProject = () => {
     let selectedUserIds = this.state.selectedUsers.map((user) => {
       return Number(user.id);
     });
-    console.log(this.state.selectedProject.userIds);
-    console.log(selectedUserIds);
-    console.log(this.state.selectedProject.id);
+    //maps through all the user ids and makes sure the selected user is not already a member of the selected project
     selectedUserIds.map((userId) => {
       if (
         !this.state.selectedProject.userIds.includes(userId) ||
         this.state.selectedProject.userIds.length != selectedUserIds.length
       ) {
-        console.log("user id list has changed");
+        //sends a fetch request to the database and updates the users in the selected project
         fetch(
           "https://murmuring-mountain-40437.herokuapp.com/editProjectUsers",
           {
@@ -335,7 +291,6 @@ class MyProjects extends React.Component {
           }
         ).then((response) =>
           response.json().then((res) => {
-            console.log(res);
             this.closeManageUsersPage();
           })
         );
@@ -343,43 +298,8 @@ class MyProjects extends React.Component {
         console.log("user id list remained the same");
       }
     });
-    // this.state.addedUsersIds.push(Number(this.state.user.id));
-    // console.log(this.state.projectDetails.name);
-    // console.log(this.state.projectDetails.description);
-    // console.log(this.state.addedUsers);
-    // console.log(this.state.addedUsersIds);
-    // console.log(this.state.user.id);
-    // fetch("http://localhost:4001/addProject", {
-    //   method: "post",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     name: this.state.projectDetails.name,
-    //     description: this.state.projectDetails.description,
-    //     userIds: this.state.addedUsersIds,
-    //   }),
-    // }).then((response) =>
-    //   response.json().then((user) => {
-    //     if (user) {
-    //       console.log(user);
-    //       // this.props.goBackToDashboard();
-    //       fetch("http://localhost:4001/getProjects").then((response) =>
-    //         response.json().then((projects) => {
-    //           let projectsArray = [];
-    //           projects.map((project) => {
-    //             if (project.userIds.includes(Number(this.state.user.id))) {
-    //               projectsArray.push(project);
-    //             }
-    //           });
-    //           this.setState({ myProjects: projectsArray });
-    //         })
-    //       );
-    //       this.newProjectPage();
-    //       // this.setState({ userIsRegistered: true });
-    //     }
-    //   })
-    // );
   };
-
+  //takes the input from the project name and details sections then saves the values to the projectDetails property
   handleChange = (event) => {
     event.preventDefault();
     let projectDetails = { ...this.state.projectDetails };
@@ -389,50 +309,44 @@ class MyProjects extends React.Component {
       projectDetails,
     });
   };
-
+  //toggles the showdetailsPage
   showdetailsPage = (projectDetails) => {
-    console.log(projectDetails);
-    console.log(projectDetails.userIds);
     this.setState({ detailsPage: !this.state.detailsPage });
     this.setState({ selectedProject: projectDetails });
-    console.log(this.state.selectedProject);
-    console.log(projectDetails);
+    //displays a list of the users assigned to a project
     projectDetails.userIds.map((selectedUserId) => {
       let selectedUser = this.state.users.filter(
         (user) => Number(user.id) == selectedUserId
       );
       return this.state.selectedUsers.push(selectedUser[0]);
     });
-
+    //displays the tickets associated with the selected project
     let projectBugs = this.state.bugs.filter(
       (bug) => bug.project == projectDetails.name
     );
     this.setState({ bugsInSelectedProject: projectBugs });
-    console.log(this.state.selectedUsers);
   };
-
+  //closes the details page
   closeDetailsPage = () => {
     this.setState({ detailsPage: false });
     this.setState({ selectedUsers: [] });
   };
-
+  //closes the manage users page
   closeManageUsersPage = () => {
     this.props.history.go(0);
   };
-
+  //toggles the manage users page
   showManageUsersPage = (projectDetails) => {
     this.setState({ manageUsersPage: true });
     this.setState({ detailsPage: !this.state.detailsPage });
     this.setState({ selectedProject: projectDetails });
-    console.log(this.state.selectedProject);
-    console.log(projectDetails);
+    //displays a list of the users assigned to a project
     projectDetails.userIds.map((selectedUserId) => {
       let selectedUser = this.state.users.filter(
         (user) => Number(user.id) == selectedUserId
       );
       return this.state.selectedUsers.push(selectedUser[0]);
     });
-    console.log(this.state.selectedUsers);
   };
 
   render() {
@@ -457,8 +371,6 @@ class MyProjects extends React.Component {
         formatter: (cell) => <button className="add-user-btn">ADD</button>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
-            // console.log(row.priority);
             this.addUserClicked(row.id);
           },
         },
@@ -495,6 +407,8 @@ class MyProjects extends React.Component {
         text: "",
         sort: true,
         formatter: (cell) => (
+          //Assigns a value to the "Details" and "Manage users" list items so when clicked the correct page is displayed
+          //Displays the manage users option only for users assigned to the Administrator and Project Manager role
           <div className="details-list-container">
             <ul>
               <li value="1">Details</li>
@@ -513,9 +427,7 @@ class MyProjects extends React.Component {
         ),
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
-            // console.log(row.priority);
-            // console.log(row.id);
+            //displays the details page or manage users pages depending on if they click on the "Details" or "Manage Users" bullet point
             if (e.target.value == 1) {
               this.showdetailsPage(row);
             } else if (e.target.value == 2) {
@@ -548,8 +460,6 @@ class MyProjects extends React.Component {
         formatter: (cell) => <button className="add-user-btn">ADD</button>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
-            // console.log(row.priority);
             this.addUserClickedTwo(row.id);
           },
         },
@@ -599,8 +509,6 @@ class MyProjects extends React.Component {
         formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
-            // console.log(row.id);
-            // console.log(row.priority);
             this.BugClicked(row);
           },
         },
@@ -608,8 +516,11 @@ class MyProjects extends React.Component {
     ];
 
     const { SearchBar } = Search;
+    //Users within the database
     const data = this.state.users;
+    //Projects that contain the current user
     const dataTwo = this.state.myProjects;
+    //Tickets within the selected project
     const dataThree = this.state.bugsInSelectedProject;
 
     const pagination = paginationFactory({
@@ -622,13 +533,8 @@ class MyProjects extends React.Component {
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
     });
-
-    const rowEvents = {
-      onClick: (e, row, rowIndex) => {
-        console.log(`clicked on row with index: ${rowIndex}`);
-      },
-    };
-
+    //rowClasses changes the color of the row depending on the priority value
+    //(High = red, Medium = yellow, Low = green)
     const rowClasses = (row, rowIndex) => {
       if (row.priority == "High") {
         return "high";
@@ -640,39 +546,12 @@ class MyProjects extends React.Component {
         return "";
       }
     };
-
+    //adds custom column styling to the bootstrap table
     const columnClasses = (row, rowIndex) => {
       return "column";
     };
-
-    // const cellEdit = cellEditFactory({
-    //   mode: "click",
-    // });
-
+    //displays a lists of all the users that will be added to the project
     const listItems = this.state.addedUsers.map((user) => <li>{user.name}</li>);
-    // const projectBugs = this.state.bugs.filter(
-    //   (bug) => bug.project == this.state.selectedProject.name
-    // );
-    console.log(this.state.selectedProject.userIds);
-    console.log(this.state.bugsInSelectedProject);
-
-    // let selectedProjectUsers = this.state.selectedProject.userIds.map(
-    //   (selectedUserId) => {
-    //     let selectedUser = this.state.users.filter(
-    //       (user) => Number(user.id) == selectedUserId
-    //     );
-    //     return console.log(selectedUser.name);
-    //   }
-    // );
-
-    // this.state.selectedProject.userIds.map(
-    //   (user) => <li>{user.name}</li>
-    // );
-
-    // const array = this.state.selectedProject.userIds.map((userId) => {
-    //     return
-    // })
-    // console.log(this.state.selectedProject.userIds);
 
     return (
       <>
@@ -773,36 +652,12 @@ class MyProjects extends React.Component {
                                 {...props.baseProps}
                                 filter={filterFactory()}
                                 pagination={pagination}
-                                // rowEvents={rowEvents}
                                 rowClasses={rowClasses}
                                 columnClasses={columnClasses}
-                                // cellEdit={cellEdit}
                               />
                             </div>
                           )}
                         </ToolkitProvider>
-                        {/* <div className="mybugs-container-list">
-                {this.state.displayBug.isDisplayed ? (
-                  <div>
-                    <BugView
-                      clicked={this.BugClicked}
-                      bug={
-                        this.state.myBugs.filter(
-                          (bug, index) =>
-                            bug.name == this.state.displayBug.name &&
-                            bug.id == this.state.displayBug.id
-                        )[0]
-                      }
-                      bugList={this.state.myBugs.bugs}
-                      className="bug-view"
-                      user={this.state.user}
-                    />
-                  </div>
-                ) : (
-                  <></>
-                )}
-                
-                {/* </div> */}
                       </div>
                     ) : (
                       <div className="new-project-page">
@@ -824,7 +679,6 @@ class MyProjects extends React.Component {
                           <div className="view-section">
                             <h2>Project Name</h2>
                             <textarea
-                              //   className="bug-input"
                               onfocus=""
                               placeholder="Please enter project name"
                               defaultValue=""
@@ -835,7 +689,6 @@ class MyProjects extends React.Component {
                           <div className="view-section">
                             <h2>Project Description</h2>
                             <textarea
-                              //   className="bug-input"
                               onfocus=""
                               placeholder="Please enter project description"
                               defaultValue=""
@@ -847,12 +700,10 @@ class MyProjects extends React.Component {
                         <div className="users-table-container">
                           <div className="user-table-title">
                             <h2>Assign Personnel</h2>
-                            {this.state.addedUsers.length !== 0 ? (
+                            {this.state.addedUsers.length !== 0 && (
                               <div>
                                 <ul>{listItems}</ul>
                               </div>
-                            ) : (
-                              <></>
                             )}
                           </div>
                           <ToolkitProvider
@@ -876,9 +727,7 @@ class MyProjects extends React.Component {
                                   {...props.baseProps}
                                   filter={filterFactory()}
                                   pagination={pagination}
-                                  // rowEvents={rowEvents}
                                   rowClasses={rowClasses}
-                                  // cellEdit={cellEdit}
                                 />
                               </div>
                             )}
@@ -971,9 +820,7 @@ class MyProjects extends React.Component {
                                     {...props.baseProps}
                                     filter={filterFactory()}
                                     pagination={pagination}
-                                    // rowEvents={rowEvents}
                                     rowClasses={rowClasses}
-                                    // cellEdit={cellEdit}
                                   />
                                 </div>
                               )}
@@ -1049,9 +896,7 @@ class MyProjects extends React.Component {
                             {...props.baseProps}
                             filter={filterFactory()}
                             pagination={pagination}
-                            // rowEvents={rowEvents}
                             rowClasses={rowClasses}
-                            // cellEdit={cellEdit}
                           />
                         </div>
                       )}

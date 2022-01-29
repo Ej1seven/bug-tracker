@@ -504,18 +504,6 @@ td :hover {
   text-decoration: underline;
 }
 
-/* .row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 80%;
-}
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-} */
-
 .bug-view {
   position: fixed;
   top: 5%;
@@ -523,8 +511,6 @@ td :hover {
   overflow-y: scroll;
   height: 85vh;
 }
-
-/* mybugs-container */
 
 #root > div > div > div.myProjects-background > div.header.effect9 {
   margin: 0 auto;
