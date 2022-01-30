@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import SideBar from "../../Components/Sidebar/sidebar";
 import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
@@ -9,9 +9,6 @@ import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import InputLabel from "@material-ui/core/InputLabel";
-
 import "./bugForm.css";
 
 class BugForm extends React.Component {
@@ -41,17 +38,10 @@ class BugForm extends React.Component {
     this.setState({
       formInput,
     });
-    console.log("email", JSON.stringify(formInput.email));
-    console.log("password", JSON.stringify(formInput.password));
-    console.log("name", JSON.stringify(formInput.name));
-    console.log("priority", JSON.stringify(formInput.priority));
-    console.log("project", JSON.stringify(formInput.project));
   };
 
   handleLogout() {
     this.props.logUserOut();
-    console.log(this.props.userLoginState);
-    // this.props.history.push("/");
   }
 
   redirect = () => {
@@ -59,45 +49,40 @@ class BugForm extends React.Component {
   };
 
   submit = (e) => {
-    if (this.state.formInput.name === "") {
-      alert("Please insert name");
-    } else if (this.state.formInput.details === "") {
-      alert("Please insert ticket description");
-    } else if (this.state.formInput.priority === "") {
-      alert("Please select priority level");
-    } else if (this.state.formInput.assigned === "") {
-      alert("Please assign ticket");
-    } else if (this.state.formInput.status === "") {
-      alert("Please insert ticket status");
-    } else if (this.state.formInput.creator === "") {
-      alert("Please input the creator");
-    } else if (this.state.formInput.type === "") {
-      alert("Please input ticket type");
-    } else {
-      fetch("https://murmuring-mountain-40437.herokuapp.com/bugs", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: this.state.formInput.name,
-          details: this.state.formInput.details,
-          type: this.state.formInput.type,
-          priority: this.state.formInput.priority,
-          assigned: this.state.formInput.assigned,
-          status: this.state.formInput.status,
-          project: this.state.formInput.project,
-          creator: this.state.user.name,
-        }),
-      }).then((response) =>
-        response.json().then((user) => {
-          if (user) {
-            console.log("Bug Created!");
-            // this.props.goBackToDashboard();
-            this.redirect();
-            // this.setState({ userIsRegistered: true });
-          }
-        })
-      );
-    }
+    this.state.formInput.name === ""
+      ? alert("Please insert name")
+      : this.state.formInput.details === ""
+      ? alert("Please insert ticket description")
+      : this.state.formInput.priority === ""
+      ? alert("Please select priority level")
+      : this.state.formInput.assigned === ""
+      ? alert("Please assign ticket")
+      : this.state.formInput.status === ""
+      ? alert("Please insert ticket status")
+      : this.state.formInput.creator === ""
+      ? alert("Please input the creator")
+      : this.state.formInput.type === ""
+      ? alert("Please input ticket type")
+      : fetch("https://murmuring-mountain-40437.herokuapp.com/bugs", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: this.state.formInput.name,
+            details: this.state.formInput.details,
+            type: this.state.formInput.type,
+            priority: this.state.formInput.priority,
+            assigned: this.state.formInput.assigned,
+            status: this.state.formInput.status,
+            project: this.state.formInput.project,
+            creator: this.state.user.name,
+          }),
+        }).then((response) =>
+          response.json().then((user) => {
+            if (user) {
+              this.redirect();
+            }
+          })
+        );
     e.preventDefault();
   };
 
@@ -106,24 +91,18 @@ class BugForm extends React.Component {
       `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
-        console.log(userProfile);
         this.setState({ user: userProfile });
-        console.log(this.state.user);
       })
     );
     fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
       (response) =>
         response.json().then((users) => {
-          console.log(users);
           this.setState({ users: users });
-          // console.log(this.state.bugs);
-          // localStorage.setItem("bugs", this.props.messageId);
         })
     );
     fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
       (response) =>
         response.json().then((projectsList) => {
-          console.log(projectsList);
           this.setState({ projects: projectsList });
         })
     );
@@ -267,15 +246,6 @@ class BugForm extends React.Component {
                 Additional Info Required
               </option>
             </Select>
-            {/* <label>Creator:</label>
-            <select
-              name="creator"
-              onChange={this.inputChanged}
-              value={this.state.formInput.creator}
-            >
-              <option>Assigned...</option>
-              <option value="Erik Hunter">Erik Hunter</option>
-            </select> */}
             <Button className="submit-btn" type="submit" onClick={this.submit}>
               {this.props.title}
             </Button>
