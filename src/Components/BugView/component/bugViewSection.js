@@ -7,7 +7,7 @@ const BugViewSection = (props) => {
   const [canEditProject, setCanEditProject] = useState(false);
   const [canEditTicketStatus, setCanEditTicketStatus] = useState(false);
   const [canEditTicketType, setCanEditTicketType] = useState(false);
-  // const isDisabled = fieldDisabled ? "hide" : "";
+
   useEffect(() => {
     if (props.name == "creator") {
       setFieldDisabled(true);
@@ -57,7 +57,6 @@ const BugViewSection = (props) => {
             <select
               name={props.name}
               onChange={props.editedField}
-              // defaultValue={props.info}
               placeholder={props.info}
               onfocus=""
             >
@@ -74,7 +73,6 @@ const BugViewSection = (props) => {
             <select
               name={props.name}
               onChange={props.editedField}
-              // defaultValue={props.info}
               placeholder={props.info}
               onfocus=""
             >
@@ -91,7 +89,6 @@ const BugViewSection = (props) => {
             <select
               name={props.name}
               onChange={props.editedField}
-              // defaultValue={props.info}
               placeholder={props.info}
               onfocus=""
             >
@@ -122,7 +119,6 @@ const BugViewSection = (props) => {
             <select
               name={props.name}
               onChange={props.editedField}
-              // defaultValue={props.info}
               placeholder={props.info}
               onfocus=""
             >
@@ -163,7 +159,6 @@ const BugViewSection = (props) => {
         <select
           name={props.name}
           onChange={props.editedField}
-          // defaultValue={props.info}
           placeholder={props.info}
           onfocus=""
         >

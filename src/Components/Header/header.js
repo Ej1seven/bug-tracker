@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { Menu } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import "./header.css";
-import dashboard from "../../Pages/Dashboard/dashboard";
 
 const Header = ({ handleLogout, page, user }) => {
   const history = useHistory();
@@ -75,10 +74,6 @@ const Header = ({ handleLogout, page, user }) => {
             (page !== "dashboard" ? "hide" : "dashboard-header")
           }
         >
-          {/* <div className="profile-container" onClick={routeChange}>
-            <div className="profile-container-text">Notifications</div>
-            <i class="fas fa-bell"></i>
-          </div> */}
           <div className="profile-container" onClick={routeChange}>
             <div className="profile-container-text">User Profile</div>
             <i class="fas fa-user"></i>
@@ -96,7 +91,6 @@ const Header = ({ handleLogout, page, user }) => {
             <i class="fas fa-bars fa-2x "></i>
             <i class="fas fa-bars  fa-lg"></i>
           </Button>
-
           {user.role == "Administrator" ? (
             <>
               <Menu
@@ -283,14 +277,6 @@ const Header = ({ handleLogout, page, user }) => {
           )}
         </div>
         <div className="large-screen-container profile">
-          {/* <div className="profile-container" onClick={routeChange}>
-            <div className="profile-container-text">Notifications</div>
-            <i class="fas fa-bell"></i>
-          </div>
-          <div className="profile-container" onClick={routeChange}>
-            <div className="profile-container-text">User Profile</div>
-            <i class="fas fa-user"></i>
-          </div> */}
           <Button
             aria-controls="simple-menu-two"
             aria-haspopup="true"
@@ -299,7 +285,6 @@ const Header = ({ handleLogout, page, user }) => {
           >
             User Actions
           </Button>
-          {/* {page == dashboard} */}
           <Menu
             id="simple-menu-two"
             anchorElTwo={anchorElTwo}
@@ -309,22 +294,12 @@ const Header = ({ handleLogout, page, user }) => {
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             transformOrigin={{ vertical: 380, horizontal: -215 }}
           >
-            {/* <MenuItem onClick={routeChange}>
-              <i class="fas fa-bell"></i>Notifications
-            </MenuItem> */}
             <MenuItem onClick={routeChange}>
               {" "}
               <i class="fas fa-user"></i>User Profile
             </MenuItem>
           </Menu>
         </div>
-        {/* <div classname="large-screen-header">
-        <p>
-          Welcome {props.user.name} <span>({props.user.role})</span>
-        </p>
-      </div>
-      <div classname="large-screen-header"></div>
-      <div classname="large-screen-header"></div> */}
       </div>
     </>
   );

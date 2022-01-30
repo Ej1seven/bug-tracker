@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ViewSection from "./component/bugViewSection";
 import BugModel from "../Models/bugModel";
 import "./bugView.css";
@@ -14,9 +14,6 @@ const BugView = (props) => {
   let history = useHistory();
   let oldValues = [];
   let newValues = [];
-  const bugList = props.bugList;
-  const [index, setIndex] = useState();
-  const [name, setName] = useState();
   const [edit, setEdit] = useState(false);
   const [comment, setComment] = useState();
   const [commentList, setCommentList] = useState([]);
@@ -51,7 +48,6 @@ const BugView = (props) => {
 
   const redirect = () => {
     history.go(0);
-    // history.push("/");
   };
 
   function handleChange(event) {
@@ -60,25 +56,13 @@ const BugView = (props) => {
       ...prevState,
       [name]: value,
     }));
-    console.log(editedField.details);
   }
 
   function handleCommentChange(event) {
     setComment(event.target.value);
-    console.log(comment);
   }
 
   function deleteClicked() {
-    console.log(bug.name);
-    console.log(bug.id);
-    // for (let i = 0; i < bugList.length; i++)
-    //   if (bug.id === bugList[i].id) {
-    //     // let id = bugList.findIndex((x) => x.id === bug.id);
-    //     console.log(bug.id);
-    //     // setIndex(id);
-    //     let bugName = bugList[i].name;
-    //     setName(bugName);
-    //     console.log(bugName);
     fetch("https://murmuring-mountain-40437.herokuapp.com/bugs", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
@@ -88,7 +72,6 @@ const BugView = (props) => {
       }),
     }).then((response) =>
       response.json().then((res) => {
-        console.log(res);
         redirect();
       })
     );
@@ -173,13 +156,7 @@ const BugView = (props) => {
           oldValues: oldValues,
           newValues: newValues,
         }),
-      }).then((response) =>
-        response.json().then((res) => {
-          console.log(res);
-          console.log(oldValues);
-          console.log(newValues);
-        })
-      );
+      }).then((response) => response.json().then((res) => {}));
       fetch("https://murmuring-mountain-40437.herokuapp.com/editBugs", {
         method: "put",
         headers: { "Content-Type": "application/json" },
@@ -195,12 +172,9 @@ const BugView = (props) => {
         }),
       }).then((response) =>
         response.json().then((res) => {
-          console.log(res);
           redirect();
         })
       );
-      // console.log(editedField.details);
-      // console.log(bug.id);
     }
   }
 
@@ -213,50 +187,32 @@ const BugView = (props) => {
 
   function commentsClicked() {
     setCommentsPage(!commentsPage);
-    console.log("comments clicked");
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/getComments${bug.id}`
     ).then((response) =>
       response.json().then((comments) => {
-        // console.log(bugs);
-        // this.setState({ bugs: bugs });
         let formattedCommentList = comments.map((comment) =>
           Object.assign({}, comment, {
             created: getFormattedDate(comment.created),
           })
         );
         setCommentList(formattedCommentList);
-        console.log(comment);
-        // console.log(comments[0].id);
-        // console.log(comments[0].commenter);
-        // console.log(comments[0].created);
-        // localStorage.setItem("bugs", this.props.messageId);
       })
     );
   }
 
   function historyClicked() {
     setHistoryPage(!historyPage);
-    console.log("history clicked");
     fetch(
       `https://murmuring-mountain-40437.herokuapp.com/getHistory${bug.id}`
     ).then((response) =>
       response.json().then((historyListItems) => {
-        console.log(historyListItems);
-        // console.log(bugs);
-        // this.setState({ bugs: bugs });
         let formattedHistoryList = historyListItems.map((historyItem) =>
           Object.assign({}, historyItem, {
             time: getFormattedDate(historyItem.time),
           })
         );
-        console.log(formattedHistoryList);
         setHistoryList(formattedHistoryList);
-
-        // console.log(comments[0].id);
-        // console.log(comments[0].commenter);
-        // console.log(comments[0].created);
-        // localStorage.setItem("bugs", this.props.messageId);
       })
     );
   }
@@ -272,63 +228,24 @@ const BugView = (props) => {
       }),
     }).then((response) =>
       response.json().then((res) => {
-        console.log(res);
-        console.log(oldValues);
-        console.log(newValues);
         fetch(
           `https://murmuring-mountain-40437.herokuapp.com/getComments${bug.id}`
         ).then((response) =>
           response.json().then((comments) => {
-            // console.log(bugs);
-            // this.setState({ bugs: bugs });
             let formattedCommentList = comments.map((comment) =>
               Object.assign({}, comment, {
                 created: getFormattedDate(comment.created),
               })
             );
-
             setCommentList(formattedCommentList);
-            // console.log(comment);
-            // console.log(comments[0].id);
-            // console.log(comments[0].commenter);
-            // console.log(comments[0].created);
-            // localStorage.setItem("bugs", this.props.messageId);
           })
         );
       })
     );
   }
 
-  // function getBugId() {
-  //   for (let i = 0; i < bugList.length; i++)
-  //     if (bug.id === bugList[i].id) {
-  //       let id = bugList.findIndex((x) => x.id === bug.id);
-  //       console.log(id);
-  //       setIndex(id);
-  //       let bugName = bugList[i].name;
-  //       setName(bugName);
-  //       console.log(bugName);
-  //     }
-  // }
-
-  // function getPriorityValue() {
-  //   console.log(bug.priority);
-  //   if (bug.priority === 1) {
-  //     priority = "High";
-  //   } else if (bug.priority === 2) {
-  //     priority = "Medium";
-  //   } else {
-  //     priority = "Low";
-  //   }
-  // }
-
-  useEffect(() => {
-    console.log(props.bug);
-  });
-
   function formatValue(value) {
     const newArray = String(value).split(",");
-    console.log(newArray);
     return newArray;
   }
 
@@ -401,12 +318,6 @@ const BugView = (props) => {
     hideSizePerPage: true,
   });
 
-  const rowEvents = {
-    onClick: (e, row, rowIndex) => {
-      console.log(`clicked on row with index: ${rowIndex}`);
-    },
-  };
-
   const rowClasses = (row, rowIndex) => {
     return "row";
   };
@@ -422,13 +333,10 @@ const BugView = (props) => {
       hour12: true,
     };
     var dateString = date.toLocaleDateString("en-US", formatOptions);
-    // => "02/17/2017, 11:32 PM"
-
     dateString = dateString
       .replace(",", "")
       .replace("PM", "p.m.")
       .replace("AM", "a.m.");
-
     return dateString;
   };
 
@@ -448,9 +356,6 @@ const BugView = (props) => {
                 user={props.user.role}
                 close={props.clicked}
               />
-              {/* <button onClick={props.clicked} className="close-btn">
-                Close
-              </button> */}
               <h1>{bug.name}</h1>
               <ViewSection
                 title="Description"
@@ -555,9 +460,7 @@ const BugView = (props) => {
                           {...props.baseProps}
                           filter={filterFactory()}
                           pagination={pagination}
-                          // rowEvents={rowEvents}
                           rowClasses={rowClasses}
-                          // cellEdit={cellEdit}
                         />
                       </div>
                     )}
@@ -596,9 +499,7 @@ const BugView = (props) => {
                           {...props.baseProps}
                           filter={filterFactory()}
                           pagination={pagination}
-                          // rowEvents={rowEvents}
                           rowClasses={rowClasses}
-                          // cellEdit={cellEdit}
                         />
                       </div>
                     )}
