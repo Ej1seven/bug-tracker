@@ -1,4 +1,6 @@
-<img align="center" src="src/Pages/Login/bugTrackerWhite.png" width="500">
+<p align="center">
+    <img src="src/Pages/Login/bugTrackerWhite.png" width="500">
+</p>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
