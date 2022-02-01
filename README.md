@@ -1,4 +1,4 @@
-<img src="(src/Pages/Login/bugTrackerWhite.png" width="200">
+<img src="src/Pages/Login/bugTrackerWhite.png" width="200">
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
