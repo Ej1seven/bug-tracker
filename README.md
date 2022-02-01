@@ -1,4 +1,4 @@
-![Bug-Tracker](src\Pages\Login\bugTrackerWhite.png)
+![Bug-Tracker](src/Pages/Login/bugTrackerWhite.png)
 
 # Getting Started with Create React App
 
