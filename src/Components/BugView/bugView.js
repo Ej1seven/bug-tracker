@@ -157,7 +157,7 @@ const BugView = (props) => {
           newValues: newValues,
         }),
       }).then((response) => response.json().then((res) => {}));
-      fetch('https://murmuring-mountain-40437.herokuapp.com/editBugs', {
+      fetch('https://murmuring-mountain-40437.herokuapp.com/bugs', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
