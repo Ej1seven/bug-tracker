@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import ViewSection from "./component/bugViewSection";
-import BugModel from "../Models/bugModel";
-import "./bugView.css";
-import EditPanel from "../editDeletePanel/editPanel";
-import { useHistory } from "react-router-dom";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import filterFactory from "react-bootstrap-table2-filter";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import React, { useState } from 'react';
+import ViewSection from './component/bugViewSection';
+import BugModel from '../Models/bugModel';
+import './bugView.css';
+import EditPanel from '../editDeletePanel/editPanel';
+import { useHistory } from 'react-router-dom';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 
 const BugView = (props) => {
   const bug = new BugModel(props.bug);
@@ -31,11 +31,11 @@ const BugView = (props) => {
   });
 
   function getPriorityValue(value) {
-    if (value == "High") {
+    if (value == 'High') {
       return 1;
-    } else if (value == "Medium") {
+    } else if (value == 'Medium') {
       return 2;
-    } else if (value == "Low") {
+    } else if (value == 'Low') {
       return 3;
     } else if (value == 1) {
       return 1;
@@ -63,9 +63,9 @@ const BugView = (props) => {
   }
 
   function deleteClicked() {
-    fetch("https://murmuring-mountain-40437.herokuapp.com/bugs", {
-      method: "delete",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://murmuring-mountain-40437.herokuapp.com/bugs', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: bug.name,
         id: bug.id,
@@ -147,9 +147,9 @@ const BugView = (props) => {
         setEditedField({ project: bug.project });
       }
 
-      fetch("https://murmuring-mountain-40437.herokuapp.com/editBugTimeStamp", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
+      fetch('https://murmuring-mountain-40437.herokuapp.com/editBugTimeStamp', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           editor: props.user.name,
           bugId: bug.id,
@@ -157,9 +157,9 @@ const BugView = (props) => {
           newValues: newValues,
         }),
       }).then((response) => response.json().then((res) => {}));
-      fetch("https://murmuring-mountain-40437.herokuapp.com/editBugs", {
-        method: "put",
-        headers: { "Content-Type": "application/json" },
+      fetch('https://murmuring-mountain-40437.herokuapp.com/editBugs', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           details: editedField.details,
           assigned: editedField.assigned,
@@ -188,7 +188,7 @@ const BugView = (props) => {
   function commentsClicked() {
     setCommentsPage(!commentsPage);
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/getComments${bug.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/comments/${bug.id}`
     ).then((response) =>
       response.json().then((comments) => {
         let formattedCommentList = comments.map((comment) =>
@@ -218,9 +218,9 @@ const BugView = (props) => {
   }
 
   function addCommentClicked() {
-    fetch("https://murmuring-mountain-40437.herokuapp.com/addComment", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://murmuring-mountain-40437.herokuapp.com/addComment', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         commenter: props.user.name,
         bugId: bug.id,
@@ -229,7 +229,7 @@ const BugView = (props) => {
     }).then((response) =>
       response.json().then((res) => {
         fetch(
-          `https://murmuring-mountain-40437.herokuapp.com/getComments${bug.id}`
+          `https://murmuring-mountain-40437.herokuapp.com/comments/${bug.id}`
         ).then((response) =>
           response.json().then((comments) => {
             let formattedCommentList = comments.map((comment) =>
@@ -245,42 +245,42 @@ const BugView = (props) => {
   }
 
   function formatValue(value) {
-    const newArray = String(value).split(",");
+    const newArray = String(value).split(',');
     return newArray;
   }
 
   var columns = [
     {
-      dataField: "commenter",
-      text: "Commenter",
+      dataField: 'commenter',
+      text: 'Commenter',
       sort: true,
       formatter: (cell) => <p>{cell} </p>,
-      editCellClasses: "cells",
+      editCellClasses: 'cells',
     },
     {
-      dataField: "message",
-      text: "Message",
+      dataField: 'message',
+      text: 'Message',
       sort: true,
       formatter: (cell) => <p> {cell} </p>,
     },
     {
-      dataField: "created",
-      text: "Created",
+      dataField: 'created',
+      text: 'Created',
       sort: true,
     },
   ];
 
   var columnsTwo = [
     {
-      dataField: "editor",
-      text: "Editor",
+      dataField: 'editor',
+      text: 'Editor',
       sort: true,
       formatter: (cell) => <p>{cell} </p>,
-      editCellClasses: "cells",
+      editCellClasses: 'cells',
     },
     {
-      dataField: "oldvalue",
-      text: "Old Value",
+      dataField: 'oldvalue',
+      text: 'Old Value',
       sort: true,
       formatter: (cell) =>
         formatValue(cell).map((item) => {
@@ -288,8 +288,8 @@ const BugView = (props) => {
         }),
     },
     {
-      dataField: "newvalue",
-      text: "New Value",
+      dataField: 'newvalue',
+      text: 'New Value',
       sort: true,
       formatter: (cell) =>
         formatValue(cell).map((item) => {
@@ -297,8 +297,8 @@ const BugView = (props) => {
         }),
     },
     {
-      dataField: "time",
-      text: "Time of Edit",
+      dataField: 'time',
+      text: 'Time of Edit',
       sort: true,
     },
   ];
@@ -309,34 +309,34 @@ const BugView = (props) => {
 
   const pagination = paginationFactory({
     sizePerPage: 10,
-    lastPageText: ">>",
-    firstPageText: "<<",
-    nextPageText: ">",
-    prePageText: "<",
+    lastPageText: '>>',
+    firstPageText: '<<',
+    nextPageText: '>',
+    prePageText: '<',
     showTotal: true,
     alwaysShowAllBtns: true,
     hideSizePerPage: true,
   });
 
   const rowClasses = (row, rowIndex) => {
-    return "row";
+    return 'row';
   };
 
   const getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: true,
     };
-    var dateString = date.toLocaleDateString("en-US", formatOptions);
+    var dateString = date.toLocaleDateString('en-US', formatOptions);
     dateString = dateString
-      .replace(",", "")
-      .replace("PM", "p.m.")
-      .replace("AM", "a.m.");
+      .replace(',', '')
+      .replace('PM', 'p.m.')
+      .replace('AM', 'a.m.');
     return dateString;
   };
 
