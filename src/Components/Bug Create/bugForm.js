@@ -100,7 +100,7 @@ class BugForm extends React.Component {
           this.setState({ users: users });
         })
     );
-    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/projects').then(
       (response) =>
         response.json().then((projectsList) => {
           this.setState({ projects: projectsList });

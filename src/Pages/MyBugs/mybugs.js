@@ -128,7 +128,7 @@ class MyBugs extends React.Component {
         })
     );
     //fetches all the projects from the database
-    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/projects').then(
       (response) =>
         response.json().then((projects) => {
           this.setState({ projects: projects });

@@ -151,7 +151,7 @@ class MyProjects extends React.Component {
         })
     );
     //fetches all the projects from the database
-    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/projects').then(
       (response) =>
         response.json().then((projects) => {
           let projectsArray = [];
@@ -237,7 +237,7 @@ class MyProjects extends React.Component {
   //submitProject function fires once the submit button is pressed on the newProjectsPage
   submitProject = () => {
     this.state.addedUsersIds.push(Number(this.state.user.id));
-    fetch('https://murmuring-mountain-40437.herokuapp.com/addProject', {
+    fetch('https://murmuring-mountain-40437.herokuapp.com/projects', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -248,19 +248,18 @@ class MyProjects extends React.Component {
     }).then((response) =>
       response.json().then((user) => {
         if (user) {
-          fetch(
-            'https://murmuring-mountain-40437.herokuapp.com/getProjects'
-          ).then((response) =>
-            response.json().then((projects) => {
-              //maps through the projects and returns the projects that the user is a part of
-              let projectsArray = [];
-              projects.map((project) => {
-                if (project.userIds.includes(Number(this.state.user.id))) {
-                  projectsArray.push(project);
-                }
-              });
-              this.setState({ myProjects: projectsArray });
-            })
+          fetch('https://murmuring-mountain-40437.herokuapp.com/projects').then(
+            (response) =>
+              response.json().then((projects) => {
+                //maps through the projects and returns the projects that the user is a part of
+                let projectsArray = [];
+                projects.map((project) => {
+                  if (project.userIds.includes(Number(this.state.user.id))) {
+                    projectsArray.push(project);
+                  }
+                });
+                this.setState({ myProjects: projectsArray });
+              })
           );
           this.newProjectPage();
         }
@@ -279,17 +278,14 @@ class MyProjects extends React.Component {
         this.state.selectedProject.userIds.length != selectedUserIds.length
       ) {
         //sends a fetch request to the database and updates the users in the selected project
-        fetch(
-          'https://murmuring-mountain-40437.herokuapp.com/editProjectUsers',
-          {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              userIds: selectedUserIds,
-              id: this.state.selectedProject.id,
-            }),
-          }
-        ).then((response) =>
+        fetch('https://murmuring-mountain-40437.herokuapp.com/projects', {
+          method: 'put',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userIds: selectedUserIds,
+            id: this.state.selectedProject.id,
+          }),
+        }).then((response) =>
           response.json().then((res) => {
             this.closeManageUsersPage();
           })
