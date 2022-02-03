@@ -218,7 +218,7 @@ const BugView = (props) => {
   }
 
   function addCommentClicked() {
-    fetch('https://murmuring-mountain-40437.herokuapp.com/addComment', {
+    fetch('https://murmuring-mountain-40437.herokuapp.com/comments', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
