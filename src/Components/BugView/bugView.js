@@ -147,7 +147,7 @@ const BugView = (props) => {
         setEditedField({ project: bug.project });
       }
 
-      fetch('https://murmuring-mountain-40437.herokuapp.com/editBugTimeStamp', {
+      fetch('https://murmuring-mountain-40437.herokuapp.com/bugTimeStamp', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -204,7 +204,7 @@ const BugView = (props) => {
   function historyClicked() {
     setHistoryPage(!historyPage);
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/getHistory${bug.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/bugTimeStamp/${bug.id}`
     ).then((response) =>
       response.json().then((historyListItems) => {
         let formattedHistoryList = historyListItems.map((historyItem) =>

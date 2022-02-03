@@ -1,50 +1,50 @@
-import React from "react";
+import React from 'react';
 //Importing the SideBar components according the role assigned to the user
-import SideBar from "../../Components/Sidebar/sidebar";
-import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
-import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
-import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
+import SideBar from '../../Components/Sidebar/sidebar';
+import SideBarSubmitter from '../../Components/Sidebar/sidebarSubmitter';
+import SideBarStandard from '../../Components/Sidebar/sidebarStandard';
+import SideBarProjectManager from '../../Components/Sidebar/sidebarProjectManager';
 //Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
-import IdleTimer from "react-idle-timer";
+import IdleTimer from 'react-idle-timer';
 //Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
-import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
+import { IdleTimeOutModal } from '../../Components/IdleTimeOutModal/IdleTimeOutModal';
 //Importing withRouter from react-router which passes updated match, location, and history props to the Login component
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 //Importing react-bootstrap-table components
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import filterFactory from "react-bootstrap-table2-filter";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import "./roleAssignment.css";
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import './roleAssignment.css';
 //Importing Header which displays the users name, role and user profile information
-import Header from "../../Components/Header/header";
+import Header from '../../Components/Header/header';
 //Importing Material UI components
-import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 class RoleAssignment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formInput: {
-        role: "",
+        role: '',
       },
       bugs: [],
       myBugs: [],
       displayBug: {
-        name: "",
+        name: '',
         isDisplayed: false,
         id: 0,
       },
       user: {},
       users: [],
       selectedUsers: [],
-      selectedRole: "",
+      selectedRole: '',
       timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
-      priority: "",
-      date: "",
+      priority: '',
+      date: '',
     };
     //Settings used by the react-idle-timer
     //idleTimer start the idle timer on null
@@ -63,17 +63,17 @@ class RoleAssignment extends React.Component {
   //user did something
 
   _onAction(e) {
-    console.log("user did something", e);
+    console.log('user did something', e);
     this.setState({ isTimedOut: false });
   }
   //user is active
   _onActive(e) {
-    console.log("user is active", e);
+    console.log('user is active', e);
     this.setState({ isTimedOut: false });
   }
   //user is idle
   _onIdle(e) {
-    console.log("user is idle", e);
+    console.log('user is idle', e);
     const isTimedOut = this.state.isTimedOut;
     if (!isTimedOut) {
       this.setState({ showModal: true });
@@ -94,7 +94,7 @@ class RoleAssignment extends React.Component {
     this.setState({ showModal: false });
     this.props.logUserOut();
     console.log(this.props.userLoginState);
-    this.props.history.push("/");
+    this.props.history.push('/');
   }
   //During the mounting phase of the React Life-cycle the myProjects component fetches data from the database
   componentDidMount = () => {
@@ -103,14 +103,14 @@ class RoleAssignment extends React.Component {
   //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
     //fetches all the users from the database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/users').then(
       (response) =>
         response.json().then((userList) => {
           this.setState({ users: userList });
         })
     );
     //fetches ticket data and the user's profile data from the heroku database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/bugs').then(
       (response) =>
         response.json().then((bugList) => {
           //pulls all the tickets from the bugs table in the database then
@@ -144,29 +144,29 @@ class RoleAssignment extends React.Component {
   //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
-      return "High";
+      return 'High';
     } else if (value == 2) {
-      return "Medium";
+      return 'Medium';
     } else {
-      return "Low";
+      return 'Low';
     }
   };
   //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: true,
     };
-    var dateString = date.toLocaleDateString("en-US", formatOptions);
+    var dateString = date.toLocaleDateString('en-US', formatOptions);
     dateString = dateString
-      .replace(",", "")
-      .replace("PM", "p.m.")
-      .replace("AM", "a.m.");
+      .replace(',', '')
+      .replace('PM', 'p.m.')
+      .replace('AM', 'a.m.');
     return dateString;
   };
   //Takes the userId of the selected user from the dropdown menu and assigns the value to the selectedUsers property
@@ -183,16 +183,16 @@ class RoleAssignment extends React.Component {
   };
   //updated the selected users role in the database
   submit = () => {
-    fetch("https://murmuring-mountain-40437.herokuapp.com/editUser", {
-      method: "put",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://murmuring-mountain-40437.herokuapp.com/users', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id: this.state.selectedUsers,
         role: this.state.selectedRole,
       }),
     }).then((response) =>
       response.json().then((res) => {
-        alert("The users role has been changed!");
+        alert('The users role has been changed!');
         this.redirect();
       })
     );
@@ -201,38 +201,38 @@ class RoleAssignment extends React.Component {
   render() {
     var columns = [
       {
-        dataField: "name",
-        text: "Title",
+        dataField: 'name',
+        text: 'Title',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "creator",
-        text: "Submitter",
+        dataField: 'creator',
+        text: 'Submitter',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "assigned",
-        text: "Assigned Dev",
+        dataField: 'assigned',
+        text: 'Assigned Dev',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "priority",
-        text: "Priority",
+        dataField: 'priority',
+        text: 'Priority',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "created",
-        text: "Created",
+        dataField: 'created',
+        text: 'Created',
         sort: true,
       },
       {
-        dataField: "id",
-        text: "View Ticket",
+        dataField: 'id',
+        text: 'View Ticket',
         formatter: (cell) => <p> More details {cell} </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
@@ -246,21 +246,21 @@ class RoleAssignment extends React.Component {
 
     var columnsTwo = [
       {
-        dataField: "name",
-        text: "Name",
+        dataField: 'name',
+        text: 'Name',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "email",
-        text: "Email",
+        dataField: 'email',
+        text: 'Email',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "role",
-        text: "Role",
+        dataField: 'role',
+        text: 'Role',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
@@ -272,17 +272,17 @@ class RoleAssignment extends React.Component {
 
     const pagination = paginationFactory({
       sizePerPage: 10,
-      lastPageText: ">>",
-      firstPageText: "<<",
-      nextPageText: ">",
-      prePageText: "<",
+      lastPageText: '>>',
+      firstPageText: '<<',
+      nextPageText: '>',
+      prePageText: '<',
       showTotal: true,
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
     });
     //rowClasses changes the margin-bottom to 2% for the bootstrap table
     const rowClasses = (row, rowIndex) => {
-      return "row";
+      return 'row';
     };
 
     return (
@@ -304,42 +304,42 @@ class RoleAssignment extends React.Component {
             handleClose={this.handleClose}
             handleLogout={this.handleLogout}
           />
-          {this.state.user.role == "Administrator" && (
+          {this.state.user.role == 'Administrator' && (
             <>
-              {" "}
+              {' '}
               <SideBar
                 handleLogout={this.handleLogout}
                 page="role-assignment"
               />
             </>
           )}
-          {this.state.user.role == "Submitter" && (
+          {this.state.user.role == 'Submitter' && (
             <>
-              {" "}
+              {' '}
               <SideBarSubmitter
                 handleLogout={this.handleLogout}
                 page="role-assignment"
               />
             </>
           )}
-          {this.state.user.role == "Developer" && (
+          {this.state.user.role == 'Developer' && (
             <>
-              {" "}
+              {' '}
               <SideBarStandard
                 handleLogout={this.handleLogout}
                 page="role-assignment"
               />
             </>
           )}
-          {this.state.user.role == "Project Manager" && (
+          {this.state.user.role == 'Project Manager' && (
             <>
-              {" "}
+              {' '}
               <SideBarProjectManager
                 handleLogout={this.handleLogout}
                 page="role-assignment"
               />
             </>
-          )}{" "}
+          )}{' '}
           <div className="myBugs-background">
             <div className="header effect9">
               <Header
