@@ -312,7 +312,7 @@ class Dashboard extends React.Component {
     );
     //fetches the active users profile from the database by using the users unique id
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/users/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
         let bugAssignedToMe = [];

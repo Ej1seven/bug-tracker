@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 //Importing the SideBar components according the role assigned to the user
-import SideBar from "../../Components/Sidebar/sidebar";
-import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
-import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
-import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
-import "./myProjects.css";
+import SideBar from '../../Components/Sidebar/sidebar';
+import SideBarSubmitter from '../../Components/Sidebar/sidebarSubmitter';
+import SideBarStandard from '../../Components/Sidebar/sidebarStandard';
+import SideBarProjectManager from '../../Components/Sidebar/sidebarProjectManager';
+import './myProjects.css';
 //Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
-import IdleTimer from "react-idle-timer";
+import IdleTimer from 'react-idle-timer';
 //Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
-import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
-import { withRouter } from "react-router-dom";
+import { IdleTimeOutModal } from '../../Components/IdleTimeOutModal/IdleTimeOutModal';
+import { withRouter } from 'react-router-dom';
 //Importing the BugView component which displays the details of each tickets
-import BugView from "../../Components/BugView/bugView";
+import BugView from '../../Components/BugView/bugView';
 //Importing react-bootstrap-table components
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import filterFactory from "react-bootstrap-table2-filter";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 //Importing Header which displays the users name, role and user profile information
-import Header from "../../Components/Header/header";
+import Header from '../../Components/Header/header';
 //Importing Material UI components
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
 
 class MyProjects extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class MyProjects extends React.Component {
       bugsInSelectedProject: [],
       myProjects: [],
       displayBug: {
-        name: "",
+        name: '',
         isDisplayed: false,
         id: 0,
       },
@@ -46,11 +46,11 @@ class MyProjects extends React.Component {
       timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
-      priority: "",
-      date: "",
+      priority: '',
+      date: '',
       projectDetails: {
-        name: "",
-        description: "",
+        name: '',
+        description: '',
       },
       selectedProject: {},
     };
@@ -70,12 +70,12 @@ class MyProjects extends React.Component {
   }
   //user did something
   _onAction(e) {
-    console.log("user did something", e);
+    console.log('user did something', e);
     this.setState({ isTimedOut: false });
   }
   //user is active
   _onActive(e) {
-    console.log("user is active", e);
+    console.log('user is active', e);
     this.setState({ isTimedOut: false });
   }
   //user is idle
@@ -101,7 +101,7 @@ class MyProjects extends React.Component {
     this.setState({ showModal: false });
     this.props.logUserOut();
     console.log(this.props.userLoginState);
-    this.props.history.push("/");
+    this.props.history.push('/');
   }
   //newProjectPage function toggles the new project page
   newProjectPage = () => {
@@ -113,7 +113,7 @@ class MyProjects extends React.Component {
   };
   //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
-    fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/bugs').then(
       (response) =>
         response.json().then((bugList) => {
           //pulls all the tickets from the bugs table in the database then
@@ -130,7 +130,7 @@ class MyProjects extends React.Component {
     );
     //fetches the active user's profile from the database by using the user's unique id
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/users/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
         this.setState({ user: userProfile });
@@ -144,14 +144,14 @@ class MyProjects extends React.Component {
       })
     );
     //fetches all the users from the database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/users').then(
       (response) =>
         response.json().then((userList) => {
           this.setState({ users: userList });
         })
     );
     //fetches all the projects from the database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
       (response) =>
         response.json().then((projects) => {
           let projectsArray = [];
@@ -168,29 +168,29 @@ class MyProjects extends React.Component {
   //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
-      return "High";
+      return 'High';
     } else if (value == 2) {
-      return "Medium";
+      return 'Medium';
     } else {
-      return "Low";
+      return 'Low';
     }
   };
   //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: true,
     };
-    var dateString = date.toLocaleDateString("en-US", formatOptions);
+    var dateString = date.toLocaleDateString('en-US', formatOptions);
     dateString = dateString
-      .replace(",", "")
-      .replace("PM", "p.m.")
-      .replace("AM", "a.m.");
+      .replace(',', '')
+      .replace('PM', 'p.m.')
+      .replace('AM', 'a.m.');
     return dateString;
   };
   //BugClicked toggles the ticket details popup and also filters the tickets by name and id to make sure the correct ticket is displayed
@@ -237,9 +237,9 @@ class MyProjects extends React.Component {
   //submitProject function fires once the submit button is pressed on the newProjectsPage
   submitProject = () => {
     this.state.addedUsersIds.push(Number(this.state.user.id));
-    fetch("https://murmuring-mountain-40437.herokuapp.com/addProject", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://murmuring-mountain-40437.herokuapp.com/addProject', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: this.state.projectDetails.name,
         description: this.state.projectDetails.description,
@@ -249,7 +249,7 @@ class MyProjects extends React.Component {
       response.json().then((user) => {
         if (user) {
           fetch(
-            "https://murmuring-mountain-40437.herokuapp.com/getProjects"
+            'https://murmuring-mountain-40437.herokuapp.com/getProjects'
           ).then((response) =>
             response.json().then((projects) => {
               //maps through the projects and returns the projects that the user is a part of
@@ -280,10 +280,10 @@ class MyProjects extends React.Component {
       ) {
         //sends a fetch request to the database and updates the users in the selected project
         fetch(
-          "https://murmuring-mountain-40437.herokuapp.com/editProjectUsers",
+          'https://murmuring-mountain-40437.herokuapp.com/editProjectUsers',
           {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               userIds: selectedUserIds,
               id: this.state.selectedProject.id,
@@ -295,7 +295,7 @@ class MyProjects extends React.Component {
           })
         );
       } else {
-        console.log("user id list remained the same");
+        console.log('user id list remained the same');
       }
     });
   };
@@ -352,21 +352,21 @@ class MyProjects extends React.Component {
   render() {
     var columns = [
       {
-        dataField: "name",
-        text: "Name",
+        dataField: 'name',
+        text: 'Name',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "role",
-        text: "Role",
+        dataField: 'role',
+        text: 'Role',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "id",
-        text: "Add User",
+        dataField: 'id',
+        text: 'Add User',
         sort: true,
         formatter: (cell) => <button className="add-user-btn">ADD</button>,
         events: {
@@ -378,33 +378,33 @@ class MyProjects extends React.Component {
     ];
     var columnsTwo = [
       {
-        dataField: "name",
-        text: "Project Name",
+        dataField: 'name',
+        text: 'Project Name',
         sort: true,
         formatter: (cell) => (
           <div>
             <p>{cell} </p>
           </div>
         ),
-        editCellClasses: "cells",
-        classes: "project-name-column",
-        headerClasses: "project-name-header",
+        editCellClasses: 'cells',
+        classes: 'project-name-column',
+        headerClasses: 'project-name-header',
       },
       {
-        dataField: "description",
-        text: "Description",
+        dataField: 'description',
+        text: 'Description',
         sort: true,
         formatter: (cell) => (
           <div>
             <p> {cell} </p>
           </div>
         ),
-        classes: "description-column",
-        headerClasses: "description-header",
+        classes: 'description-column',
+        headerClasses: 'description-header',
       },
       {
-        dataField: "id",
-        text: "",
+        dataField: 'id',
+        text: '',
         sort: true,
         formatter: (cell) => (
           //Assigns a value to the "Details" and "Manage users" list items so when clicked the correct page is displayed
@@ -412,12 +412,12 @@ class MyProjects extends React.Component {
           <div className="details-list-container">
             <ul>
               <li value="1">Details</li>
-              {this.state.user.role == "Administrator" && (
+              {this.state.user.role == 'Administrator' && (
                 <>
                   <li value="2">Manage Users</li>
                 </>
               )}
-              {this.state.user.role == "Project Manager" && (
+              {this.state.user.role == 'Project Manager' && (
                 <>
                   <li value="2">Manage Users</li>
                 </>
@@ -434,28 +434,28 @@ class MyProjects extends React.Component {
               this.showManageUsersPage(row);
             }
           },
-          classes: "details-column",
+          classes: 'details-column',
         },
       },
     ];
 
     var columnsThree = [
       {
-        dataField: "name",
-        text: "Name",
+        dataField: 'name',
+        text: 'Name',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "role",
-        text: "Role",
+        dataField: 'role',
+        text: 'Role',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "id",
-        text: "Add User",
+        dataField: 'id',
+        text: 'Add User',
         sort: true,
         formatter: (cell) => <button className="add-user-btn">ADD</button>,
         events: {
@@ -468,44 +468,44 @@ class MyProjects extends React.Component {
 
     var columnsFour = [
       {
-        dataField: "name",
-        text: "Title",
+        dataField: 'name',
+        text: 'Title',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "creator",
-        text: "Submitter",
+        dataField: 'creator',
+        text: 'Submitter',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
-        classes: "hide-column",
-        headerClasses: "hide-column",
+        classes: 'hide-column',
+        headerClasses: 'hide-column',
       },
       {
-        dataField: "assigned",
-        text: "Assigned Dev",
+        dataField: 'assigned',
+        text: 'Assigned Dev',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
-        classes: "hide-column",
-        headerClasses: "hide-column",
+        classes: 'hide-column',
+        headerClasses: 'hide-column',
       },
       {
-        dataField: "priority",
-        text: "Priority",
+        dataField: 'priority',
+        text: 'Priority',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "created",
-        text: "Created",
+        dataField: 'created',
+        text: 'Created',
         sort: true,
-        classes: "hide-column",
-        headerClasses: "hide-column",
+        classes: 'hide-column',
+        headerClasses: 'hide-column',
       },
       {
-        dataField: "id",
-        text: "View Ticket",
+        dataField: 'id',
+        text: 'View Ticket',
         formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
@@ -525,10 +525,10 @@ class MyProjects extends React.Component {
 
     const pagination = paginationFactory({
       sizePerPage: 5,
-      lastPageText: ">>",
-      firstPageText: "<<",
-      nextPageText: ">",
-      prePageText: "<",
+      lastPageText: '>>',
+      firstPageText: '<<',
+      nextPageText: '>',
+      prePageText: '<',
       showTotal: true,
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
@@ -536,19 +536,19 @@ class MyProjects extends React.Component {
     //rowClasses changes the color of the row depending on the priority value
     //(High = red, Medium = yellow, Low = green)
     const rowClasses = (row, rowIndex) => {
-      if (row.priority == "High") {
-        return "high";
-      } else if (row.priority == "Medium") {
-        return "medium";
-      } else if (row.priority == "Low") {
-        return "low";
+      if (row.priority == 'High') {
+        return 'high';
+      } else if (row.priority == 'Medium') {
+        return 'medium';
+      } else if (row.priority == 'Low') {
+        return 'low';
       } else {
-        return "";
+        return '';
       }
     };
     //adds custom column styling to the bootstrap table
     const columnClasses = (row, rowIndex) => {
-      return "column";
+      return 'column';
     };
     //displays a lists of all the users that will be added to the project
     const listItems = this.state.addedUsers.map((user) => <li>{user.name}</li>);
@@ -572,39 +572,39 @@ class MyProjects extends React.Component {
             handleClose={this.handleClose}
             handleLogout={this.handleLogout}
           />
-          {this.state.user.role == "Administrator" && (
+          {this.state.user.role == 'Administrator' && (
             <>
-              {" "}
+              {' '}
               <SideBar handleLogout={this.handleLogout} page="my-projects" />
             </>
           )}
-          {this.state.user.role == "Submitter" && (
+          {this.state.user.role == 'Submitter' && (
             <>
-              {" "}
+              {' '}
               <SideBarSubmitter
                 handleLogout={this.handleLogout}
                 page="my-projects"
               />
             </>
           )}
-          {this.state.user.role == "Developer" && (
+          {this.state.user.role == 'Developer' && (
             <>
-              {" "}
+              {' '}
               <SideBarStandard
                 handleLogout={this.handleLogout}
                 page="my-projects"
               />
             </>
           )}
-          {this.state.user.role == "Project Manager" && (
+          {this.state.user.role == 'Project Manager' && (
             <>
-              {" "}
+              {' '}
               <SideBarProjectManager
                 handleLogout={this.handleLogout}
                 page="my-projects"
               />
             </>
-          )}{" "}
+          )}{' '}
           {!this.state.manageUsersPage ? (
             <>
               {!this.state.detailsPage ? (
@@ -619,14 +619,14 @@ class MyProjects extends React.Component {
                     </div>
                     {!this.state.projectPage ? (
                       <div className="mybugs-container">
-                        {this.state.user.role == "Administrator" && (
+                        {this.state.user.role == 'Administrator' && (
                           <>
                             <Button onClick={this.newProjectPage}>
                               Create New Project
                             </Button>
                           </>
                         )}
-                        {this.state.user.role == "Project Manager" && (
+                        {this.state.user.role == 'Project Manager' && (
                           <>
                             <button onClick={this.newProjectPage}>
                               Create New Project
@@ -685,7 +685,7 @@ class MyProjects extends React.Component {
                               onChange={this.handleChange}
                               name="name"
                             ></textarea>
-                          </div>{" "}
+                          </div>{' '}
                           <div className="view-section">
                             <h2>Project Description</h2>
                             <textarea

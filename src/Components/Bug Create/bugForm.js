@@ -1,28 +1,28 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-import SideBar from "../../Components/Sidebar/sidebar";
-import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
-import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
-import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
-import Header from "../../Components/Header/header";
-import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/TextField";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import Select from "@material-ui/core/Select";
-import "./bugForm.css";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import SideBar from '../../Components/Sidebar/sidebar';
+import SideBarSubmitter from '../../Components/Sidebar/sidebarSubmitter';
+import SideBarStandard from '../../Components/Sidebar/sidebarStandard';
+import SideBarProjectManager from '../../Components/Sidebar/sidebarProjectManager';
+import Header from '../../Components/Header/header';
+import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/TextField';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Select from '@material-ui/core/Select';
+import './bugForm.css';
 
 class BugForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formInput: {
-        name: "",
-        details: "",
-        steps: "",
-        priority: "",
-        assigned: "",
-        status: "",
-        project: "",
+        name: '',
+        details: '',
+        steps: '',
+        priority: '',
+        assigned: '',
+        status: '',
+        project: '',
       },
       user: {},
       users: [],
@@ -45,27 +45,27 @@ class BugForm extends React.Component {
   }
 
   redirect = () => {
-    this.props.history.push("./viewbugs");
+    this.props.history.push('./viewbugs');
   };
 
   submit = (e) => {
-    this.state.formInput.name === ""
-      ? alert("Please insert name")
-      : this.state.formInput.details === ""
-      ? alert("Please insert ticket description")
-      : this.state.formInput.priority === ""
-      ? alert("Please select priority level")
-      : this.state.formInput.assigned === ""
-      ? alert("Please assign ticket")
-      : this.state.formInput.status === ""
-      ? alert("Please insert ticket status")
-      : this.state.formInput.creator === ""
-      ? alert("Please input the creator")
-      : this.state.formInput.type === ""
-      ? alert("Please input ticket type")
-      : fetch("https://murmuring-mountain-40437.herokuapp.com/bugs", {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
+    this.state.formInput.name === ''
+      ? alert('Please insert name')
+      : this.state.formInput.details === ''
+      ? alert('Please insert ticket description')
+      : this.state.formInput.priority === ''
+      ? alert('Please select priority level')
+      : this.state.formInput.assigned === ''
+      ? alert('Please assign ticket')
+      : this.state.formInput.status === ''
+      ? alert('Please insert ticket status')
+      : this.state.formInput.creator === ''
+      ? alert('Please input the creator')
+      : this.state.formInput.type === ''
+      ? alert('Please input ticket type')
+      : fetch('https://murmuring-mountain-40437.herokuapp.com/bugs', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: this.state.formInput.name,
             details: this.state.formInput.details,
@@ -88,19 +88,19 @@ class BugForm extends React.Component {
 
   fetchInfo = () => {
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/users/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
         this.setState({ user: userProfile });
       })
     );
-    fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/users').then(
       (response) =>
         response.json().then((users) => {
           this.setState({ users: users });
         })
     );
-    fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
       (response) =>
         response.json().then((projectsList) => {
           this.setState({ projects: projectsList });
@@ -115,39 +115,39 @@ class BugForm extends React.Component {
   render() {
     return (
       <div className="dashboardBG">
-        {this.state.user.role == "Administrator" && (
+        {this.state.user.role == 'Administrator' && (
           <>
-            {" "}
+            {' '}
             <SideBar handleLogout={this.handleLogout} page="create-tickets" />
           </>
         )}
-        {this.state.user.role == "Submitter" && (
+        {this.state.user.role == 'Submitter' && (
           <>
-            {" "}
+            {' '}
             <SideBarSubmitter
               handleLogout={this.handleLogout}
               page="create-tickets"
             />
           </>
         )}
-        {this.state.user.role == "Developer" && (
+        {this.state.user.role == 'Developer' && (
           <>
-            {" "}
+            {' '}
             <SideBarStandard
               handleLogout={this.handleLogout}
               page="create-tickets"
             />
           </>
         )}
-        {this.state.user.role == "Project Manager" && (
+        {this.state.user.role == 'Project Manager' && (
           <>
-            {" "}
+            {' '}
             <SideBarProjectManager
               handleLogout={this.handleLogout}
               page="create-tickets"
             />
           </>
-        )}{" "}
+        )}{' '}
         <div className="bug-create">
           <div className="header effect9">
             <Header
@@ -156,7 +156,7 @@ class BugForm extends React.Component {
               page="Create Tickets"
             />
           </div>
-          {this.props.title === "Edit Bug" && (
+          {this.props.title === 'Edit Bug' && (
             <button className="close-btn" onClick={this.props.close}>
               Close
             </button>

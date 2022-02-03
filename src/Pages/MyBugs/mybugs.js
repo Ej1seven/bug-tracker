@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 //Importing the SideBar components according the role assigned to the user
-import SideBar from "../../Components/Sidebar/sidebar";
-import SideBarSubmitter from "../../Components/Sidebar/sidebarSubmitter";
-import SideBarStandard from "../../Components/Sidebar/sidebarStandard";
-import SideBarProjectManager from "../../Components/Sidebar/sidebarProjectManager";
-import "./mybugs.css";
+import SideBar from '../../Components/Sidebar/sidebar';
+import SideBarSubmitter from '../../Components/Sidebar/sidebarSubmitter';
+import SideBarStandard from '../../Components/Sidebar/sidebarStandard';
+import SideBarProjectManager from '../../Components/Sidebar/sidebarProjectManager';
+import './mybugs.css';
 //Importing the BugView component which displays the details of each tickets
-import BugView from "../../Components/BugView/bugView";
+import BugView from '../../Components/BugView/bugView';
 //Importing IdleTimer which is used to notify the user when their webpage has been inactive for 2 minutes
-import IdleTimer from "react-idle-timer";
+import IdleTimer from 'react-idle-timer';
 //Importing IdleTimeOutModal which is the popup modal that displays a prompt asking the user if they would like to remain logged in or not
-import { IdleTimeOutModal } from "../../Components/IdleTimeOutModal/IdleTimeOutModal";
+import { IdleTimeOutModal } from '../../Components/IdleTimeOutModal/IdleTimeOutModal';
 //Importing react-bootstrap-table components
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import filterFactory from "react-bootstrap-table2-filter";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 //Importing Header which displays the users name, role and user profile information
-import Header from "../../Components/Header/header";
+import Header from '../../Components/Header/header';
 
 class MyBugs extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class MyBugs extends React.Component {
       users: [],
       projects: [],
       displayBug: {
-        name: "",
+        name: '',
         isDisplayed: false,
         id: 0,
       },
@@ -36,8 +36,8 @@ class MyBugs extends React.Component {
       timeout: 1000 * 5 * 24,
       isTimedOut: false,
       showModal: false,
-      priority: "",
-      date: "",
+      priority: '',
+      date: '',
     };
     //Settings used by the react-idle-timer
     //idleTimer start the idle timer on null
@@ -55,12 +55,12 @@ class MyBugs extends React.Component {
   }
   //user did something
   _onAction(e) {
-    console.log("user did something", e);
+    console.log('user did something', e);
     this.setState({ isTimedOut: false });
   }
   //user is active
   _onActive(e) {
-    console.log("user is active", e);
+    console.log('user is active', e);
     this.setState({ isTimedOut: false });
   }
   //user is idle
@@ -90,7 +90,7 @@ class MyBugs extends React.Component {
   };
   //fetches ticket data and the user's profile data from the heroku database
   fetchInfo = () => {
-    fetch("https://murmuring-mountain-40437.herokuapp.com/bugs").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/bugs').then(
       (response) =>
         response.json().then((bugList) => {
           //pulls all the tickets from the bugs table in the database then
@@ -107,7 +107,7 @@ class MyBugs extends React.Component {
     );
     //fetches the active user's profile from the database by using the user's unique id
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/profile/${this.props.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/users/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
         this.setState({ user: userProfile });
@@ -121,14 +121,14 @@ class MyBugs extends React.Component {
       })
     );
     //fetches all the users from the database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/users").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/users').then(
       (response) =>
         response.json().then((userList) => {
           this.setState({ users: userList });
         })
     );
     //fetches all the projects from the database
-    fetch("https://murmuring-mountain-40437.herokuapp.com/getProjects").then(
+    fetch('https://murmuring-mountain-40437.herokuapp.com/getProjects').then(
       (response) =>
         response.json().then((projects) => {
           this.setState({ projects: projects });
@@ -138,29 +138,29 @@ class MyBugs extends React.Component {
   //this function takes the number value from the priority property and changes the format from a number to a description ( 1 = High, 2 = Medium, 3 = Low)
   getPriorityValue = (value) => {
     if (value == 1) {
-      return "High";
+      return 'High';
     } else if (value == 2) {
-      return "Medium";
+      return 'Medium';
     } else {
-      return "Low";
+      return 'Low';
     }
   };
   //this function takes the original date from the created property and changes the format to a readable, clearly defined date
   getFormattedDate = (dateValue) => {
     var date = new Date(dateValue);
     var formatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: true,
     };
-    var dateString = date.toLocaleDateString("en-US", formatOptions);
+    var dateString = date.toLocaleDateString('en-US', formatOptions);
     dateString = dateString
-      .replace(",", "")
-      .replace("PM", "p.m.")
-      .replace("AM", "a.m.");
+      .replace(',', '')
+      .replace('PM', 'p.m.')
+      .replace('AM', 'a.m.');
     return dateString;
   };
   //BugClicked toggles the ticket details popup and also filters the tickets by name and id to make sure the correct ticket is displayed
@@ -179,44 +179,44 @@ class MyBugs extends React.Component {
     console.log(this.state.user);
     var columns = [
       {
-        dataField: "name",
-        text: "Title",
+        dataField: 'name',
+        text: 'Title',
         sort: true,
         formatter: (cell) => <p>{cell} </p>,
-        editCellClasses: "cells",
+        editCellClasses: 'cells',
       },
       {
-        dataField: "creator",
-        text: "Submitter",
+        dataField: 'creator',
+        text: 'Submitter',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
-        headerClasses: "hide-column",
-        classes: "hide-column",
+        headerClasses: 'hide-column',
+        classes: 'hide-column',
       },
       {
-        dataField: "assigned",
-        text: "Assigned Dev",
+        dataField: 'assigned',
+        text: 'Assigned Dev',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
-        headerClasses: "hide-column",
-        classes: "hide-column",
+        headerClasses: 'hide-column',
+        classes: 'hide-column',
       },
       {
-        dataField: "priority",
-        text: "Priority",
+        dataField: 'priority',
+        text: 'Priority',
         sort: true,
         formatter: (cell) => <p> {cell} </p>,
       },
       {
-        dataField: "created",
-        text: "Created",
+        dataField: 'created',
+        text: 'Created',
         sort: true,
-        headerClasses: "hide-column",
-        classes: "hide-column",
+        headerClasses: 'hide-column',
+        classes: 'hide-column',
       },
       {
-        dataField: "id",
-        text: "View Ticket",
+        dataField: 'id',
+        text: 'View Ticket',
         formatter: (cell) => <p> More details </p>,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
@@ -231,10 +231,10 @@ class MyBugs extends React.Component {
 
     const pagination = paginationFactory({
       sizePerPage: 10,
-      lastPageText: ">>",
-      firstPageText: "<<",
-      nextPageText: ">",
-      prePageText: "<",
+      lastPageText: '>>',
+      firstPageText: '<<',
+      nextPageText: '>',
+      prePageText: '<',
       showTotal: true,
       alwaysShowAllBtns: true,
       hideSizePerPage: true,
@@ -242,12 +242,12 @@ class MyBugs extends React.Component {
     //rowClasses changes the color of the row depending on the priority value
     //(High = red, Medium = yellow, Low = green)
     const rowClasses = (row, rowIndex) => {
-      if (row.priority == "High") {
-        return "high";
-      } else if (row.priority == "Medium") {
-        return "medium";
+      if (row.priority == 'High') {
+        return 'high';
+      } else if (row.priority == 'Medium') {
+        return 'medium';
       } else {
-        return "low";
+        return 'low';
       }
     };
 
@@ -270,39 +270,39 @@ class MyBugs extends React.Component {
             handleClose={this.handleClose}
             handleLogout={this.handleLogout}
           />
-          {this.state.user.role == "Administrator" && (
+          {this.state.user.role == 'Administrator' && (
             <>
-              {" "}
+              {' '}
               <SideBar handleLogout={this.handleLogout} page="my-tickets" />
             </>
           )}
-          {this.state.user.role == "Submitter" && (
+          {this.state.user.role == 'Submitter' && (
             <>
-              {" "}
+              {' '}
               <SideBarSubmitter
                 handleLogout={this.handleLogout}
                 page="my-tickets"
               />
             </>
           )}
-          {this.state.user.role == "Developer" && (
+          {this.state.user.role == 'Developer' && (
             <>
-              {" "}
+              {' '}
               <SideBarStandard
                 handleLogout={this.handleLogout}
                 page="my-tickets"
               />
             </>
           )}
-          {this.state.user.role == "Project Manager" && (
+          {this.state.user.role == 'Project Manager' && (
             <>
-              {" "}
+              {' '}
               <SideBarProjectManager
                 handleLogout={this.handleLogout}
                 page="my-tickets"
               />
             </>
-          )}{" "}
+          )}{' '}
           <div className="myBugs-background">
             <div className="header effect9">
               <Header
