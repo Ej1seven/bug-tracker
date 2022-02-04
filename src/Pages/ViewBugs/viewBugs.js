@@ -105,7 +105,7 @@ class ViewBugs extends React.Component {
     );
     //fetches the active user's profile from the database by using the user's unique id
     fetch(
-      `https://murmuring-mountain-40437.herokuapp.com/usres/${this.props.id}`
+      `https://murmuring-mountain-40437.herokuapp.com/users/${this.props.id}`
     ).then((response) =>
       response.json().then((userProfile) => {
         this.setState({ user: userProfile });

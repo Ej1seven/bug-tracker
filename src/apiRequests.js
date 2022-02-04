@@ -1,7 +1,5 @@
 const axios = require('axios').default;
 
-export let userData = {};
-
 export const loginRequest = async (email, password) => {
   const loginData = {
     email: email,
@@ -13,6 +11,7 @@ export const loginRequest = async (email, password) => {
       loginData
     );
     console.log(response.data);
+    return response.data;
   } catch (err) {
     console.log(err);
   }
