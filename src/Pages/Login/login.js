@@ -1,32 +1,34 @@
-import React from "react";
+import React from 'react';
 //Importing Guest component used for guest login
-import Guest from "../../Components/GuestSignIn/guest";
+import Guest from '../../Components/GuestSignIn/guest';
 //Importing Popup component used for registering new users
-import PopUp from "../../Components/Popup/popup";
-import logo from "./bugTrackerWhite.png";
-import "./login.css";
+import PopUp from '../../Components/Popup/popup';
+import PropTypes from 'prop-types';
+import logo from './bugTrackerWhite.png';
+import './login.css';
 //Importing withRouter from react-router which passes updated match, location, and history props to the Login component
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 //Importing Material UI components
-import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/TextField";
+import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/TextField';
 // withStyles allows for custom styling of Material UI components
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
 // InputAdornment provides the functionality to show/hide passwords when clicking on the eye icon
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
 //Visibility on and off shows/hides the password when the eye icon is clicked
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+//Promise-based HTTP client library
+const axios = require('axios').default;
 
-document.querySelector("html").classList.remove("background");
+document.querySelector('html').classList.remove('background');
 //styles the input fields imported from Material UI with a white underline
 const styles = {
   underline: {
-    borderBottom: "1px solid white",
+    borderBottom: '1px solid white',
   },
 };
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -34,8 +36,8 @@ class Login extends React.Component {
       seen: false,
       guestseen: false,
       formInput: {
-        email: "",
-        password: "",
+        email: '',
+        password: '',
       },
       incorrectPassword: false,
       userIsRegistered: false,
@@ -44,7 +46,7 @@ class Login extends React.Component {
   }
   //redirect function uses the history prop passed down from withRouter to send the user back to the login page
   redirect = () => {
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
   //toggles the Guest sign in component
   guestSignIn = () => {
@@ -78,8 +80,8 @@ class Login extends React.Component {
       showPassword: !this.state.showPassword,
     });
     this.state.showPassword === false
-      ? (document.getElementById("password").type = "text")
-      : (document.getElementById("password").type = "password");
+      ? (document.getElementById('password').type = 'text')
+      : (document.getElementById('password').type = 'password');
   };
   //handleMouseDownPassword function prevents the click event from occurring until the user releases the mouse button
   handleMouseDownPassword = (event) => {
@@ -87,24 +89,23 @@ class Login extends React.Component {
   };
   //submit function fires once the login button is pressed
   submit = (e) => {
+    //User credentials
+    const loginData = {
+      email: this.state.formInput.email,
+      password: this.state.formInput.password,
+    };
     //if the email or password fields are left blank on the login form a alert message prompts
     //otherwise the email and password values are passed to the heroku database to be verified
-    this.state.formInput.email === "" || this.state.formInput.password === ""
-      ? alert("Please insert your email and password")
-      : fetch("https://murmuring-mountain-40437.herokuapp.com/login", {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: this.state.formInput.email,
-            password: this.state.formInput.password,
-          }),
-        })
-          .then((response) => response.json())
-          .then((user) => {
-            //if the user's login credential are verified then the database responds with the user's id and the user is redirected to the Dashboard component
-            //otherwise the incorrect password property is set to true and the error message div displays
-            if (user.id) {
-              this.props.logInUser(user.id);
+    this.state.formInput.email === '' || this.state.formInput.password === ''
+      ? alert('Please insert your email and password')
+      : axios
+          .post(
+            'https://murmuring-mountain-40437.herokuapp.com/login',
+            loginData
+          )
+          .then((response) => {
+            if (response.data.id) {
+              this.props.logInUser(response.data.id);
               this.redirect();
             } else {
               this.setState({ incorrectPassword: true });
@@ -112,7 +113,6 @@ class Login extends React.Component {
           });
     e.preventDefault();
   };
-
   render() {
     const { classes } = this.props;
     return (
@@ -172,7 +172,7 @@ class Login extends React.Component {
                   className={classes.underline}
                 />
                 <div className="form-buttons-contatiner">
-                  {" "}
+                  {' '}
                   {this.state.incorrectPassword === true ? (
                     <div className="error-message">
                       <span> Incorrect name or password </span>
@@ -183,24 +183,24 @@ class Login extends React.Component {
                     className="submit-button"
                     onClick={this.submit}
                   >
-                    {" "}
-                    Login{" "}
-                  </Button>{" "}
+                    {' '}
+                    Login{' '}
+                  </Button>{' '}
                   <p>
-                    Don't have an account?{" "}
+                    Don't have an account?{' '}
                     <span className="sign-up" onClick={this.onSeenChange}>
                       Sign up
                     </span>
                   </p>
                   <p>
-                    Sign in as a{" "}
+                    Sign in as a{' '}
                     <span className="sign-up" onClick={this.guestSignIn}>
                       Demo User
                     </span>
                   </p>
                 </div>
               </form>
-            )}{" "}
+            )}{' '}
           </>
         )}
       </div>
