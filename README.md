@@ -36,7 +36,7 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
 
 <div id="top"></div>
 <!--
-*** Thanks for checking out the The-Forum-Lab. If you have a suggestion
+*** Thanks for checking out the bug-tracker. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "enhancement".
 *** Don't forget to give the project a star!
@@ -68,14 +68,14 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
 
   <p align="center">
     <br />
-    <a href="https://github.com/ej1seven/The-Forum-Lab"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/ej1seven/bug-tracker"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://theforumlab.com/">View Demo</a>
+    <a href="https://bug-tracker.dev/">View Demo</a>
     ·
-    <a href="https://github.com/ej1seven/The-Forum-Lab/issues">Report Bug</a>
+    <a href="https://github.com/ej1seven/bug-tracker/issues">Report Bug</a>
     ·
-    <a href="https://github.com/ej1seven/The-Forum-Lab/issues">Request Feature</a>
+    <a href="https://github.com/ej1seven/bug-tracker/issues">Request Feature</a>
   </p>
 </div>
 
@@ -115,12 +115,14 @@ This application enables users to create, modify and remove tickets. Users can a
 - [React.js](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
-- [Chakra](https://chakra-ui.com/)
+- [Postgresql](https://postgresql.org/)
+- [MaterialUI](https://mui.com/)
+- [Bootstrap](https://getbootstrap.com/)
+<!-- - [Chakra](https://chakra-ui.com/)
 - [FontAwesome](https://fontawesome.com/)
 - [GraphQl](https:///graphql.org/)
-- [ApolloServer](https://www.apollographql.com/)
-- [Postgresql](https://postgresql.org/)
-- [Redis](https://redis.io/)
+- [ApolloServer](https://www.apollographql.com/) -->
+<!-- - [Redis](https://redis.io/)
 - [Nodemailer](https://nodemailer.com/)
 - [Typescript](https://typescriptlang.org/)
 - [Docker](https://www.docker.com/)
@@ -128,7 +130,7 @@ This application enables users to create, modify and remove tickets. Users can a
 - [MikroOrm](https://mikro-orm.io/)
 - [Argon2](https://www.npmjs.com/package/argon2)
 - [Dataloader](https://www.npmjs.com/package/dataloader)
-- [Vercel](https://vercel.com/)
+- [Vercel](https://vercel.com/) -->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -143,34 +145,12 @@ To get a local copy up and running follow these simple example steps.
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/Ej1seven/The-Forum-Lab.git
+   git clone https://github.com/Ej1seven/bug-tracker.git
    ```
 
 2. Install NPM packages
    ```sh
    npm install
-   ```
-3. Create `.env` file for web
-
-   ```js
-   NEXT_PUBLIC_API_URL = put - your - graphql - api - url;
-   ```
-
-4. Create `.env` file for server
-
-   ```js
-   DATABASE_URL = put - your - postgres - database - url;
-   REDIS_URL = put - your - redis - url;
-   PORT = put - your - server - port - number;
-   SESSION_SECRET = put - your - session - password;
-   CORS_ORIGIN = put - your - localhost - url;
-   ```
-
-5. Create `.env.production` file for server
-
-   ```js
-   SESSION_SECRET = put - your - session - password;
-   CORS_ORIGIN = put - your - production - website - url;
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -181,12 +161,19 @@ To get a local copy up and running follow these simple example steps.
 
 ### MVP / User Stories
 
-- [x] As a user, I can register my information so I can log in when I want to post content
-- [x] As a user, I can vote up or down on posts once I am logged in
-- [x] As a user, I want to be able to edit my post if I make a mistake
-- [x] As a user, I want to be able to delete my post if I make a mistake
+- [x] As a user, I can create new tickets
+- [x] As a user, I can edit tickets
+- [x] As a user, I can delete tickets
+- [x] As a user, I can assign tickets to other users
+- [x] As a user, I can view tickets
+- [x] As a user, I can reassign roles to users
+- [x] As a user, I can create a new project
+- [x] As a user, I can add users to a project
+- [x] As a user, I can remove users from a project
+- [x] As a user, I can add comments to a ticket
+- [x] As a user, I can view the ticket history
 
-See the [open issues](https://github.com/ej1seven/The-Forum-Lab/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/ej1seven/bug-tracker/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -213,21 +200,21 @@ Don't forget to give the project a star! Thanks again!
 
 Erik Hunter - <erikhunter@erikhunter.dev>
 
-Project Link: [https://github.com/Ej1seven/The-Forum-Lab](https://github.com/Ej1seven/The-Forum-Lab)
+Project Link: [https://github.com/Ej1seven/bug-tracker](https://github.com/Ej1seven/bug-tracker)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/ej1seven/The-Forum-Lab?style=plastic
-[contributors-url]: https://github.com/ej1seven/The-Forum-Lab/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ej1seven/The-Forum-Lab.svg?style=plastic
-[forks-url]: https://github.com/ej1seven/The-Forum-Lab/network/members
-[stars-shield]: https://img.shields.io/github/stars/ej1seven/The-Forum-Lab.svg?style=plastic
-[stars-url]: https://github.com/ej1seven/The-Forum-Lab/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ej1seven/The-Forum-Lab.svg?style=plastic
-[issues-url]: https://github.com/ej1seven/The-Forum-Lab/issues
+[contributors-shield]: https://img.shields.io/github/contributors/ej1seven/bug-tracker?style=plastic
+[contributors-url]: https://github.com/ej1seven/bug-tracker/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/ej1seven/bug-tracker.svg?style=plastic
+[forks-url]: https://github.com/ej1seven/bug-tracker/network/members
+[stars-shield]: https://img.shields.io/github/stars/ej1seven/bug-tracker.svg?style=plastic
+[stars-url]: https://github.com/ej1seven/bug-tracker/stargazers
+[issues-shield]: https://img.shields.io/github/issues/ej1seven/bug-tracker.svg?style=plastic
+[issues-url]: https://github.com/ej1seven/bug-tracker/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=plastic&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/erik-hunter/
 [product-screenshot]: images/screenshot.png
