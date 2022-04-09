@@ -111,7 +111,8 @@ This application enables users to create, modify and remove tickets. Users can a
 
 ### Built With
 
-- [Next.js](https://nextjs.org/)
+<!-- - [Next.js](https://nextjs.org/) -->
+
 - [React.js](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
