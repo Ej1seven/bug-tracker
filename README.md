@@ -1,9 +1,3 @@
-<p align="center">
-    <img src="client/src/Pages/Login/bugTrackerWhite.png" width="500">
-</p>
-
-The Bug-Tracker application is a ticket management system that enables a group of users to effectively track issues. This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management. Feel free to check out my project at [https://bug-tracker.dev](https://bug-tracker.dev)
-
 <!-- # Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui)
 
 This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app.
@@ -68,9 +62,9 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
 <br />
 <div align="center">
   
-  ![The Forum Lab Logo](forum-flow-web/public/ForumLabLogo.png "The Forum Lab Logo")
+  ![Bug-Tracker Logo](client/src/Pages/Login/bugTrackerWhite.png "Bug-Tracker Logo")
 
-  <h3 align="center">The Forum Lab is an online community where users can share ideas that can be voted up or down by other members.</h3>
+  <h3 align="center">The Bug-Tracker application is a ticket management system that enables a group of users to effectively track issues. This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management. Feel free to check out my project at [https://bug-tracker.dev](https://bug-tracker.dev)</h3>
 
   <p align="center">
     <br />
