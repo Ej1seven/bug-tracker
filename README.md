@@ -105,7 +105,7 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
 
 ## About The Project
 
-This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management. Feel free to check out my project at [https://bug-tracker.dev](https://bug-tracker.dev)
+This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
