@@ -64,7 +64,7 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
   
   ![Bug-Tracker Logo](client/src/Pages/Login/bugTrackerWhite.png "Bug-Tracker Logo")
 
-  <h3 align="center">The Bug-Tracker application is a ticket management system that enables a group of users to effectively track issues. This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management. Feel free to check out my project at [https://bug-tracker.dev](https://bug-tracker.dev)</h3>
+  <h3 align="center">The Bug-Tracker application is a ticket management system that enables a group of users to effectively track issues.</h3>
 
   <p align="center">
     <br />
@@ -105,7 +105,7 @@ If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl
 
 ## About The Project
 
-Social media is an integral part of our lives, and many of us seek a place to express ourselves. The Forum Lab provides a platform for users to post content that may be voted upon by other members. Contrary to many other discussion forums, The Forum Lab does not allow users to post comments. The reason behind this is to remove the negativity that comes along with comments. Instead we allow members to vote up or down on a post. This feedback provides the owner with a sense of the acceptance rate.
+This application enables users to create, modify and remove tickets. Users can also add comments to tickets as well as check ticket history. This application includes additional features such as authorization, user role assignment, and project management. Feel free to check out my project at [https://bug-tracker.dev](https://bug-tracker.dev)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
